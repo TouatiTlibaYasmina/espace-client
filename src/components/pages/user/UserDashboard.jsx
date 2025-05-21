@@ -108,7 +108,7 @@ function UserDashboard() {
     // Then fetch fresh data from API
     const fetchUserData = async () => {
       try {
-        const response = await fetch("/api/users/profile", {
+        const response = await fetch("https://backend-espace-client.onrender.com/api/users/profile", {
           headers: { Authorization: `Bearer ${token}` }
         });
 
@@ -155,7 +155,7 @@ function UserDashboard() {
     }
 
     try {
-      await fetch("/api/users/logout", {
+      await fetch("https://backend-espace-client.onrender.com/api/users/logout", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
       });

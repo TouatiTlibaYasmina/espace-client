@@ -12,7 +12,7 @@ function ForgotPasswordForm({ closeModal }) {
     setMessage('');
 
     try {
-      const response = await fetch("/api/users/forgotPassword",  {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/users/forgotPassword",  {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })

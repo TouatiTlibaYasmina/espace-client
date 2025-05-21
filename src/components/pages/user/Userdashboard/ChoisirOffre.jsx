@@ -117,10 +117,10 @@ function ChoisirOffre() {
     const fetchData = async () => {
       try {
         const [profileResponse, abonnementResponse] = await Promise.all([
-          fetch("/api/users/profile", {
+          fetch("https://backend-espace-client.onrender.com/api/users/profile", {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          fetch("/api/abonnements/current", {
+          fetch("https://backend-espace-client.onrender.com/api/abonnements/current", {
             headers: { Authorization: `Bearer ${token}` }
           })
         ]);
@@ -195,7 +195,7 @@ function ChoisirOffre() {
         return;
       }
       
-      const response = await fetch("/api/abonnements/choisir", {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/abonnements/choisir", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -219,7 +219,7 @@ function ChoisirOffre() {
         
         setTimeout(async () => {
           try {
-            const refreshResponse = await fetch("/api/abonnements/current", {
+            const refreshResponse = await fetch("https://backend-espace-client.onrender.com/api/abonnements/current", {
               headers: { Authorization: `Bearer ${token}` }
             });
             const refreshData = await refreshResponse.json();

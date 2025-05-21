@@ -16,7 +16,7 @@ function FactureStatistiques() {
         throw new Error("Veuillez vous connecter");
       }
 
-      const response = await fetch("/api/factures/admin/statistiques", {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/factures/admin/statistiques", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

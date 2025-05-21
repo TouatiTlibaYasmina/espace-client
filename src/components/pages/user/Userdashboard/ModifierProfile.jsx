@@ -26,7 +26,7 @@ const ModifierProfile = () => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("/api/users/profile", {
+        const response = await axios.get("https://backend-espace-client.onrender.com/api/users/profile", {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -64,7 +64,7 @@ const ModifierProfile = () => {
     setError(null);
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.put("/api/users/profile/update", formData, {
+      const response = await axios.put("https://backend-espace-client.onrender.com/api/https://backend-espace-client.onrender.com/api/users/profile/update", formData, {
         headers: {
           Authorization: `Bearer ${token}`
         }

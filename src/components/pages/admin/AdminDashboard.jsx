@@ -92,7 +92,7 @@ function AdminDashboard() {
 
     const fetchAdminData = async () => {
       try {
-        const response = await fetch("/api/users/profile", {
+        const response = await fetch("https://backend-espace-client.onrender.com/api/users/profile", {
           headers: { "Authorization": `Bearer ${token}` }
         });
 
@@ -199,7 +199,7 @@ function AdminDashboard() {
               }
 
               try {
-                await fetch("/api/admin/logout", {
+                await fetch("https://backend-espace-client.onrender.com/api/admin/logout", {
                   method: "POST",
                   headers: {
                     "Authorization": `Bearer ${token}`

@@ -12,7 +12,7 @@ function AjouterReclamation() {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("/api/reclamations", {
+      const res = await fetch("https://backend-espace-client.onrender.com/api/reclamations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +83,7 @@ function VoirReclamations() {
   useEffect(() => {
     const fetchReclamations = async () => {
       try {
-        const res = await fetch("/api/reclamations/allReclamations", {
+        const res = await fetch("https://backend-espace-client.onrender.com/api/reclamations/allReclamations", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

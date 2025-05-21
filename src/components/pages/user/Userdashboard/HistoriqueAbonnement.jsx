@@ -24,7 +24,7 @@ function HistoriqueAbonnements() {
           return;
         }
 
-        const response = await fetch("/api/abonnements/historique/me", {
+        const response = await fetch("https://backend-espace-client.onrender.com/api/abonnements/historique/me", {
           headers: {
             Authorization: `Bearer ${token}`
           }

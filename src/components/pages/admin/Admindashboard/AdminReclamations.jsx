@@ -20,7 +20,7 @@ function AdminReclamations() {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Vous devez être connecté");
       
-      const response = await fetch("/api/reclamations", {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/reclamations", {
         headers: {
           "Authorization": `Bearer ${token}`
         }

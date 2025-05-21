@@ -20,7 +20,7 @@ const fetchFactures = async () => {
       return;
     }
 
-    const response = await fetch("/api/factures/mesFactures", {
+    const response = await fetch("https://backend-espace-client.onrender.com/api/factures/mesFactures", {
       headers: { Authorization: `Bearer ${token}` }
     });
 

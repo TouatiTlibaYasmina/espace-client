@@ -22,7 +22,7 @@ function TousLesUtilisateurs() {
       throw new Error("Token d'authentification non trouvé");
     }
 
-    const response = await fetch("/api/users/admin/allUsers", {
+    const response = await fetch("https://backend-espace-client.onrender.com/api/users/admin/allUsers", {
       headers: {
         "Authorization": `Bearer ${token}`,
         "Content-Type": "application/json"

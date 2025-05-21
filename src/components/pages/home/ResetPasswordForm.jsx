@@ -23,7 +23,7 @@ function ResetPasswordForm() {
     }
 
     try {
-      const response = await fetch("/api/users/resetPassword", {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/users/resetPassword", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, token, newPassword }), // Include email

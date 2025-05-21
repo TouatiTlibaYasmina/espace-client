@@ -39,7 +39,7 @@ const InscriptionForm = ({ closeModal }) => {
     };
   
     try {
-      const response = await fetch("/api/users/register", {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
