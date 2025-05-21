@@ -56,22 +56,73 @@ const fetchFactures = async () => {
 
 const handleDownloadPDF = async (factureId) => {
   const token = localStorage.getItem("token");
+  
+  // Debug: Vérification des données d'entrée
+  console.log("[DEBUG] Tentative de téléchargement PDF pour facture ID:", factureId);
+  console.log("[DEBUG] Token présent:", token ? "OUI" : "NON");
+
+  if (!token) {
+    alert("Veuillez vous reconnecter");
+    return;
+  }
+
   try {
-    const response = await fetch('https://backend-espace-client.onrender.com/api/factures/${factureId}/pdf', {
-      headers: { Authorization: `Bearer ${token}` }
+    // Debug: Log de l'URL complète
+    const apiUrl = `https://backend-espace-client.onrender.com/api/factures/${factureId}/pdf`;
+    console.log("[DEBUG] URL de l'API:", apiUrl);
+
+    const response = await fetch(apiUrl, {
+      headers: { 
+        Authorization: `Bearer ${token}`,
+        'Cache-Control': 'no-cache',
+        'Accept': 'application/pdf'
+      },
+      credentials: 'include'
     });
 
-    if (!response.ok) throw new Error("Failed to fetch PDF");
+    // Debug: Log du statut de la réponse
+    console.log("[DEBUG] Statut de la réponse:", response.status);
+    console.log("[DEBUG] Headers de la réponse:", [...response.headers.entries()]);
 
-    const pdfBlob = await response.blob();
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-    window.open(pdfUrl, "_blank");
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("[ERREUR] Réponse du serveur:", errorText);
+      throw new Error(`Le serveur a retourné une erreur ${response.status}: ${errorText || "Aucun détail"}`);
+    }
+
+    const blob = await response.blob();
     
-    // Clean up memory
-    setTimeout(() => URL.revokeObjectURL(pdfUrl), 100);
+    // Debug: Vérification du type de fichier
+    console.log("[DEBUG] Type de blob reçu:", blob.type);
+    console.log("[DEBUG] Taille du blob:", blob.size, "bytes");
+
+    if (blob.type !== "application/pdf") {
+      throw new Error("Le fichier reçu n'est pas un PDF valide");
+    }
+
+    const pdfUrl = URL.createObjectURL(blob);
+    
+    // Création d'un lien de téléchargement
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = `facture-${factureId}-${new Date().toISOString().slice(0,10)}.pdf`;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Nettoyage après 30 secondes
+    setTimeout(() => {
+      URL.revokeObjectURL(pdfUrl);
+      console.log("[DEBUG] Nettoyage du blob URL effectué");
+    }, 30000);
+
   } catch (error) {
-    console.error("PDF error:", error);
-    alert("Could not open PDF");
+    console.error("[ERREUR CRITIQUE] Échec du téléchargement:", error);
+    alert(`Échec du téléchargement:\n${error.message}\n\nVeuillez réessayer ou contacter le support.`);
+    
+    // Envoyez l'erreur à votre service de suivi (optionnel)
+    // logErrorToService(error);
   }
 };
   const handleViewFacture = (facture) => {
