@@ -57,7 +57,7 @@ const fetchFactures = async () => {
 const handleDownloadPDF = async (factureId) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await fetch(`/api/factures/${factureId}/pdf`, {
+    const response = await fetch('https://backend-espace-client.onrender.com/api/factures/${factureId}/pdf', {
       headers: { Authorization: `Bearer ${token}` }
     });
 
