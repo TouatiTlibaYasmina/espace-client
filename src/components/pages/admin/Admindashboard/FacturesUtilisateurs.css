@@ -1,0 +1,282 @@
+
+/* Container and Header */
+.fu-container {
+  padding: 24px;
+  width: 100%;
+}
+
+.fu-header {
+  margin-bottom: 24px;
+}
+
+.fu-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.fu-description {
+  color: #666666;
+  margin-bottom: 16px;
+}
+
+/* Filters Section */
+.fu-filters-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.fu-filters-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.fu-form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.fu-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.fu-input,
+.fu-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.fu-input:focus,
+.fu-select:focus {
+  border-color: #00a3e0;
+  outline: none;
+}
+
+.fu-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.fu-button-primary {
+  background-color: #ed1b2f;
+  color: white;
+}
+
+.fu-button-primary:hover {
+  background-color: #c41425;
+}
+
+.fu-button-secondary {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+.fu-button-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.fu-button-icon {
+  font-size: 16px;
+}
+
+/* Results Section */
+.fu-results-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Loading, Error and Empty States */
+.fu-loading,
+.fu-error,
+.fu-empty {
+  padding: 24px;
+  text-align: center;
+  color: #666666;
+}
+
+.fu-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #00a3e0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: fu-spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes fu-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Table Styles */
+.fu-table-container {
+  overflow-x: auto;
+}
+
+.fu-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.fu-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background-color: #f5f5f5;
+  color: #333333;
+  font-weight: 600;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.fu-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333333;
+}
+
+.fu-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.fu-amount {
+  font-weight: 500;
+}
+
+/* Status badges */
+.fu-status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.fu-status-paid {
+  background-color: #e6f7ed;
+  color: #2e7d32;
+}
+
+.fu-status-pending {
+  background-color: #fff8e1;
+  color: #f57c00;
+}
+
+.fu-status-late {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.fu-status-default {
+  background-color: #e0e0e0;
+  color: #616161;
+}
+
+/* Pagination */
+.fu-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  gap: 8px;
+}
+
+.fu-pagination-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.fu-pagination-button:disabled {
+  color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.fu-pagination-button:not(:disabled):hover {
+  background-color: #f5f5f5;
+}
+
+.fu-pagination-pages {
+  display: flex;
+  gap: 8px;
+}
+
+.fu-pagination-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fu-pagination-number:hover {
+  background-color: #f5f5f5;
+}
+
+.fu-pagination-active {
+  background-color: #00a3e0;
+  color: white;
+  border-color: #00a3e0;
+}
+
+.fu-pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fu-results-summary {
+  margin-top: 16px;
+  text-align: right;
+  color: #666666;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .fu-filters-form {
+    flex-direction: column;
+  }
+  
+  .fu-form-group {
+    width: 100%;
+  }
+  
+  .fu-pagination {
+    flex-wrap: wrap;
+  }
+}

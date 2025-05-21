@@ -1,0 +1,89 @@
+/* variables.css */
+:root {
+  /* Colors */
+  --color-primary: #1e3a8a;
+  --color-secondary: #002b5b;
+    --color-primary: #28A745;
+  --color-secondary: #009d38;
+  --color-success: #28A745;
+  --color-danger: #d32f2f;
+  --color-warning: #f0ad4e;
+  --color-light: #f8fbfd;
+  --color-dark: #1a1a1a;
+ 
+
+  /* hovers colours */
+  color: #009d38; 
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  
+  /* Borders */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-full: 9999px;
+}
+:root {
+  /* Primary Colors */
+  --color-primary: #1e3a8a;       /* Dark blue (main brand color) */
+  --color-primary-alt: #28A745;   /* Green (alternative primary) */
+  
+  /* Secondary Colors */
+  --color-secondary: #002b5b;     /* Very dark blue */
+  --color-secondary-alt: #009d38; /* Bright green */
+  
+  /* Status Colors */
+  --color-success: #28A745;       /* Green (success actions) */
+  --color-danger: #d32f2f;        /* Red (error/destructive actions) */
+  --color-warning: #f0ad4e;       /* Orange (warning/attention needed) */
+  
+  /* Neutral Colors */
+  --color-light: #f8fbfd;         /* Very light blue (backgrounds) */
+  --color-light-gray: #e3f2fd;    /* Light blue (hover states) */
+  --color-medium-gray: #cfd8dc;   /* Medium gray (borders) */
+  --color-dark: #1a1a1a;          /* Near black (text) */
+  --color-text-muted: #555;       /* Dark gray (secondary text) */
+  
+  /* Additional UI Colors */
+  --color-highlight: #0056b3;     /* Blue (active states) */
+  --color-shadow: rgba(0, 43, 91, 0.08); /* Blue tinted shadows */
+}
+
+/* Color Palette Visualization (for reference) */
+/*
+Primary Colors:
+- Dark Blue: #1e3a8a (Primary branding)
+- Green: #28A745 (Alternative primary)
+
+Secondary Colors:
+- Navy Blue: #002b5b (Dark accents)
+- Emerald Green: #009d38 (Bright accents)
+
+Status Colors:
+- Success Green: #28A745
+- Danger Red: #d32f2f
+- Warning Orange: #f0ad4e
+
+Neutrals:
+- Light BG: #f8fbfd (Backgrounds)
+- Light Gray: #e3f2fd (Hover states)
+- Medium Gray: #cfd8dc (Borders)
+- Dark Text: #1a1a1a
+- Muted Text: #555555
+
+Accents:
+- Highlight Blue: #0056b3
+- Soft Shadow: rgba(0, 43, 91, 0.08)
+*/

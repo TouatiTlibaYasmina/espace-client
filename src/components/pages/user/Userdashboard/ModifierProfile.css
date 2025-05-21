@@ -1,0 +1,249 @@
+/* Base Container - More elegant with subtle gradient */
+.mpu-profile-container {
+  background: linear-gradient(to bottom, #fffffe, #f8fbfd);
+  border-radius: 16px;
+  padding: 1.5rem 2.5rem; /* Reduced vertical padding (top/bottom) */
+  box-shadow: 0 4px 20px rgba(0, 43, 91, 0.12);
+  max-width: 700px;
+  margin-top: 16px;
+  margin: 0 auto;
+  border: 1px solid rgba(207, 216, 220, 0.5);
+}
+
+/* Header - More prominent with better spacing */
+.mpu-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(207, 216, 220, 0.5);
+}
+
+.mpu-title {
+  color: #1e3a8a;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.mpu-title-icon {
+  color: #28A745;
+  margin-left: 12px;
+  
+}
+
+/* Alerts - More refined with subtle animation */
+.mpu-alert {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 1.25rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  animation: fadeIn 0.3s ease-out;
+  box-shadow: 0 2px 8px rgba(0, 43, 91, 0.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.mpu-alert svg {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.mpu-success {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: #28A745;
+  border-left: 4px solid #28A745;
+}
+
+.mpu-error {
+  background-color: rgba(211, 47, 47, 0.1);
+  color: #d32f2f;
+  border-left: 4px solid #d32f2f;
+}
+
+/* Form Styles - More elegant spacing and inputs */
+.mpu-form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.mpu-form-group {
+  position: relative;
+}
+
+.mpu-label {
+  display: block;
+  color: #002b5b;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.mpu-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 14px;
+  font-size: 1rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #f8fbfd;
+  color: #1a1a1a;
+}
+
+.mpu-input:focus {
+  outline: none;
+  border-color: #1e3a8a;
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+  background-color: white;
+}
+
+.mpu-input.mpu-active {
+  border-color: #28A745;
+  padding-right: 2.75rem;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+
+.mpu-input:disabled {
+  background-color: #f8fbfd;
+  color: #555;
+  cursor: not-allowed;
+}
+
+/* Edit Icon - More interactive */
+.mpu-input-group {
+  position: relative;
+  border-radius: 14px ;
+}
+
+.mpu-edit-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  
+  padding: 6px;
+ 
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mpu-edit-icon:hover {
+  color: #1e3a8a;
+  
+  transform: translateY(-50%) scale(1.05);
+}
+
+.mpu-input.mpu-active + .mpu-edit-icon {
+  color: #28A745;
+  
+}
+
+/* Submit Button - More polished */
+.mpu-submit-btn {
+background: linear-gradient(to right, #28A745, #009d38);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+  width: fit-content;
+  align-self: flex-end;
+}
+
+
+.mpu-submit-btn:hover {
+  background: linear-gradient(to right, #009d38, #008030);
+  box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
+  transform: translateY(-1px);
+}
+
+.mpu-submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Loading State - More elegant */
+.mpu-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  min-height: 200px;
+}
+
+.mpu-loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(227, 242, 253, 0.5);
+  border-top: 4px solid #28A745;
+  border-radius: 50%;
+  animation: mpu-spin 0.8s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes mpu-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive - Better mobile experience */
+@media (max-width: 640px) {
+  .mpu-profile-container {
+    padding: 1.75rem;
+    margin: 1rem;
+    border-radius: 10px;
+  }
+  
+  .mpu-title {
+    font-size: 1.5rem;
+  }
+  
+  .mpu-submit-btn {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .mpu-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mpu-form {
+    gap: 1.25rem;
+  }
+}
+
+/* Additional micro-interactions */
+.mpu-input-group {
+  transition: all 0.25s ease;
+}
+
+.mpu-input-group:hover .mpu-input:not(:disabled) {
+  border-color: #1e3a8a;
+}
+
+.mpu-input-group:hover .mpu-edit-icon {
+  color: #1e3a8a;
+}

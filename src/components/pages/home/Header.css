@@ -1,0 +1,265 @@
+.at-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #f9f9fc;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .at-logo {
+    height: 45px;
+    margin-right: 20px;
+  }
+  
+  .user-type {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    color: #002b5b;
+    font-weight: 500;
+  }
+  
+  .user-type .divider {
+    color: #aaa;
+  }
+  
+  .center-nav {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+  }
+  
+  .center-nav a {
+    color: #002b5b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  .center-nav a:hover {
+    color: #009d38; /* Or any bright accent color */
+  }
+  .center-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background-color: #009d38;
+    transition: width 0.3s ease;
+  }
+  
+  .center-nav a:hover::after {
+    width: 100%;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  .icon-circle {
+    background-color: #002b5b;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    padding: 6px;
+  }
+  
+  .icon-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+  
+  .btn.white {
+    background-color: white;
+    color: #333;
+  }
+  
+  .btn.green {
+    background-color: #28a745;
+    color: white;
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    display: inline-block; /* Ensures the button stays on one line */
+  }
+  .btn:hover {
+  transform: scale(1.05); 
+}
+
+.btn.white:hover {
+  background-color: #f1f1f1; 
+}
+
+.btn.green:hover {
+  background-color: #009d38; 
+}
+  
+  
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .at-logo {
+    height: 45px;
+    margin-right: 20px;
+  }
+  
+  .user-type {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    
+    font-weight: 500;
+  }
+  
+  .user-type .divider {
+    color: #aaa;
+  }
+  .user-link {
+    color: #002b5b;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
+  
+  .user-link:hover {
+    color: #009d38;
+    
+  }
+  
+  .user-link.active {
+    color: #009d38;
+    font-weight: bold;
+    
+  }
+  
+  
+  .center-nav {
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+  }
+  
+  .center-nav a {
+    color: #002b5b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  .center-nav a:hover {
+    color: #009d38; /* Or any bright accent color */
+  }
+  .center-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -4px;
+    background-color: #009d38;
+    transition: width 0.3s ease;
+  }
+  
+  .center-nav a:hover::after {
+    width: 100%;
+  }
+  
+  .right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .icon-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  .icon-circle {
+    background-color: #002b5b;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    padding: 6px;
+  }
+  
+  .icon-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+  
+  .btn.white {
+    background-color: white;
+    color: #333;
+  }
+  
+  .btn.green {
+    background-color: #28a745;
+    color: white;
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    display: inline-block; /* Ensures the button stays on one line */
+  }
+  .btn:hover {
+  transform: scale(1.05); 
+}
+
+.btn.white:hover {
+  background-color: #f1f1f1; 
+}
+
+.btn.green:hover {
+  background-color: #009d38; 
+}
+  

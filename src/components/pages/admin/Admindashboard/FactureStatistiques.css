@@ -1,0 +1,207 @@
+.fs-container {
+  padding: 20px;
+  max-width: 100%;
+}
+
+.fs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.fs-header h1 {
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.fs-refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.fs-refresh-btn:hover {
+  background-color: #002b5b;
+}
+
+.fs-section {
+  background-color: #f8fbfd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.fs-section h2 {
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 8px;
+}
+
+.fs-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.fs-card {
+  padding: 16px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.fs-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.fs-card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.fs-card-percentage {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2px 8px;
+  align-self: flex-start;
+}
+
+.fs-card-primary {
+  background-color: #1e3a8a;
+}
+
+.fs-card-success {
+  background-color: #28A745;
+}
+
+.fs-card-warning {
+  background-color: #f0ad4e;
+}
+
+.fs-card-danger {
+  background-color: #d32f2f;
+}
+
+.fs-card-secondary {
+  background-color: #002b5b;
+}
+
+.fs-table-responsive {
+  overflow-x: auto;
+}
+
+.fs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.fs-table th,
+.fs-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.fs-table th {
+  background-color: #f8fbfd;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.fs-table tr:hover {
+  background-color: #f8fbfd;
+}
+
+.fs-chart-container {
+  padding: 16px 0;
+}
+
+.fs-tabs {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.fs-tab {
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  color: #666;
+}
+
+.fs-tab-active {
+  border-bottom: 2px solid #1e3a8a;
+  color: #1e3a8a;
+}
+
+.fs-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.fs-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1e3a8a;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.fs-error {
+  background-color: #fff5f5;
+  border-left: 4px solid #d32f2f;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .fs-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .fs-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .fs-table th,
+  .fs-table td {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+}

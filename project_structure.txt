@@ -1,0 +1,81 @@
+Structure du dossier pour le volume Windows
+Le numéro de série du volume est 768E-4EBB
+C:\USERS\TOUAT\ESPACE-CLIENT\SRC
+|   App.css
+|   App.js
+|   index.css
+|   index.js
+|   
++---assets
+|   +---icons
+|   |       icons8-facebook.svg
+|   |       icons8-instagram.svg
+|   |       icons8-log-out-24.png
+|   |       icons8-sidebar-menu-24.png
+|   |       icons8-x.svg
+|   |       icons8-youtube.svg
+|   |       
+|   +---illustrations
+|   |       questions.svg
+|   |       undraw_contact-us.svg
+|   |       undraw_correct-answer_vjt7.svg
+|   |       undraw_hello_ccwj.svg
+|   |       undraw_select-option_a16s.svg
+|   |       undraw_selected-options.svg
+|   |       undraw_sign-in_uva0.svg
+|   |       
+|   +---images
+|   \---logos
+|           e-paiement-logo.png
+|           idoom_market_logomono.png
+|           logo.svg
+|           
+\---components
+    \---pages
+        +---admin
+        |   |   AdminDashboard.jsx
+        |   |   
+        |   \---Admindashboard
+        |           AdminReclamations.css
+        |           AdminReclamations.jsx
+        |           FactureStatistiques.css
+        |           FactureStatistiques.jsx
+        |           FacturesUtilisateurs.css
+        |           FacturesUtilisateurs.jsx
+        |           TousLesUtilisateurs.css
+        |           TousLesUtilisateurs.jsx
+        |           
+        +---home
+        |       ConnexionForm.css
+        |       ConnexionForm.jsx
+        |       FAQ.css
+        |       FAQ.jsx
+        |       ForgotPassword.jsx
+        |       Header.css
+        |       Header.jsx
+        |       HomePage.css
+        |       HomePage.jsx
+        |       InscriptionForm.css
+        |       InscriptionForm.jsx
+        |       ResetPasswordForm.jsx
+        |       
+        \---user
+            |   UserDashboard.css
+            |   UserDashboard.jsx
+            |   
+            \---Userdashboard
+                    Abonnement.css
+                    ChangerMotDePasse.css
+                    ChangerMotDePasse.jsx
+                    ChoisirOffre.jsx
+                    dashboard.css
+                    Factures.css
+                    Factures.jsx
+                    HistoriqueAbonnement.jsx
+                    ModifierProfile.css
+                    ModifierProfile.jsx
+                    Notifications.css
+                    Notifications.jsx
+                    Reclamation.css
+                    Reclamation.jsx
+                    

@@ -1,0 +1,239 @@
+/* TousLesUtilisateurs.css */
+.tu-container {
+  padding: 20px;
+  background-color: #f5f6fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tu-header h2 {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: 1.5rem;
+}
+
+.tu-refresh-button, .tu-retry-button, .tu-details-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.tu-refresh-button {
+  background-color: #ecf0f1;
+  color: #002b5b;
+}
+
+.tu-refresh-button:hover {
+  background-color: #d5dbdb;
+}
+
+.tu-retry-button {
+  background-color: #3498db;
+  color: white;
+}
+
+.tu-retry-button:hover {
+  background-color: #006eb7;
+}
+
+.tu-details-button {
+  background-color: #27ae60;
+  color: white;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+}
+
+.tu-details-button:hover {
+  background-color: #219653;
+}
+
+.tu-table-container {
+  overflow-x: auto;
+}
+
+.tu-users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tu-users-table th {
+  padding: 12px 15px;
+  text-align: left;
+  background-color: #1e3a8a;
+  color: white;
+  font-weight: 500;
+}
+
+.tu-users-table td {
+  padding: 10px 15px;
+  border-top: 1px solid #ecf0f1;
+}
+
+.tu-user-row:hover {
+  background-color: #f8f9fa;
+}
+
+.tu-email-cell, .tu-phone-cell, .tu-claims-count {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tu-cell-icon {
+  color: #7f8c8d;
+}
+
+.tu-details-row td {
+  padding: 0;
+}
+
+.tu-user-details {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.tu-details-section {
+  margin-bottom: 15px;
+}
+
+.tu-details-section h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #2c3e50;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+
+.tu-details-section ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tu-details-section li {
+  margin-bottom: 5px;
+}
+
+.tu-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background-color: #f5f6fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tu-loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #28A745;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tu-error-container, .tu-empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background-color: #f5f6fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.tu-error-icon, .tu-empty-icon {
+  font-size: 48px;
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.tu-empty-icon {
+  color: #7f8c8d;
+}
+
+.tu-claims-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.tu-claim-item {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tu-claim-item h5 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #002b5b;
+}
+
+.tu-claim-description {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 0;
+}
+
+.tu-status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.tu-status-pending {
+  background-color: #f39c12;
+  color: white;
+}
+
+.tu-status-resolved {
+  background-color: #27ae60;
+  color: white;
+}
+
+.tu-status-processing {
+  background-color: #3498db;
+  color: white;
+}
+
+.tu-status-rejected {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.tu-no-claims {
+  color: #7f8c8d;
+  font-style: italic;
+}

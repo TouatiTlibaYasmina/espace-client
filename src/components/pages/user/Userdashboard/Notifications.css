@@ -1,0 +1,128 @@
+/* Notifications.css */
+/* Using prefixed classes to avoid CSS conflicts */
+
+.notif__container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.notif__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.notif__header h2 {
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.notif__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notif__item {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f8fbfd;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+
+.notif__item-unread {
+  border-left: 4px solid #1e3a8a;
+  background-color: rgba(30, 58, 138, 0.05);
+}
+
+.notif__content {
+  flex: 1;
+}
+
+.notif__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #1a1a1a;
+}
+
+.notif__message {
+  font-size: 1rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.notif__date {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.notif__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notif__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.notif__btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.notif__btn-mark-all {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 0.25rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.notif__btn-mark-all:hover {
+  background-color: #002b5b;
+}
+
+.notif__btn-read {
+  color: #1e3a8a;
+}
+
+.notif__btn-read:hover {
+  color: #002b5b;
+}
+
+.notif__btn-delete {
+  color: #d32f2f;
+}
+
+.notif__btn-delete:hover {
+  color: #b71c1c;
+}
+
+.notif__loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.notif__empty-message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
