@@ -246,7 +246,7 @@ function UserDashboard() {
           {user && (
             <div className="ud-user-info">
               <div className="ud-user-details">
-                <span className="ud-user-name">{user.name}</span>
+                
                 <span className="ud-user-email">{user.email}</span>
               </div>
               <div className="ud-user-avatar">
