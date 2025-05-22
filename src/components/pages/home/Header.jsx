@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import './Header.css';
+import React, { useState, useEffect } from 'react';
+import { FaUser, FaSignOutAlt, FaChevronDown, FaBars, FaTimes } from 'react-icons/fa';
 import { Link as ScrollLink } from 'react-scroll';
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logos/logo.svg';
 import idoomLogo from "../../../assets/logos/idoom_market_logomono.png";
 import ePaiementLogo from "../../../assets/logos/e-paiement-logo.png";
+import './Header.css';
 
 const Header = ({ 
   userType, 
@@ -15,95 +15,173 @@ const Header = ({
   isAuthenticated,
   userEmail
 }) => {
-  const navigate = useNavigate();
   const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 768);
 
-const handleLogout = () => {
-  // Clear all auth-related items
-  localStorage.removeItem('token');
-  localStorage.removeItem('userEmail');
-  localStorage.removeItem('role');
-  
-  // Redirect to home with full refresh to clear all states
-  window.location.href = '/';
-};
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
 
-  const toggleUserDropdown = () => {
-    setShowUserDropdown(!showUserDropdown);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('role');
+    window.location.href = '/';
   };
 
   return (
     <header className="at-header">
-      <div className="left-section">
-        <Link to="/">
-          <img src={logo} alt="Algérie Télécom" className="at-logo" />
-        </Link>
-        <div className="user-switch">
-          <span
-            className={`user-link ${userType === "particulier" ? "active" : ""}`}
-            onClick={() => setUserType("particulier")}
-          >
-            Particuliers
-          </span>
-          <span className="divider">|</span>
-          <span
-            className={`user-link ${userType === "professionnel" ? "active" : ""}`}
-            onClick={() => setUserType("professionnel")}
-          >
-            Professionnels
-          </span>
-        </div>
-      </div>
-
-      <nav className="center-nav">
-        <ScrollLink to="accueil" smooth={true} duration={500} offset={-70}>Accueil</ScrollLink>
-        <ScrollLink to="offres" smooth={true} duration={500} offset={-70}>Offres</ScrollLink>
-        <ScrollLink to="services" smooth={true} duration={500} offset={-70}>Services</ScrollLink>
-        <ScrollLink to="contact" smooth={true} duration={500} offset={-70}>Contact</ScrollLink>
-      </nav>
-
-      <div className="right-section">
-        <div className="icon-circle">
-          <a href="https://idoom-market.com.dz/" target="_blank" rel="noopener noreferrer" title="Idoom Market">
-            <img src={idoomLogo} alt="Idoom Market" className="icon-img" />
-          </a>
-        </div>
-        <div className="icon-circle">
-          <a href="https://paiement.at.dz/index.php?p=voucher_internet&produit=in" target="_blank" rel="noopener noreferrer" title="e-Paiement">
-            <img src={ePaiementLogo} alt="e-Paiement" className="icon-img" />
-          </a>
+      <div className="at-header__container">
+        <div className="at-header__left">
+          <Link to="/" className="at-header__logo-link">
+            <img src={logo} alt="Algérie Télécom" className="at-header__logo" />
+          </Link>
+          
+          <div className="at-header__user-switch">
+            <button
+              className={`at-header__user-link ${userType === "particulier" ? "at-header__user-link--active" : ""}`}
+              onClick={() => setUserType("particulier")}
+            >
+              Particuliers
+            </button>
+            <span className="at-header__divider">|</span>
+            <button
+              className={`at-header__user-link ${userType === "professionnel" ? "at-header__user-link--active" : ""}`}
+              onClick={() => setUserType("professionnel")}
+            >
+              Professionnels
+            </button>
+          </div>
         </div>
 
-        {isAuthenticated ? (
-          <div className="header-user-info">
-            <div className="header-user-email" onClick={toggleUserDropdown}>
-              {userEmail}
-              <span className="header-user-dropdown-arrow">▼</span>
+        <button 
+          className="at-header__mobile-toggle" 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Menu"
+        >
+          {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+
+        <div className={`at-header__right ${isMobileMenuOpen ? 'at-header__right--open' : ''}`}>
+          <nav className="at-header__nav">
+            <ScrollLink 
+              to="accueil" 
+              smooth={true} 
+              duration={500} 
+              offset={-70}
+              className="at-header__nav-link"
+            >
+              Accueil
+            </ScrollLink>
+            <ScrollLink 
+              to="offres" 
+              smooth={true} 
+              duration={500} 
+              offset={-70}
+              className="at-header__nav-link"
+            >
+              Offres
+            </ScrollLink>
+            <ScrollLink 
+              to="services" 
+              smooth={true} 
+              duration={500} 
+              offset={-70}
+              className="at-header__nav-link"
+            >
+              Services
+            </ScrollLink>
+            <ScrollLink 
+              to="contact" 
+              smooth={true} 
+              duration={500} 
+              offset={-70}
+              className="at-header__nav-link"
+            >
+              Contact
+            </ScrollLink>
+          </nav>
+
+          <div className="at-header__actions">
+            <div className="at-header__icons">
+              <a 
+                href="https://idoom-market.com.dz/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="at-header__icon"
+                title="Idoom Market"
+              >
+                <img src={idoomLogo} alt="Idoom Market" className="at-header__icon-img" />
+              </a>
+              <a 
+                href="https://paiement.at.dz/index.php?p=voucher_internet&produit=in" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="at-header__icon"
+                title="e-Paiement"
+              >
+                <img src={ePaiementLogo} alt="e-Paiement" className="at-header__icon-img" />
+              </a>
             </div>
-            {showUserDropdown && (
-              <div className="header-user-dropdown">
-                <Link to="/espace-client" className="header-user-dropdown-item">
-                  Mon espace client
-                </Link>
+
+            {isAuthenticated ? (
+              <div className="at-header__user-menu">
                 <button 
-                  onClick={handleLogout} 
-                  className="header-user-dropdown-item header-user-dropdown-logout"
+                  className="at-header__user-trigger"
+                  onClick={() => setShowUserDropdown(!showUserDropdown)}
+                  aria-expanded={showUserDropdown}
                 >
-                  Déconnexion
+                  <span className="at-header__user-email">{userEmail}</span>
+                  <FaChevronDown className={`at-header__dropdown-arrow ${showUserDropdown ? 'at-header__dropdown-arrow--open' : ''}`} />
+                </button>
+                
+                {showUserDropdown && (
+                  <div className="at-header__dropdown">
+                    <Link 
+                      to="/espace-client" 
+                      className="at-header__dropdown-item"
+                      onClick={() => setShowUserDropdown(false)}
+                    >
+                      <FaUser className="at-header__dropdown-icon" />
+                      <span>Mon espace client</span>
+                    </Link>
+                    <button 
+                      onClick={handleLogout}
+                      className="at-header__dropdown-item at-header__dropdown-item--logout"
+                    >
+                      <FaSignOutAlt className="at-header__dropdown-icon" />
+                      <span>Déconnexion</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="at-header__auth">
+                <button 
+                  onClick={openConnexionModal} 
+                  className="at-header__btn at-header__btn--login"
+                >
+                  Se connecter
+                </button>
+                <button 
+                  onClick={openInscriptionModal} 
+                  className="at-header__btn at-header__btn--signup"
+                >
+                  Créer Espace client
                 </button>
               </div>
             )}
           </div>
-        ) : (
-          <>
-            <button onClick={openConnexionModal} className="btn white">
-              Se connecter
-            </button>
-            <button className="btn green" onClick={openInscriptionModal}>
-              Créer Espace client
-            </button>
-          </>
-        )}
+        </div>
       </div>
     </header>
   );
