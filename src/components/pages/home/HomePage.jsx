@@ -60,7 +60,9 @@ function HomePage() {
         userType={userType}
         setUserType={setUserType} 
         openInscriptionModal={openInscriptionModal}  
-        openConnexionModal={openConnexionModal}      
+        openConnexionModal={openConnexionModal}
+         isAuthenticated={!!localStorage.getItem('token')}
+         userEmail={localStorage.getItem('userEmail')}      
       />
       
       {isInscriptionOpen && (
