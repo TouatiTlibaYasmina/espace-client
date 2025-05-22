@@ -70,9 +70,7 @@ const Header = ({
         >
           {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
-
-        <div className={`at-header__right ${isMobileMenuOpen ? 'at-header__right--open' : ''}`}>
-          <nav className="at-header__nav">
+<nav className="at-header__nav">
             <ScrollLink 
               to="accueil" 
               smooth={true} 
@@ -110,6 +108,8 @@ const Header = ({
               Contact
             </ScrollLink>
           </nav>
+        <div className={`at-header__right ${isMobileMenuOpen ? 'at-header__right--open' : ''}`}>
+          
 
           <div className="at-header__actions">
             <div className="at-header__icons">
@@ -134,52 +134,57 @@ const Header = ({
             </div>
 
             {isAuthenticated ? (
-              <div className="at-header__user-menu">
-                <button 
-                  className="at-header__user-trigger"
-                  onClick={() => setShowUserDropdown(!showUserDropdown)}
-                  aria-expanded={showUserDropdown}
-                >
-                  <span className="at-header__user-email">{userEmail}</span>
-                  <FaChevronDown className={`at-header__dropdown-arrow ${showUserDropdown ? 'at-header__dropdown-arrow--open' : ''}`} />
-                </button>
-                
-                {showUserDropdown && (
-                  <div className="at-header__dropdown">
-                    <Link 
-                      to="/espace-client" 
-                      className="at-header__dropdown-item"
-                      onClick={() => setShowUserDropdown(false)}
-                    >
-                      <FaUser className="at-header__dropdown-icon" />
-                      <span>Mon espace client</span>
-                    </Link>
-                    <button 
-                      onClick={handleLogout}
-                      className="at-header__dropdown-item at-header__dropdown-item--logout"
-                    >
-                      <FaSignOutAlt className="at-header__dropdown-icon" />
-                      <span>Déconnexion</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="at-header__auth">
-                <button 
-                  onClick={openConnexionModal} 
-                  className="at-header__btn at-header__btn--login"
-                >
-                  Se connecter
-                </button>
-                <button 
-                  onClick={openInscriptionModal} 
-                  className="at-header__btn at-header__btn--signup"
-                >
-                  Créer Espace client
-                </button>
-              </div>
-            )}
+  <div className="at-header__user-menu">
+    <button 
+      className="at-header__user-trigger"
+      onClick={() => setShowUserDropdown(!showUserDropdown)}
+      aria-expanded={showUserDropdown}
+    >
+      {/* NEW USER INFO SECTION - REPLACE JUST THIS PART */}
+      <div className="at-header__user-info">
+        <div className="at-header__user-avatar">
+          {userEmail ? userEmail[0].toUpperCase() : 'U'}
+        </div>
+        <div className="at-header__user-details">
+          <span className="at-header__user-email">{userEmail}</span>
+        </div>
+      </div>
+      {/* END OF NEW SECTION */}
+      <FaChevronDown className={`at-header__dropdown-arrow ${showUserDropdown ? 'at-header__dropdown-arrow--open' : ''}`} />
+    </button>
+    
+    {/* KEEP THE EXISTING DROPDOWN MENU BELOW EXACTLY AS IS */}
+    {showUserDropdown && (
+      <div className="at-header__dropdown">
+        <Link 
+          to="/espace-client" 
+          className="at-header__dropdown-item"
+          onClick={() => setShowUserDropdown(false)}
+        >
+          <FaUser className="at-header__dropdown-icon" />
+          <span>Mon espace client</span>
+        </Link>
+        <button 
+          onClick={handleLogout}
+          className="at-header__dropdown-item at-header__dropdown-item--logout"
+        >
+          <FaSignOutAlt className="at-header__dropdown-icon" />
+          <span>Déconnexion</span>
+        </button>
+      </div>
+    )}
+  </div>
+) : (
+  /* KEEP EXISTING AUTH BUTTONS */
+  <div className="at-header__auth">
+    <button onClick={openConnexionModal} className="at-header__btn at-header__btn--login">
+      Se connecter
+    </button>
+    <button onClick={openInscriptionModal} className="at-header__btn at-header__btn--signup">
+      Créer Espace client
+    </button>
+  </div>
+)}
           </div>
         </div>
       </div>

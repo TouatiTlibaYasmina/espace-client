@@ -1,6 +1,7 @@
 /* Base Header Styles */
 .at-header {
   position: sticky;
+  border-radius: 18px;
   top: 0;
   z-index: 1000;
   background-color: #f8fbfd;
@@ -9,7 +10,7 @@
 }
 
 .at-header__container {
-  max-width: 1200px;
+
   margin: 0 auto;
   padding: 15px 40px;
   display: flex;
@@ -45,9 +46,7 @@
   transition: all 0.3s ease;
 }
 
-.at-header__user-link:hover {
-  color: #009d38;
-}
+
 
 .at-header__user-link--active {
   color: #009d38;
@@ -350,3 +349,55 @@
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* User Info Styles */
+.at-header__user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 4px 4px;
+}
+
+.at-header__user-avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #1e3a8a; /* Your primary blue */
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.at-header__user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.at-header__user-email {
+  font-size: 14px;
+  font-weight: 500;
+  color: #002b5b; /* Your dark blue */
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Enhance existing trigger button */
+.at-header__user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+}
+
+.at-header__user-trigger:hover {
+  background-color: rgba(0, 43, 91, 0.05); /* Subtle hover */
+}
+
+/* Keep all your existing dropdown styles below */
