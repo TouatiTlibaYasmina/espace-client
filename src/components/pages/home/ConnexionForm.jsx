@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./ConnexionForm.css";
 import logo from "../../../assets/logos/logo.svg"; 
 import {useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaLightbulb } from 'react-icons/fa';
 const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordModal }) => {  // <-- on prépare closeModal pour fermer si besoin
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -13,7 +15,8 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
   const [twoFactorRequired, setTwoFactorRequired] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
+  
+ 
   
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -68,7 +71,8 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
   
         <img src={logo} alt="Logo" className="logo" />
         <h2 className="titre">Espace Client</h2>
-        <h3 className="sous_titre">Bienvenue</h3>
+        <h3 className="sous_titre">Bienvenue !</h3>
+        
   
         <form className="form-container" onSubmit={handleLogin}>
         <input 
@@ -79,12 +83,21 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
             disabled={twoFactorRequired}
         />
 
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Saisir mot de passe"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="password-input-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Saisir mot de passe"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button 
+              type="button" 
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
           {twoFactorRequired && (
             <input
               type="text"
@@ -103,7 +116,7 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
 {errorMessage && <div className="error-message">{errorMessage}</div>}
 
   
-          <button type="submit" className="button">Se connecter</button>
+          <button type="submit" className="cf-button">Se connecter</button>
   
           <div className="create-account-container">
           <span
@@ -116,6 +129,9 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
               </span>
 
           </div>
+          <p className="welcome-tip">
+  <FaLightbulb className="lamp-icon" />En cas de difficultés, veuillez consulter notre section d'assistance.
+</p>
         </form>
       </div>
     </div>

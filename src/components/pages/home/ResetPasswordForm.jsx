@@ -70,7 +70,7 @@ function ResetPasswordForm() {
           />
           {message && <p className="success-message">{message}</p>}
           {error && <p className="error-message">{error}</p>}
-          <button type="submit">Réinitialiser</button>
+          <button className= "cf-button" type="submit">Réinitialiser</button>
         </form>
       </div>
     </div>

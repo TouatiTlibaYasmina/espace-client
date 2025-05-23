@@ -8,6 +8,7 @@ import ePaiementLogo from "../../../assets/logos/e-paiement-logo.png";
 import './Header.css';
 
 const Header = ({ 
+  isAnyModalOpen,
   userType, 
   setUserType, 
   openInscriptionModal, 
@@ -39,7 +40,11 @@ const Header = ({
   };
 
   return (
-    <header className="at-header">
+    <header className="at-header"
+    style={{
+        position: isAnyModalOpen ? "static" : "sticky",
+        top: isAnyModalOpen ? "unset" : "0",
+      }}>
       <div className="at-header__container">
         <div className="at-header__left">
           <Link to="/" className="at-header__logo-link">
@@ -81,23 +86,15 @@ const Header = ({
               Accueil
             </ScrollLink>
             <ScrollLink 
-              to="offres" 
+              to="assistance" 
               smooth={true} 
               duration={500} 
               offset={-70}
               className="at-header__nav-link"
             >
-              Offres
+              Assistance
             </ScrollLink>
-            <ScrollLink 
-              to="services" 
-              smooth={true} 
-              duration={500} 
-              offset={-70}
-              className="at-header__nav-link"
-            >
-              Services
-            </ScrollLink>
+          
             <ScrollLink 
               to="contact" 
               smooth={true} 

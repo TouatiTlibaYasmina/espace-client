@@ -47,7 +47,7 @@ function ForgotPasswordForm({ closeModal }) {
           />
           {error && <div className="error-message">{error}</div>}
           {message && <div className="success-message">{message}</div>}
-          <button type="submit">Envoyer</button>
+          <button className= "cf-button" type="submit">Envoyer</button>
         </form>
       </div>
     </div>

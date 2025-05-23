@@ -18,6 +18,7 @@ import facebookIcon from '../../../assets/icons/icons8-facebook.svg';
 import instagramIcon from '../../../assets/icons/icons8-instagram.svg';
 import twitterIcon from '../../../assets/icons/icons8-x.svg';
 import youtubeIcon from '../../../assets/icons/icons8-youtube.svg';
+import { FaHeadset,FaLightbulb } from 'react-icons/fa';
 
 // Style import
 import './HomePage.css';
@@ -42,7 +43,7 @@ function HomePage() {
   const openForgotPasswordModal = () => setIsForgotPasswordOpen(true);
   const closeForgotPasswordModal = () => setIsForgotPasswordOpen(false);
 
-  
+  const isAnyModalOpen = isInscriptionOpen || isConnexionOpen || isForgotPasswordOpen;
 
   useEffect(() => {
     setTriggerAnim(true); // Reset triggerAnim to true on page load
@@ -51,6 +52,13 @@ function HomePage() {
   const handleAccueilClick = () => {
     setTriggerAnim(false);
     setTimeout(() => setTriggerAnim(true), 1000); // Reset animation after 1 second
+  };
+const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    handleAccueilClick();
   };
 
   return (
@@ -62,7 +70,8 @@ function HomePage() {
         openInscriptionModal={openInscriptionModal}  
         openConnexionModal={openConnexionModal}
          isAuthenticated={!!localStorage.getItem('token')}
-         userEmail={localStorage.getItem('userEmail')}      
+         userEmail={localStorage.getItem('userEmail')}
+         isAnyModalOpen={isAnyModalOpen}      
       />
       
       {isInscriptionOpen && (
@@ -92,7 +101,7 @@ function HomePage() {
         </div>
       )}
 
-<section className="hero">
+<section id="accueil" className="hero">
   {/* Left column: title + image */}
   <div className="hero-text">
     <motion.h1 className="hero-title">
@@ -131,12 +140,25 @@ function HomePage() {
     transition={{ delay: 0.5, duration: 0.6 }}
   >
     <p className="hero-description">
-      Explorez les services et offres d’Algérie Télécom, conçus pour répondre à vos besoins.
+      <strong style={{ color: '#1e3a8a' }}>Particulier ou professionnel, reprenez le contrôle de vos services télécom.</strong>
       <br /><br />
-      Que vous soyez un particulier ou un professionnel, nous vous accompagnons à chaque étape avec des solutions fiables, innovantes et faciles à utiliser.
-      <br /><br />
-      Gérez vos abonnements, suivez votre consommation, accédez à une assistance rapide — tout cela depuis un espace client simple et centralisé.
+      L'Espace Client Algérie Télécom centralise tous vos besoins : gestion des abonnements, suivi de consommation, consultation des factures et assistance — accessibles 24h/24, où que vous soyez.
     </p>
+
+    <motion.button
+      onClick={openInscriptionModal}
+      className="cta-button"
+      whileHover={{ 
+        scale: 1.05,
+        boxShadow: '0 6px 20px rgba(40, 167, 69, 0.4)'
+      }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <span className="button-text">
+        Créer Espace Client
+      </span>
+      <div className="glaze-effect" />
+    </motion.button>
   </motion.div>
 </section>
 
@@ -144,13 +166,14 @@ function HomePage() {
 
 
 
-      <section id="accueil" className="section">
+      <section id="assistance" className="section">
         <motion.h2 
           className="section-title"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <FaLightbulb className="title-icon" />
          Assistance & FAQ
         </motion.h2>
         <motion.div
@@ -167,244 +190,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="offres" className="section offres-section">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Offres Disponibles
-        </motion.h2>
-        <motion.div
-          className="image-top"
-          initial={{ opacity: 0, y: -50 }}
-          animate={triggerAnim ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-          transition={{ duration: 1.2 }}
-        >
-          <img src={offresIllustration} alt="Illustration" />
-        </motion.div>
-
-        <div className="offres-cards">
-          {['Téléphonie', 'Internet'].map((category, categoryIndex) => (
-            <div key={categoryIndex} className="category-section">
-              <h3 className="category-title">{category}</h3>
-
-              <div className="category-offres">
-                {(userType === "particulier" ? [
-                  {
-                    categorie: "Téléphonie",
-                    titre: "IDOOM FIXE",
-                    description: "Téléphonie fixe avec appels illimités.",
-                    avantages: ["Appels nationaux illimités", "Service 24/7", "Qualité sonore exceptionnelle"]
-                  },
-                  {
-                    categorie: "Internet",
-                    titre: "IDOOM FIBRE",
-                    description: "Internet ultra-rapide avec la fibre optique.",
-                    avantages: ["Jusqu'à 100 Mbps", "Installation rapide", "Meilleure stabilité"]
-                  },
-                  {
-                    categorie: "Internet",
-                    titre: "IDOOM FIBRE Gamers",
-                    description: "Connexion fibre dédiée aux joueurs.",
-                    avantages: ["Ping faible", "Débit jusqu'à 200 Mbps", "Stabilité optimale"]
-                  },
-                  {
-                    categorie: "Internet",
-                    titre: "IDOOM 4G LTE",
-                    description: "Connexion sans fil haut débit où que vous soyez.",
-                    avantages: ["Mobilité", "Forfaits flexibles", "Activation rapide"]
-                  },
-                  {
-                    categorie: "Internet",
-                    titre: "IDOOM VDSL",
-                    description: "Connexion à haut débit pour plus de performance.",
-                    avantages: ["Vitesse de connexion accrue", "Connexion fiable", "Service rapide"]
-                  },
-                   
-                ] : [
-                  {
-                    categorie: "Téléphonie",
-                    titre: "Téléphonie Fixe",
-                    description: "Solution de téléphonie fixe professionnelle.",
-                    avantages: ["Appels illimités", "Support professionnel", "Solutions sur mesure"]
-                  },
-                  {
-                    categorie: "Internet",
-                    titre: "IDOOM FIBRE Pro",
-                    description: "Internet ultra-rapide dédié aux professionnels.",
-                    avantages: ["Jusqu'à 500 Mbps", "Service prioritaire", "Support 24/7"]
-                  },
-                  {
-                    categorie: "Internet",
-                    titre: "IDOOM ADSL Pro",
-                    description: "Connexion haut débit dédiée aux entreprises.",
-                    avantages: ["Débit stable", "Support dédié", "Service rapide"]
-                  },
-                  {
-                    categorie: "Internet",
-                    titre: "IDOOM 4G Pro",
-                    description: "Solution mobile haut débit pour les professionnels.",
-                    avantages: ["Mobilité", "Vitesse de connexion élevée", "Offres flexibles"]
-                  },
-                  
-                   
-                    
-                ]).filter(offre => offre.categorie === category).map((offre, index) => (
-                  <motion.div 
-                    key={index}
-                    className="offre-card"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.2 }}
-                  >
-                    <h4>{offre.titre}</h4>
-                    <p>{offre.description}</p>
-                    <ul>
-                      {offre.avantages.map((adv, i) => (
-                        <li key={i}>• {adv}</li>
-                      ))}
-                    </ul>
-                    <button className="btn-choisir">Choisir cette offre</button>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section id="services" className="section-services">
-      <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Services Disponibles
-        </motion.h2>
-        <motion.div
-          className="image-top"
-          initial={{ opacity: 0, y: -50 }}
-          animate={triggerAnim ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-          transition={{ duration: 1.2 }}
-        >
-          <img src={serviceIllustration} alt="Illustration" />
-        </motion.div>
-
-  <div className="offres-cards">
-    {(userType === "particulier" ? [
-      {
-        categorie: "Services",
-        titre: "My Idoom",
-        description: "Gestion personnalisée de votre abonnement Idoom.",
-        avantages: ["Suivi de consommation", "Services personnalisés", "Support rapide"]
-      },
-      {
-        categorie: "Services",
-        titre: "Idoomly",
-        description: "La solution idéale pour la gestion des abonnements.",
-        avantages: ["Notifications en temps réel", "Abonnements flexibles", "Réduction des coûts"]
-      },
-      {
-        categorie: "Services",
-        titre: "E-paiement",
-        description: "Solution de paiement en ligne sécurisée.",
-        avantages: ["Facilité de paiement", "Sécurisation des transactions", "Paiement instantané"]
-      }
-    ] : [
-      {
-        categorie: "Services",
-        titre: "Big Business",
-        description: "Solutions sur mesure pour les grandes entreprises.",
-        avantages: ["Service personnalisé", "Support exclusif", "Infrastructures robustes"]
-      },
-      {
-        categorie: "Services",
-        titre: "Startup",
-        description: "Offre pour les startups avec des solutions flexibles.",
-        avantages: ["Forfaits adaptatifs", "Support technique", "Services à la carte"]
-      },
-      {
-        categorie: "Services",
-        titre: "Pack MOHTARIF",
-        description: "Pack tout-en-un pour une communication optimale.",
-        avantages: ["Services téléphonie, internet et cloud", "Installation rapide", "Service premium"]
-      },
-      {
-        categorie: "Services",
-        titre: "ROOM VIDEO CALL",
-        description: "Solution de visioconférence pour les entreprises.",
-        avantages: ["Haute qualité audio/vidéo", "Plateforme sécurisée", "Support dédié"]
-      },
-      {
-        categorie: "Services",
-        titre: "Hébergement de Sites Web (Spécial Médias Nationaux)",
-        description: "Hébergement de sites internet pour les médias nationaux.",
-        avantages: ["Serveurs haute performance", "Support dédié", "Soutien au contenu national"]
-      },
-      {
-        categorie: "Services",
-        titre: "Événement à la Demande",
-        description: "Organisation d'événements virtuels sur demande.",
-        avantages: ["Flexibilité totale", "Support technique", "Visibilité accrue"]
-      },
-      {
-        categorie: "Services",
-        titre: "Packs Anti-DDoS",
-        description: "Protection avancée contre les attaques DDoS.",
-        avantages: ["Haute disponibilité", "Protection en temps réel", "Support 24/7"]
-      },
-      {
-        categorie: "Services",
-        titre: "Packs Cybersecurite",
-        description: "Sécurisez vos données avec des solutions adaptées.",
-        avantages: ["Audit de sécurité", "Prévention des intrusions", "Sécurisation des réseaux"]
-      },
-      {
-        categorie: "Services",
-        titre: "Centre de Contacts",
-        description: "Gestion des appels et de la relation client.",
-        avantages: ["Technologie avancée", "Support dédié", "Optimisation de la relation client"]
-      },
-      {
-        categorie: "Services",
-        titre: "Visioconférence",
-        description: "Solution de visioconférence pour entreprises.",
-        avantages: ["Haute qualité", "Plateforme sécurisée", "Support dédié"]
-      },
-      {
-        categorie: "Services",
-        titre: "Conception de Sites Web",
-        description: "Création de sites internet adaptés aux besoins de votre entreprise.",
-        avantages: ["Design sur mesure", "Sites performants", "Optimisation SEO"]
-      },
-      {
-        categorie: "Services",
-        titre: "Hébergement de Site Web",
-        description: "Hébergement de sites web sécurisé et performant.",
-        avantages: ["Serveurs haute performance", "Support technique", "Scalabilité"]
-      }
-    ]).map((offre, index) => (
-      <motion.div 
-        key={index}
-        className="offre-card"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: index * 0.1 }}
-      >
-        <h4>{offre.titre}</h4>
-        <p>{offre.description}</p>
-        <ul>
-          {offre.avantages.map((adv, i) => (
-            <li key={i}>• {adv}</li>
-          ))}
-        </ul>
-        <button className="btn-choisir">Découvrir</button>
-      </motion.div>
-    ))}
-  </div>
-</section>
+      
 <section className="contact" id="contact">
   <div className="contact-container">
     <div className="contact-text">
@@ -414,6 +200,7 @@ function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+        <FaHeadset className="title-icon" />
          Contactez-nous
         </motion.h2>
       <p className="contact-description">
@@ -464,6 +251,40 @@ function HomePage() {
             <p>Développé par [TALMAT AMMAR Amira & TOUATI TLIBA Yasmina]</p>
           </div>
         </footer>
+      
+       <button 
+        className="scroll-to-top"
+        onClick={scrollToTop}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          backgroundColor: '#1e3a8a',
+          color: 'white',
+          border: 'none',
+          borderRadius: '50%',
+          width: '50px',
+          height: '50px',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '20px',
+          zIndex: '1000',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.2)',
+          transition: 'all 0.3s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = '#003a73';
+          e.target.style.transform = 'translateY(-2px)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = '#1e3a8a';
+          e.target.style.transform = 'translateY(0)';
+        }}
+      >
+        ↑
+      </button>
     </div>
   );
 }

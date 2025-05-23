@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import "./ConnexionForm.css"; // Keeping the same style as ConnexionForm
 import logo from "../../../assets/logos/logo.svg";
-
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaLightbulb } from 'react-icons/fa';
 
 
 
@@ -78,6 +79,7 @@ const InscriptionForm = ({ closeModal }) => {
         <img src={logo} alt="Logo" className="logo" />
         <h2 className="titre">Espace Client</h2>
         <h3 className="sous_titre">Créer mon Espace Client</h3>
+        
   
         <div className="input-group">
           <input
@@ -106,18 +108,30 @@ const InscriptionForm = ({ closeModal }) => {
             value={email}
             onChange={handleEmailChange}
           />
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Saisir mot de passe"
-            value={password}
-            onChange={handlePasswordChange}
-          />
+          <div className="password-input-container">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Saisir mot de passe"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
+                      <button 
+                        type="button" 
+                        className="toggle-password"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </button>
+                    </div>
         </div>
   
-        <button className="button" onClick={handleSubmit}>
+        <button className="cf-button" onClick={handleSubmit}>
                      Créer
       </button>
-
+<p className="welcome-tip">
+  <FaLightbulb className="lamp-icon" /> 
+  En cas de difficultés, veuillez consulter notre section d'assistance.
+</p>
       </div>
     </div>
   );
