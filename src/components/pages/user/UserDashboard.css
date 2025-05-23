@@ -368,55 +368,182 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
     overflow-y: auto;
 }
 
-.ud-dashboard h1 {
-    font-size: 24px;
-    color: #01558d;
-    margin-bottom: 24px;
-}
+/* Add these new styles to your UserDashboard.css file */
 
 .ud-dashboard-welcome {
-    padding: 20px;
+    padding: 40px 20px;
+    animation: ud-welcome-fade-in 0.8s ease-out;
 }
 
-.ud-cards {
+.ud-welcome-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ud-welcome-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
 }
 
-.ud-card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0, 85, 141, 0.08);
+.ud-welcome-text {
+    animation: ud-slide-in-left 0.8s ease-out;
 }
 
-.ud-card h3 {
-    color: #01558d;
+.ud-welcome-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    animation: ud-text-glow 2s ease-in-out infinite alternate;
+}
+
+.ud-welcome-subtitle {
+    font-size: 1.2rem;
+    color: #555555;
+    line-height: 1.6;
+    opacity: 0;
+    animation: ud-fade-in-up 0.8s ease-out 0.3s forwards;
+}
+
+.ud-welcome-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: ud-slide-in-right 0.8s ease-out;
+}
+
+.ud-illustration-img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    animation: ud-float 3s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(30, 58, 138, 0.2));
+}
+
+.ud-illustration-placeholder {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f8fbfd 100%);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #cfd8dc;
+    animation: ud-float 3s ease-in-out infinite;
+}
+
+.ud-placeholder-icon {
+    font-size: 4rem;
     margin-bottom: 10px;
-    font-size: 18px;
+    opacity: 0.7;
 }
 
-.ud-card p {
-    color: #555;
-    font-size: 14px;
+.ud-illustration-placeholder p {
+    color: #555555;
+    font-weight: 500;
+    opacity: 0.8;
 }
 
+/* Animations */
+@keyframes ud-welcome-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ud-slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes ud-slide-in-right {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes ud-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes ud-text-glow {
+    from {
+        text-shadow: 0 0 10px rgba(30, 58, 138, 0.3);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(30, 58, 138, 0.6);
+    }
+}
+
+@keyframes ud-float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
 @media (max-width: 768px) {
-    .ud-user-body {
-        flex-direction: column;
+    .ud-welcome-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
     }
-
-    .ud-sidebar {
-        width: 100%;
-        box-shadow: none;
-        padding: 16px;
+    
+    .ud-welcome-title {
+        font-size: 2rem;
     }
+    
+    .ud-welcome-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .ud-illustration-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1; /* Maintain proportions */
+}
+}
 
-    .ud-dashboard {
-        padding: 16px;
+@media (max-width: 480px) {
+    .ud-dashboard-welcome {
+        padding: 20px 10px;
+    }
+    
+    .ud-welcome-title {
+        font-size: 1.8rem;
     }
 }
+
+
+
 
 /* ADMIN DASHBOARD STYLES (ad-) */
 .ad-user-header {

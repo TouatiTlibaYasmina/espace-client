@@ -148,7 +148,7 @@ const handleDownloadPDF = async (factureId) => {
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const response = await fetch(`/api/factures/${selectedFacture._id}/paiement`, {
+      const response = await fetch(`https://backend-espace-client.onrender.com/api/factures/${selectedFacture._id}/paiement`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

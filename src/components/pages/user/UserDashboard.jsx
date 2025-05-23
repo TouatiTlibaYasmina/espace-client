@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './UserDashboard.css';
 import logo from '../../../assets/logos/logo.svg';
+import welcomeIllustration from '../../../assets/illustrations/undraw_welcome_nk8k.svg';
 import menuIcon from '../../../assets/icons/icons8-sidebar-menu-24.png';
 import idoomLogo from "../../../assets/logos/idoom_market_logomono.png";
 import ePaiementLogo from "../../../assets/logos/e-paiement-logo.png";
@@ -185,27 +186,27 @@ function UserDashboard() {
         return <Notifications />;
       case "factures":
         return <Factures />;
-      default:
-        return (
-          <div className="ud-dashboard-welcome">
-            <h1>Bienvenue sur votre espace client</h1>
-            <div className="ud-cards">
-              <div className="ud-card">
-                <h3>Abonnement Internet</h3>
-                <p>Détails de votre abonnement actuel.</p>
-              </div>
-              <div className="ud-card">
-                <h3>Consommation</h3>
-                <p>Suivi de votre consommation mensuelle.</p>
-              </div>
-              <div className="ud-card">
-                <h3>Derniers paiements</h3>
-                <p>Historique de vos paiements récents.</p>
-              </div>
-            </div>
+     default:
+  return (
+    <div className="ud-dashboard-welcome">
+      <div className="ud-welcome-container">
+        <div className="ud-welcome-content">
+          <div className="ud-welcome-text">
+            <h1 className="ud-welcome-title">
+              Bienvenue dans votre espace client
+            </h1>
+            <p className="ud-welcome-subtitle">
+              Gérez facilement vos abonnements, factures et réclamations en toute simplicité
+            </p>
           </div>
-        );
-    }
+          <div className="ud-welcome-illustration">
+            <img src={welcomeIllustration} alt="Welcome illustration" className="ud-illustration-img" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
   };
 
   return (
