@@ -392,16 +392,16 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 
 .ud-welcome-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1e3a8a;
+    font-size: 1.7rem;
+    font-weight: 610;
+    color: #28A745;
     margin-bottom: 20px;
     line-height: 1.2;
-    animation: ud-text-glow 2s ease-in-out infinite alternate;
+    
 }
 
 .ud-welcome-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #555555;
     line-height: 1.6;
     opacity: 0;

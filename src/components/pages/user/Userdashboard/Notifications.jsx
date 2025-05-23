@@ -10,7 +10,7 @@ const Notifications = () => {
 
   // Add axios instance with base URL and auth header
   const api = axios.create({
-    baseURL: '/https://backend-espace-client.onrender.com/api',
+    baseURL: 'https://backend-espace-client.onrender.com/api',
     headers: {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     }
