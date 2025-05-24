@@ -65,7 +65,7 @@ function ChangerMotDePasse() {
         return;
       }
 
-      const response = await fetch("https://backend-espace-client.onrender.com/api/profile/changePassword", {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/users/profile/changePassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
