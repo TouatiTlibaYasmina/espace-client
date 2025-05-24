@@ -15,12 +15,14 @@ const Notifications = () => {
     }
   });
 
+  // Fetch notifications - matches your GET / endpoint
   const fetchNotifications = useCallback(async () => {
     try {
       setLoading(true);
       const response = await api.get('/notifications');
       
       if (response.data.success) {
+        // Matches your backend response structure
         setNotifications(response.data.notifications || []);
       } else if (response.data.message) {
         setMessage(response.data.message);
@@ -29,7 +31,7 @@ const Notifications = () => {
       console.error('Error fetching notifications:', error);
       setMessage(
         error.response?.status === 403 
-          ? 'Accès refusé - veuillez vous reconnecter' 
+          ? 'Accès refusé - veuillez vous reconnecter'
           : 'Erreur de chargement des notifications'
       );
     } finally {
@@ -37,6 +39,7 @@ const Notifications = () => {
     }
   }, [api]);
 
+  // Mark as read - matches your PATCH /:id/lue endpoint
   const markAsRead = async (id) => {
     try {
       const response = await api.patch(`/notifications/${id}/lue`);
@@ -46,7 +49,7 @@ const Notifications = () => {
             notif._id === id ? { ...notif, lu: true } : notif
           )
         );
-        toast.success('Marquée comme lue');
+        toast.success('Notification marquée comme lue');
       }
     } catch (error) {
       toast.error('Échec du marquage');
@@ -54,6 +57,7 @@ const Notifications = () => {
     }
   };
 
+  // Mark all as read - matches your PATCH /markAllAsRead endpoint
   const markAllAsRead = async () => {
     try {
       const response = await api.patch('/notifications/markAllAsRead');
@@ -67,10 +71,11 @@ const Notifications = () => {
     }
   };
 
+  // Delete notification - matches your DELETE /delete/:id endpoint
   const deleteNotification = async (id) => {
     try {
       const response = await api.delete(`/notifications/delete/${id}`);
-      if (response.data.success) {
+      if (response.data.message) {
         setNotifications(prev => prev.filter(notif => notif._id !== id));
         toast.success('Notification supprimée');
       }
@@ -80,6 +85,7 @@ const Notifications = () => {
     }
   };
 
+  // Format date to match French locale as in your design
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
     try {
