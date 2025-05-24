@@ -217,7 +217,7 @@ function UserDashboard() {
             <img src={logo} alt="Algérie Télécom" className="ud-logo" />
           </Link>
           <button onClick={toggleSidebar} className="ud-sidebar-toggle">
-              <FiSidebar className="ud-menu-icon" />
+              <FiSidebar className="ud-menu-icon" style={{ color: '#28A745' }}/>
            </button>
         </div>
 
