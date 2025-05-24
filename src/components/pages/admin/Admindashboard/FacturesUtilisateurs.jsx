@@ -39,7 +39,7 @@ function FacturesUtilisateurs() {
       params.append("page", pagination.page);
       params.append("limit", 10);
 
-      const response = await fetch(`/api/factures/admin?${params.toString()}`, {
+      const response = await fetch(`https://backend-espace-client.onrender.com/api/factures/admin?${params.toString()}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

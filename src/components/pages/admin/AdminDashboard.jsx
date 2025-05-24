@@ -181,7 +181,7 @@ function AdminDashboard() {
           {admin && (
             <div className="ud-user-info">
               <div className="ud-user-details">
-                <span className="ud-user-name">{admin.name}</span>
+    
                 <span className="ud-user-email">{admin.email}</span>
               </div>
               <div className="ud-user-avatar">
@@ -237,7 +237,7 @@ function AdminDashboard() {
                 Icon={MdLibraryBooks} 
                 submenu={[
                   { id: "reclamations-attente", label: "Réclamations en attente" },
-                  { id: "reclamations-historique", label: "Historique" }
+                  
                 ]} 
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}

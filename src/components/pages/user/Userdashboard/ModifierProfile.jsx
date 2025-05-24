@@ -97,7 +97,7 @@ const ModifierProfile = () => {
   return (
     <div className="mpu-profile-container">
       <div className="mpu-header">
-        <h2 className="mpu-title">Modifier mon profil</h2>
+        <h2 className="mpU-title">Modifier mon profil</h2>
         
       </div>
       

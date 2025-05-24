@@ -105,7 +105,7 @@ function VoirReclamations() {
 
   return (
     <div className="urc-container">
-      <h2 className="urc-title">Mes réclamations</h2>
+      <h2 className="urc-title">Vos réclamations</h2>
       {reclamations.length === 0 ? (
         <div className="urc-empty">Aucune réclamation trouvée.</div>
       ) : (

@@ -35,10 +35,10 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: #28A745;
-  color: white;
+  background-color: #ecf0f1;
+  color: #002b5b;
   border: none;
-  border-radius: 4px;
+  border-radius: 18px;
   padding: 0.5rem 1rem;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -46,7 +46,7 @@
 }
 
 .rec-refresh-btn:hover {
-  background-color: #009d38;
+  background-color: #d5dbdb;
 }
 
 .rec-refresh-btn:disabled {
