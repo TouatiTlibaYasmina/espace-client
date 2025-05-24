@@ -7,6 +7,7 @@ function FactureStatistiques() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState('montants');
 
   const fetchStats = async () => {
     setLoading(true);
@@ -185,8 +186,18 @@ function FactureStatistiques() {
         <h2>Statistiques Mensuelles</h2>
         <div className="fs-chart-container">
           <div className="fs-tabs">
-            <button className="fs-tab fs-tab-active">Montants</button>
-            <button className="fs-tab">Nombre de Factures</button>
+            <button 
+              className={`fs-tab ${activeTab === 'montants' ? 'fs-tab-active' : ''}`}
+              onClick={() => setActiveTab('montants')}
+            >
+              Montants
+            </button>
+            <button 
+              className={`fs-tab ${activeTab === 'factures' ? 'fs-tab-active' : ''}`}
+              onClick={() => setActiveTab('factures')}
+            >
+              Nombre de Factures
+            </button>
           </div>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart
@@ -197,14 +208,26 @@ function FactureStatistiques() {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip 
-                formatter={(value) => new Intl.NumberFormat("fr-DZ", {
-                  style: "currency",
-                  currency: "DZD",
-                }).format(value)}
+                 formatter={(value) => activeTab === 'montants' 
+                  ? new Intl.NumberFormat("fr-DZ", {
+                    style: "currency",
+                    currency: "DZD",
+                  }).format(value)
+                  : value
+                }
               />
               <Legend />
-              <Bar dataKey="Montant Total" fill="#1e3a8a" />
-              <Bar dataKey="Montant Payé" fill="#28A745" />
+              {activeTab === 'montants' ? (
+                <>
+                  <Bar dataKey="Montant Total" fill="#1e3a8a" />
+                  <Bar dataKey="Montant Payé" fill="#28A745" />
+                </>
+              ) : (
+                <>
+                  <Bar dataKey="Factures Émises" fill="#1e3a8a" />
+                  <Bar dataKey="Factures Payées" fill="#28A745" />
+                </>
+              )}
             </BarChart>
           </ResponsiveContainer>
         </div>
