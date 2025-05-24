@@ -110,42 +110,52 @@ function ChoisirOffre() {
   const [currentAbonnement, setCurrentAbonnement] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
 
-    const fetchData = async () => {
-      try {
-        const [profileResponse, abonnementResponse] = await Promise.all([
-          fetch("https://backend-espace-client.onrender.com/api/users/profile", {
-            headers: { Authorization: `Bearer ${token}` }
-          }),
-          fetch("https://backend-espace-client.onrender.com/api/abonnements/current", {
-            headers: { Authorization: `Bearer ${token}` }
-          })
-        ]);
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      const [profileResponse, abonnementResponse] = await Promise.all([
+        fetch("https://backend-espace-client.onrender.com/api/users/profile", {
+          headers: { Authorization: `Bearer ${token}` }
+        }),
+        fetch("https://backend-espace-client.onrender.com/api/abonnements/current", {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      ]);
 
-        if (!profileResponse.ok) throw new Error("Profile fetch failed");
-        const profileData = await profileResponse.json();
-        
-        if (profileData?.user?.clientType) {
-          setClientType(profileData.user.clientType.toLowerCase());
-        }
+      if (!profileResponse.ok) throw new Error("Profile fetch failed");
+      const profileData = await profileResponse.json();
+      
+      if (profileData?.user?.clientType) {
+        setClientType(profileData.user.clientType.toLowerCase());
+      }
 
-        if (!abonnementResponse.ok) throw new Error("Subscription fetch failed");
+      // Handle subscription response - 404 is expected for new users
+      if (abonnementResponse.status === 404) {
+        setCurrentAbonnement(null); // No active subscription
+      } else if (!abonnementResponse.ok) {
+        throw new Error("Subscription fetch failed");
+      } else {
         const abonnementData = await abonnementResponse.json();
-        
         if (abonnementData?.success && abonnementData.data) {
           setCurrentAbonnement(abonnementData.data);
         }
-      } catch (err) {
-        console.error("Fetch error:", err);
-        setError("Erreur lors du chargement des données");
       }
-    };
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setError("Erreur lors du chargement des données");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
@@ -249,17 +259,22 @@ function ChoisirOffre() {
     <div className="choisir-offre">
       <h1>Choisir une offre d'abonnement</h1>
       
-      {currentAbonnement && (
-        <div className="current-subscription">
-          <h3>Votre abonnement actuel</h3>
-          <div className="subscription-details">
-            <p><strong>Type:</strong> {currentAbonnement.type}</p>
-            <p><strong>Offre:</strong> {currentAbonnement.offre} {currentAbonnement.debitOuVolume}</p>
-            <p><strong>Prix:</strong> {currentAbonnement.prix}</p>
-            <p><strong>Date d'expiration:</strong> {new Date(currentAbonnement.dateExpiration).toLocaleDateString()}</p>
-          </div>
-        </div>
-      )}
+      {currentAbonnement ? (
+  <div className="current-subscription">
+    <h3>Votre abonnement actuel</h3>
+    <div className="subscription-details">
+      <p><strong>Type:</strong> {currentAbonnement.type}</p>
+      <p><strong>Offre:</strong> {currentAbonnement.offre} {currentAbonnement.debitOuVolume}</p>
+      <p><strong>Prix:</strong> {currentAbonnement.prix}</p>
+      <p><strong>Date d'expiration:</strong> {new Date(currentAbonnement.dateExpiration).toLocaleDateString()}</p>
+    </div>
+  </div>
+) : (
+  <div className="current-subscription">
+    <h3>Vous n'avez pas d'abonnement actif</h3>
+    <p>Veuillez choisir une offre ci-dessous</p>
+  </div>
+)}
       
       {error && (
         <div className="error-message">
