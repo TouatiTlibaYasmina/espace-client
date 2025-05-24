@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+// MODIFIED: Added React Icons imports to replace Material Icons
+import { 
+  IoCheckmarkCircleOutline, 
+  IoTrashOutline, 
+  IoTimeOutline, 
+  IoCheckmarkDoneOutline,
+  IoNotificationsOutline 
+} from 'react-icons/io5';
 import './Notifications.css';
 
 const Notifications = () => {
@@ -92,22 +100,55 @@ const Notifications = () => {
     }
   };
 
-  // Formater la date
+  // Formater la date - Enhanced version
   const formatDate = (dateString) => {
-    if (!dateString) return "N/A";
+    if (!dateString) {
+      console.warn('Date string is null or undefined:', dateString);
+      return "Date non disponible";
+    }
+    
     try {
-      const date = new Date(dateString);
-      if (isNaN(date.getTime())) return "Date invalide";
+      // Handle different date formats
+      let date;
+      if (typeof dateString === 'string') {
+        // Try parsing ISO string or other formats
+        date = new Date(dateString);
+      } else if (dateString instanceof Date) {
+        date = dateString;
+      } else {
+        console.warn('Invalid date format:', typeof dateString, dateString);
+        return "Format de date invalide";
+      }
       
-      return new Intl.DateTimeFormat('fr-FR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      }).format(date);
-    } catch {
-      return "N/A";
+      if (isNaN(date.getTime())) {
+        console.warn('Invalid date after parsing:', dateString);
+        return "Date invalide";
+      }
+      
+      const now = new Date();
+      const diffInMinutes = Math.floor((now - date) / (1000 * 60));
+      
+      // Show relative time for recent notifications
+      if (diffInMinutes < 1) {
+        return "À l'instant";
+      } else if (diffInMinutes < 60) {
+        return `Il y a ${diffInMinutes} min`;
+      } else if (diffInMinutes < 1440) { // Less than 24 hours
+        const hours = Math.floor(diffInMinutes / 60);
+        return `Il y a ${hours}h`;
+      } else {
+        // Show full date for older notifications
+        return new Intl.DateTimeFormat('fr-FR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(date);
+      }
+    } catch (error) {
+      console.error('Error formatting date:', error, dateString);
+      return "Erreur de date";
     }
   };
 
@@ -125,17 +166,30 @@ const Notifications = () => {
             onClick={markAllAsRead}
             disabled={loading}
           >
+            {/* MODIFIED: Replaced material-icons done_all with React Icon IoCheckmarkDoneOutline */}
+            <IoCheckmarkDoneOutline size={18} />
             Tout marquer comme lu
           </button>
         )}
       </div>
 
       {loading ? (
-        <div className="notif__loading">Chargement en cours...</div>
+        <div className="notif__loading">
+          <div className="notif__spinner"></div>
+          Chargement en cours...
+        </div>
       ) : message ? (
-        <div className="notif__empty-message">{message}</div>
+        <div className="notif__empty-message">
+          {/* MODIFIED: Replaced material-icons notifications_none with React Icon IoNotificationsOutline */}
+          <IoNotificationsOutline size={48} />
+          {message}
+        </div>
       ) : notifications.length === 0 ? (
-        <div className="notif__empty-message">Aucune notification disponible</div>
+        <div className="notif__empty-message">
+          {/* MODIFIED: Replaced material-icons notifications_none with React Icon IoNotificationsOutline */}
+          <IoNotificationsOutline size={48} />
+          Aucune notification disponible
+        </div>
       ) : (
         <div className="notif__list">
           {notifications.map(notification => (
@@ -144,9 +198,14 @@ const Notifications = () => {
               className={`notif__item ${!notification.lu ? 'notif__item-unread' : ''}`}
             >
               <div className="notif__content">
-                <div className="notif__title">{notification.titre}</div>
+                <div className="notif__title">
+                  {!notification.lu && <span className="notif__unread-dot"></span>}
+                  {notification.titre}
+                </div>
                 <div className="notif__message">{notification.message}</div>
                 <div className="notif__date">
+                  {/* MODIFIED: Replaced material-icons schedule with React Icon IoTimeOutline */}
+                  <IoTimeOutline size={16} />
                   {formatDate(notification.createdAt)}
                 </div>
               </div>
@@ -157,7 +216,8 @@ const Notifications = () => {
                     onClick={() => markAsRead(notification._id)}
                     title="Marquer comme lue"
                   >
-                    <span className="material-icons">check_circle_outline</span>
+                    {/* MODIFIED: Replaced material-icons check_circle_outline with React Icon IoCheckmarkCircleOutline */}
+                    <IoCheckmarkCircleOutline size={20} />
                   </button>
                 )}
                 <button
@@ -165,7 +225,8 @@ const Notifications = () => {
                   onClick={() => deleteNotification(notification._id)}
                   title="Supprimer"
                 >
-                  <span className="material-icons">delete_outline</span>
+                  {/* MODIFIED: Replaced material-icons delete_outline with React Icon IoTrashOutline */}
+                  <IoTrashOutline size={20} />
                 </button>
               </div>
             </div>
