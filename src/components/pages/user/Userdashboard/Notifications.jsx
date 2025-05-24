@@ -15,7 +15,71 @@ const Notifications = () => {
     }
   });
 
-  // Safe date formatting (original function kept)
+  const fetchNotifications = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await api.get('/notifications');
+      
+      if (response.data.success) {
+        setNotifications(response.data.notifications || []);
+      } else if (response.data.message) {
+        setMessage(response.data.message);
+      }
+    } catch (error) {
+      console.error('Error fetching notifications:', error);
+      setMessage(
+        error.response?.status === 403 
+          ? 'Accès refusé - veuillez vous reconnecter' 
+          : 'Erreur de chargement des notifications'
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, [api]);
+
+  const markAsRead = async (id) => {
+    try {
+      const response = await api.patch(`/notifications/${id}/lue`);
+      if (response.data.success) {
+        setNotifications(prev => 
+          prev.map(notif => 
+            notif._id === id ? { ...notif, lu: true } : notif
+          )
+        );
+        toast.success('Marquée comme lue');
+      }
+    } catch (error) {
+      toast.error('Échec du marquage');
+      console.error('Mark as read error:', error);
+    }
+  };
+
+  const markAllAsRead = async () => {
+    try {
+      const response = await api.patch('/notifications/markAllAsRead');
+      if (response.data.success) {
+        setNotifications(prev => prev.map(notif => ({ ...notif, lu: true })));
+        toast.success('Toutes marquées comme lues');
+      }
+    } catch (error) {
+      toast.error('Échec du marquage global');
+      console.error('Mark all error:', error);
+    }
+  };
+
+  const deleteNotification = async (id) => {
+    try {
+      const response = await api.delete(`/notifications/delete/${id}`);
+      if (response.data.success) {
+        setNotifications(prev => prev.filter(notif => notif._id !== id));
+        toast.success('Notification supprimée');
+      }
+    } catch (error) {
+      toast.error('Échec de la suppression');
+      console.error('Delete error:', error);
+    }
+  };
+
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
     try {
@@ -34,8 +98,9 @@ const Notifications = () => {
     }
   };
 
-  // Rest of your component logic remains identical...
-  // Only added safety checks without changing structure
+  useEffect(() => {
+    fetchNotifications();
+  }, [fetchNotifications]);
 
   return (
     <div className="notif__container">
@@ -45,6 +110,7 @@ const Notifications = () => {
           <button 
             className="notif__btn notif__btn-mark-all"
             onClick={markAllAsRead}
+            disabled={loading}
           >
             Tout marquer comme lu
           </button>
@@ -56,7 +122,7 @@ const Notifications = () => {
       ) : message ? (
         <div className="notif__empty-message">{message}</div>
       ) : notifications.length === 0 ? (
-        <div className="notif__empty-message">Aucune notification</div>
+        <div className="notif__empty-message">Aucune notification pour le moment.</div>
       ) : (
         <div className="notif__list">
           {notifications.map(notification => (
