@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import './Notifications.css';
@@ -8,14 +8,17 @@ const Notifications = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
 
-  const api = axios.create({
-    baseURL: 'https://backend-espace-client.onrender.com/api',
-    headers: {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      'Content-Type': 'application/json'
-    },
-    withCredentials: true
-  });
+  // Move api creation to useMemo to prevent recreation on every render
+  const api = useMemo(() => {
+    return axios.create({
+      baseURL: 'https://backend-espace-client.onrender.com/api',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
+      },
+      withCredentials: true
+    });
+  }, []); // Empty dependency array since token shouldn't change during component lifecycle
 
   // Récupérer les notifications
   const fetchNotifications = useCallback(async () => {
@@ -41,7 +44,7 @@ const Notifications = () => {
     } finally {
       setLoading(false);
     }
-  }, [api]);
+  }, [api]); // Now api is stable, so this won't cause infinite loops
 
   // Marquer comme lue
   const markAsRead = async (id) => {

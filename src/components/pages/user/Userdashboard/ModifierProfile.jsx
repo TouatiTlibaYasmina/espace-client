@@ -98,7 +98,7 @@ const ModifierProfile = () => {
     <div className="mpu-profile-container">
       <div className="mpu-header">
         <h2 className="mpu-title">Modifier mon profil</h2>
-        <Pencil size={20} className="mpu-title-icon" />
+        
       </div>
       
       {message && (
