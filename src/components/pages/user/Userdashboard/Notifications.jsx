@@ -11,35 +11,39 @@ const Notifications = () => {
   const api = axios.create({
     baseURL: 'https://backend-espace-client.onrender.com/api',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
-    }
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    withCredentials: true
   });
 
-  // Fetch notifications - matches your GET / endpoint
+  // Récupérer les notifications
   const fetchNotifications = useCallback(async () => {
     try {
       setLoading(true);
+      setMessage(null);
       const response = await api.get('/notifications');
       
       if (response.data.success) {
-        // Matches your backend response structure
         setNotifications(response.data.notifications || []);
       } else if (response.data.message) {
         setMessage(response.data.message);
       }
     } catch (error) {
-      console.error('Error fetching notifications:', error);
-      setMessage(
-        error.response?.status === 403 
-          ? 'Accès refusé - veuillez vous reconnecter'
-          : 'Erreur de chargement des notifications'
-      );
+      console.error('Erreur de récupération :', error);
+      if (error.response?.status === 403) {
+        setMessage('Accès refusé - veuillez vous reconnecter');
+        toast.error('Session expirée');
+      } else {
+        setMessage('Impossible de charger les notifications');
+        toast.error('Problème de connexion au serveur');
+      }
     } finally {
       setLoading(false);
     }
   }, [api]);
 
-  // Mark as read - matches your PATCH /:id/lue endpoint
+  // Marquer comme lue
   const markAsRead = async (id) => {
     try {
       const response = await api.patch(`/notifications/${id}/lue`);
@@ -49,15 +53,15 @@ const Notifications = () => {
             notif._id === id ? { ...notif, lu: true } : notif
           )
         );
-        toast.success('Notification marquée comme lue');
+        toast.success('Marquée comme lue');
       }
     } catch (error) {
       toast.error('Échec du marquage');
-      console.error('Mark as read error:', error);
+      console.error('Erreur:', error);
     }
   };
 
-  // Mark all as read - matches your PATCH /markAllAsRead endpoint
+  // Tout marquer comme lu
   const markAllAsRead = async () => {
     try {
       const response = await api.patch('/notifications/markAllAsRead');
@@ -67,11 +71,11 @@ const Notifications = () => {
       }
     } catch (error) {
       toast.error('Échec du marquage global');
-      console.error('Mark all error:', error);
+      console.error('Erreur:', error);
     }
   };
 
-  // Delete notification - matches your DELETE /delete/:id endpoint
+  // Supprimer notification
   const deleteNotification = async (id) => {
     try {
       const response = await api.delete(`/notifications/delete/${id}`);
@@ -81,11 +85,11 @@ const Notifications = () => {
       }
     } catch (error) {
       toast.error('Échec de la suppression');
-      console.error('Delete error:', error);
+      console.error('Erreur:', error);
     }
   };
 
-  // Format date to match French locale as in your design
+  // Formater la date
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
     try {
@@ -124,11 +128,11 @@ const Notifications = () => {
       </div>
 
       {loading ? (
-        <div className="notif__loading">Chargement...</div>
+        <div className="notif__loading">Chargement en cours...</div>
       ) : message ? (
         <div className="notif__empty-message">{message}</div>
       ) : notifications.length === 0 ? (
-        <div className="notif__empty-message">Aucune notification pour le moment.</div>
+        <div className="notif__empty-message">Aucune notification disponible</div>
       ) : (
         <div className="notif__list">
           {notifications.map(notification => (
@@ -148,7 +152,7 @@ const Notifications = () => {
                   <button
                     className="notif__btn notif__btn-read"
                     onClick={() => markAsRead(notification._id)}
-                    title="Marquer comme lu"
+                    title="Marquer comme lue"
                   >
                     <span className="material-icons">check_circle_outline</span>
                   </button>
