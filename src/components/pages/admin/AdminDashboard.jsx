@@ -6,10 +6,10 @@ import menuIcon from '../../../assets/icons/icons8-sidebar-menu-24.png';
 import facebookIcon from '../../../assets/icons/icons8-facebook.svg';
 import instagramIcon from '../../../assets/icons/icons8-instagram.svg';
 import twitterIcon from '../../../assets/icons/icons8-x.svg';
-import youtubeIcon from '../../../assets/icons/icons8-youtube.svg';
-import { FiChevronDown, FiChevronUp, FiLogOut, FiSearch } from "react-icons/fi";
+
+import { FiChevronDown, FiChevronUp, FiLogOut, FiSearch, FiSidebar } from "react-icons/fi";
 import { MdPeople, MdBarChart, MdOutlineManageAccounts, MdLibraryBooks } from "react-icons/md";
-import { AiOutlineDatabase } from "react-icons/ai";
+import welcomeIllustration from '../../../assets/illustrations/undraw_data-processing_z2q6.svg';
 import TousLesUtilisateurs from "./Admindashboard/TousLesUtilisateurs";
 import AdminReclamations from "./Admindashboard/AdminReclamations";
 import FacturesUtilisateurs from "./Admindashboard/FacturesUtilisateurs";
@@ -133,24 +133,24 @@ function AdminDashboard() {
       case "dashboard":
       default:
         return (
-          <>
-            <h1>Bienvenue sur votre espace administrateur</h1>
-            <div className="ud-cards">
-              <div className="ud-card">
-                <h3>Utilisateurs inscrits</h3>
-                <p>Nombre total des comptes utilisateurs.</p>
-              </div>
-              <div className="ud-card">
-                <h3>Réclamations ouvertes</h3>
-                <p>Réclamations en attente de traitement.</p>
-              </div>
-              <div className="ud-card">
-                <h3>Offres actives</h3>
-                <p>Gestion des abonnements disponibles.</p>
+            <div className="ud-dashboard-welcome">
+              <div className="ud-welcome-container">
+                <div className="ud-welcome-content">
+                  <div className="ud-welcome-text">
+                    <h1 className="ud-welcome-title">
+                      Bienvenue dans votre espace administrateur
+                    </h1>
+                    <p className="ud-welcome-subtitle">
+                      Gérez facilement les utilisateurs, les réclamations et la facturation.
+                    </p>
+                  </div>
+                  <div className="ud-welcome-illustration">
+                    <img src={welcomeIllustration} alt="Welcome illustration" className="ud-illustration-img" />
+                  </div>
+                </div>
               </div>
             </div>
-          </>
-        );
+          );
     }
   };
 
@@ -162,7 +162,7 @@ function AdminDashboard() {
             <img src={logo} alt="Algérie Télécom" className="ud-logo" />
           </Link>
           <button onClick={toggleSidebar} className="ud-sidebar-toggle">
-            <img src={menuIcon} alt="Menu" className="ud-menu-icon" />
+            <FiSidebar className="ud-menu-icon" />
           </button>
         </div>
 

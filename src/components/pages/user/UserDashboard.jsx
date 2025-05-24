@@ -9,13 +9,13 @@ import ePaiementLogo from "../../../assets/logos/e-paiement-logo.png";
 import facebookIcon from '../../../assets/icons/icons8-facebook.svg';
 import instagramIcon from '../../../assets/icons/icons8-instagram.svg';
 import twitterIcon from '../../../assets/icons/icons8-x.svg';
-import youtubeIcon from '../../../assets/icons/icons8-youtube.svg';
+
 import { CgProfile } from "react-icons/cg";
 import { MdSubscriptions, MdReportGmailerrorred } from "react-icons/md";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import { IoNotificationsOutline } from "react-icons/io5";
-import { TbChartBar } from "react-icons/tb";
-import { FiChevronDown, FiChevronUp, FiLogOut, FiSearch } from "react-icons/fi";
+
+import { FiChevronDown, FiChevronUp, FiLogOut, FiSearch, FiSidebar } from "react-icons/fi";
 import ModifierProfile from "./Userdashboard/ModifierProfile";
 import ChangerMotDePasse from "./Userdashboard/ChangerMotDePasse";
 import ChoisirOffre from "./Userdashboard/ChoisirOffre";
@@ -217,8 +217,8 @@ function UserDashboard() {
             <img src={logo} alt="Algérie Télécom" className="ud-logo" />
           </Link>
           <button onClick={toggleSidebar} className="ud-sidebar-toggle">
-            <img src={menuIcon} alt="Menu" className="ud-menu-icon" />
-          </button>
+              <FiSidebar className="ud-menu-icon" />
+           </button>
         </div>
 
         <div className="ud-search-bar">
