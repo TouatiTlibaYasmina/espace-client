@@ -4,11 +4,13 @@ import logo from "../../../assets/logos/logo.svg";
 import {useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FaLightbulb } from 'react-icons/fa';
-const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordModal }) => {  // <-- on prépare closeModal pour fermer si besoin
+
+// Composant de formulaire de connexion
+const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordModal }) => {  
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // States pour les inputs
+  // États pour les champs du formulaire
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [twoFactorCode, setTwoFactorCode] = useState('');
@@ -16,8 +18,7 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   
- 
-  
+  // Gestion de la soumission du formulaire de connexion
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -36,15 +37,15 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
   
       const data = await response.json();
   
+      // Si la double authentification est requise
       if (response.status === 202 && data.requiresTwoFactor) {
         setTwoFactorRequired(true);
       } else if (data.success) {
-        console.log("Login réussi avec token :", data.token);
+        // Connexion réussie, stockage du token et redirection selon le rôle
         localStorage.setItem("token", data.token);
-        localStorage.setItem("role", data.userType); // "admin" or "client"
-        localStorage.setItem("userId", data.userId); // Optional
+        localStorage.setItem("role", data.userType);
+        localStorage.setItem("userId", data.userId);
   
-        // Redirection based on role
         if (data.userType === "admin") {
           navigate("/admin");
         } else {
@@ -62,8 +63,6 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
     }
   };
   
-  
-
   return (
     <div className="modal-overlay" onClick={closeModal}>
       <div className="conteneur" onClick={(e) => e.stopPropagation()}>
@@ -73,16 +72,17 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
         <h2 className="titre">Espace Client</h2>
         <h3 className="sous_titre">Bienvenue !</h3>
         
-  
         <form className="form-container" onSubmit={handleLogin}>
-        <input 
+          {/* Champ email */}
+          <input 
             type="email" 
             placeholder="Saisir votre adresse email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={twoFactorRequired}
-        />
+          />
 
+          {/* Champ mot de passe avec affichage/masquage */}
           <div className="password-input-container">
             <input
               type={showPassword ? "text" : "password"}
@@ -98,45 +98,51 @@ const ConnexionForm = ({ closeModal, openInscriptionModal, openForgotPasswordMod
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
+
+          {/* Champ code 2FA si nécessaire */}
           {twoFactorRequired && (
             <input
               type="text"
-               placeholder="Code de vérification (2FA)"
-                 value={twoFactorCode}
-                    onChange={(e) => setTwoFactorCode(e.target.value)}
+              placeholder="Code de vérification (2FA)"
+              value={twoFactorCode}
+              onChange={(e) => setTwoFactorCode(e.target.value)}
             />
-              )}
+          )}
 
-  
-  <div className="forgot-password-container">
-  <a className="lien-mdp-oublie" onClick={openForgotPasswordModal}>
-    Mot de passe oublié ?
-  </a>
-</div>
-{errorMessage && <div className="error-message">{errorMessage}</div>}
+          {/* Lien mot de passe oublié */}
+          <div className="forgot-password-container">
+            <a className="lien-mdp-oublie" onClick={openForgotPasswordModal}>
+              Mot de passe oublié ?
+            </a>
+          </div>
 
-  
+          {/* Affichage des erreurs */}
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+
+          {/* Bouton de connexion */}
           <button type="submit" className="cf-button">Se connecter</button>
   
+          {/* Lien pour créer un compte */}
           <div className="create-account-container">
-          <span
-               onClick={() => {
-                  closeModal();           // ferme la modale de connexion
-                  openInscriptionModal(); // ouvre celle d'inscription
-                   }}
-                        className="creer-compte"
-                >Créer un compte ?
-              </span>
-
+            <span
+              onClick={() => {
+                closeModal();
+                openInscriptionModal();
+              }}
+              className="creer-compte"
+            >
+              Créer un compte ?
+            </span>
           </div>
+
+          {/* Astuce d'accueil */}
           <p className="welcome-tip">
-  <FaLightbulb className="lamp-icon" />En cas de difficultés, veuillez consulter notre section d'assistance.
-</p>
+            <FaLightbulb className="lamp-icon" />En cas de difficultés, veuillez consulter notre section d'assistance.
+          </p>
         </form>
       </div>
     </div>
   );
-  
 };
 
 export default ConnexionForm;

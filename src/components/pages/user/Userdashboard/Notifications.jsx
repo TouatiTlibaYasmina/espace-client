@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-// MODIFIED: Added React Icons imports to replace Material Icons
 import { 
   IoCheckmarkCircleOutline, 
   IoTrashOutline, 
@@ -16,7 +15,7 @@ const Notifications = () => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
 
-  // Move api creation to useMemo to prevent recreation on every render
+  // Création de l'instance Axios pour les requêtes API
   const api = useMemo(() => {
     return axios.create({
       baseURL: 'https://backend-espace-client.onrender.com/api',
@@ -26,15 +25,14 @@ const Notifications = () => {
       },
       withCredentials: true
     });
-  }, []); // Empty dependency array since token shouldn't change during component lifecycle
+  }, []);
 
-  // Récupérer les notifications
+  // Récupération des notifications depuis l'API
   const fetchNotifications = useCallback(async () => {
     try {
       setLoading(true);
       setMessage(null);
       const response = await api.get('/notifications');
-      
       if (response.data.success) {
         setNotifications(response.data.notifications || []);
       } else if (response.data.message) {
@@ -52,9 +50,9 @@ const Notifications = () => {
     } finally {
       setLoading(false);
     }
-  }, [api]); // Now api is stable, so this won't cause infinite loops
+  }, [api]);
 
-  // Marquer comme lue
+  // Marquer une notification comme lue
   const markAsRead = async (id) => {
     try {
       const response = await api.patch(`/notifications/${id}/lue`);
@@ -72,7 +70,7 @@ const Notifications = () => {
     }
   };
 
-  // Tout marquer comme lu
+  // Marquer toutes les notifications comme lues
   const markAllAsRead = async () => {
     try {
       const response = await api.patch('/notifications/markAllAsRead');
@@ -86,7 +84,7 @@ const Notifications = () => {
     }
   };
 
-  // Supprimer notification
+  // Supprimer une notification
   const deleteNotification = async (id) => {
     try {
       const response = await api.delete(`/notifications/delete/${id}`);
@@ -100,44 +98,36 @@ const Notifications = () => {
     }
   };
 
-  // Formater la date - Enhanced version
+  // Formater la date d'une notification pour l'affichage
   const formatDate = (dateString) => {
     if (!dateString) {
       console.warn('Date string is null or undefined:', dateString);
       return "Date non disponible";
     }
-    
     try {
-      // Handle different date formats
       let date;
       if (typeof dateString === 'string') {
-        // Try parsing ISO string or other formats
         date = new Date(dateString);
       } else if (dateString instanceof Date) {
         date = dateString;
       } else {
-        console.warn('Invalid date format:', typeof dateString, dateString);
+        console.warn('Format de date invalide:', typeof dateString, dateString);
         return "Format de date invalide";
       }
-      
       if (isNaN(date.getTime())) {
-        console.warn('Invalid date after parsing:', dateString);
+        console.warn('Date invalide après parsing:', dateString);
         return "Date invalide";
       }
-      
       const now = new Date();
       const diffInMinutes = Math.floor((now - date) / (1000 * 60));
-      
-      // Show relative time for recent notifications
       if (diffInMinutes < 1) {
         return "À l'instant";
       } else if (diffInMinutes < 60) {
         return `Il y a ${diffInMinutes} min`;
-      } else if (diffInMinutes < 1440) { // Less than 24 hours
+      } else if (diffInMinutes < 1440) {
         const hours = Math.floor(diffInMinutes / 60);
         return `Il y a ${hours}h`;
       } else {
-        // Show full date for older notifications
         return new Intl.DateTimeFormat('fr-FR', {
           day: '2-digit',
           month: '2-digit',
@@ -147,11 +137,12 @@ const Notifications = () => {
         }).format(date);
       }
     } catch (error) {
-      console.error('Error formatting date:', error, dateString);
+      console.error('Erreur lors du formatage de la date:', error, dateString);
       return "Erreur de date";
     }
   };
 
+  // Chargement des notifications au montage du composant
   useEffect(() => {
     fetchNotifications();
   }, [fetchNotifications]);
@@ -166,7 +157,6 @@ const Notifications = () => {
             onClick={markAllAsRead}
             disabled={loading}
           >
-            {/* MODIFIED: Replaced material-icons done_all with React Icon IoCheckmarkDoneOutline */}
             <IoCheckmarkDoneOutline size={18} />
             Tout marquer comme lu
           </button>
@@ -180,13 +170,11 @@ const Notifications = () => {
         </div>
       ) : message ? (
         <div className="notif__empty-message">
-          {/* MODIFIED: Replaced material-icons notifications_none with React Icon IoNotificationsOutline */}
           <IoNotificationsOutline size={48} />
           {message}
         </div>
       ) : notifications.length === 0 ? (
         <div className="notif__empty-message">
-          {/* MODIFIED: Replaced material-icons notifications_none with React Icon IoNotificationsOutline */}
           <IoNotificationsOutline size={48} />
           Aucune notification disponible
         </div>
@@ -204,7 +192,6 @@ const Notifications = () => {
                 </div>
                 <div className="notif__message">{notification.message}</div>
                 <div className="notif__date">
-                  {/* MODIFIED: Replaced material-icons schedule with React Icon IoTimeOutline */}
                   <IoTimeOutline size={16} />
                   {formatDate(notification.createdAt)}
                 </div>
@@ -216,7 +203,6 @@ const Notifications = () => {
                     onClick={() => markAsRead(notification._id)}
                     title="Marquer comme lue"
                   >
-                    {/* MODIFIED: Replaced material-icons check_circle_outline with React Icon IoCheckmarkCircleOutline */}
                     <IoCheckmarkCircleOutline size={20} />
                   </button>
                 )}
@@ -225,7 +211,6 @@ const Notifications = () => {
                   onClick={() => deleteNotification(notification._id)}
                   title="Supprimer"
                 >
-                  {/* MODIFIED: Replaced material-icons delete_outline with React Icon IoTrashOutline */}
                   <IoTrashOutline size={20} />
                 </button>
               </div>

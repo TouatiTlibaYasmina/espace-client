@@ -11,7 +11,7 @@ function AdminReclamations() {
   const [submitting, setSubmitting] = useState(false);
   const [filter, setFilter] = useState("all"); // "all", "pending", "processed"
 
-  // Fetch reclamations
+  // Récupère la liste des réclamations depuis l'API
   const fetchReclamations = async () => {
     setLoading(true);
     setError(null);
@@ -41,7 +41,7 @@ function AdminReclamations() {
     }
   };
 
-  // Submit response to a reclamation
+  // Envoie la réponse à une réclamation spécifique
   const handleSubmitResponse = async (reclamationId) => {
     if (!reponse.trim()) {
       alert("Veuillez entrer une réponse");
@@ -54,7 +54,7 @@ function AdminReclamations() {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("Vous devez être connecté");
       
-      const response = await fetch(`/api/reclamations/${reclamationId}/answer`, {
+      const response = await fetch("https://backend-espace-client.onrender.com/api/reclamations/${reclamationId}/answer", {
 
         method: "PUT",
         headers: {
@@ -73,7 +73,7 @@ function AdminReclamations() {
         throw new Error(data.message || "Erreur lors de la mise à jour de la réclamation");
       }
       
-      // Update local state
+      // Met à jour l'état local après la réponse
       setReclamations(prevReclamations => 
         prevReclamations.map(rec => 
           rec._id === reclamationId 
@@ -82,7 +82,7 @@ function AdminReclamations() {
         )
       );
       
-      // Close modal and reset form
+      // Ferme la modal et réinitialise le formulaire
       setActiveModal(null);
       setReponse("");
       
@@ -94,7 +94,7 @@ function AdminReclamations() {
     }
   };
 
-  // Format date for display
+  // Formate une date pour l'affichage
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', {
@@ -106,12 +106,12 @@ function AdminReclamations() {
     });
   };
 
-  // Load reclamations on component mount
+  // Charge les réclamations au montage du composant
   useEffect(() => {
     fetchReclamations();
   }, []);
 
-  // Filter reclamations based on selected filter
+  // Filtre les réclamations selon le filtre sélectionné
   const filteredReclamations = reclamations.filter(rec => {
     if (filter === "all") return true;
     if (filter === "pending") return rec.statut === "en attente";
@@ -220,7 +220,7 @@ function AdminReclamations() {
         </>
       )}
 
-      {/* Response Modal */}
+      {/* Modal de réponse à une réclamation */}
       {activeModal && (
         <div className="rec-modal-overlay">
           <div className="rec-modal">

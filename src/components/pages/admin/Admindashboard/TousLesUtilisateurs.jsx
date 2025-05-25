@@ -3,60 +3,66 @@ import "./TousLesUtilisateurs.css";
 import { FiRefreshCw, FiAlertCircle, FiPhone, FiMail, FiFileText } from "react-icons/fi";
 
 function TousLesUtilisateurs() {
+  // État pour stocker les utilisateurs
   const [users, setUsers] = useState([]);
+  // État pour indiquer le chargement
   const [loading, setLoading] = useState(true);
+  // État pour gérer les erreurs
   const [error, setError] = useState(null);
+  // État pour gérer l'utilisateur dont les détails sont affichés
   const [expandedUser, setExpandedUser] = useState(null);
 
+  // Charger les utilisateurs au montage du composant
   useEffect(() => {
     fetchUsers();
   }, []);
 
- const fetchUsers = async () => {
-  setLoading(true);
-  setError(null);
+  // Fonction pour récupérer les utilisateurs depuis l'API
+  const fetchUsers = async () => {
+    setLoading(true);
+    setError(null);
 
-  try {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      throw new Error("Token d'authentification non trouvé");
-    }
-
-    const response = await fetch("https://backend-espace-client.onrender.com/api/users/admin/allUsers", {
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token d'authentification non trouvé");
       }
-    });
 
-    // Get the raw text response (not parsed yet)
-    const text = await response.text();
+      const response = await fetch("https://backend-espace-client.onrender.com/api/users/admin/allUsers", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
 
-    console.log("Raw response from server:", text);  // <-- this logs the exact server response to your browser console
+      // Récupérer la réponse brute du serveur
+      const text = await response.text();
 
-    if (!response.ok) {
-      // Try to parse JSON error message if possible
-      try {
-        const errorData = JSON.parse(text);
-        throw new Error(errorData.message || "Erreur lors de la récupération des utilisateurs");
-      } catch {
-        throw new Error(text || "Erreur serveur inconnue");
+      console.log("Raw response from server:", text);
+
+      if (!response.ok) {
+        // Essayer d'analyser le message d'erreur JSON si possible
+        try {
+          const errorData = JSON.parse(text);
+          throw new Error(errorData.message || "Erreur lors de la récupération des utilisateurs");
+        } catch {
+          throw new Error(text || "Erreur serveur inconnue");
+        }
       }
+
+      // Analyser la réponse JSON si tout est OK
+      const data = JSON.parse(text);
+      setUsers(data.users);
+
+    } catch (err) {
+      console.error("Erreur:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    // Parse JSON only if response was ok
-    const data = JSON.parse(text);
-    setUsers(data.users);
-
-  } catch (err) {
-    console.error("Erreur:", err);
-    setError(err.message);
-  } finally {
-    setLoading(false);
-  }
-};
-
-
+  // Fonction pour afficher ou masquer les détails d'un utilisateur
   const toggleUserDetails = (userId) => {
     if (expandedUser === userId) {
       setExpandedUser(null);
@@ -65,6 +71,7 @@ function TousLesUtilisateurs() {
     }
   };
 
+  // Affichage pendant le chargement
   if (loading) {
     return (
       <div className="tu-loading-container">
@@ -74,6 +81,7 @@ function TousLesUtilisateurs() {
     );
   }
 
+  // Affichage en cas d'erreur
   if (error) {
     return (
       <div className="tu-error-container">
@@ -87,6 +95,7 @@ function TousLesUtilisateurs() {
     );
   }
 
+  // Affichage si aucun utilisateur n'est trouvé
   if (!users || users.length === 0) {
     return (
       <div className="tu-empty-container">
@@ -100,6 +109,7 @@ function TousLesUtilisateurs() {
     );
   }
 
+  // Affichage principal de la liste des utilisateurs
   return (
     <div className="tu-container">
       <div className="tu-header">

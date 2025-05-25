@@ -1,8 +1,8 @@
-/* Base Container - More elegant with subtle gradient */
+/* Conteneur principal du profil utilisateur avec un dégradé subtil et des coins arrondis */
 .mpu-profile-container {
   background: linear-gradient(to bottom, #fffffe, #f8fbfd);
   border-radius: 16px;
-  padding: 1.5rem 2.5rem; /* Reduced vertical padding (top/bottom) */
+  padding: 1.5rem 2.5rem;
   box-shadow: 0 4px 20px rgba(0, 43, 91, 0.12);
   max-width: 700px;
   margin-top: 16px;
@@ -10,7 +10,7 @@
   border: 1px solid rgba(207, 216, 220, 0.5);
 }
 
-/* Header - More prominent with better spacing */
+/* En-tête du profil avec alignement et séparation visuelle */
 .mpu-header {
   display: flex;
   align-items: center;
@@ -19,6 +19,7 @@
   border-bottom: 1px solid rgba(207, 216, 220, 0.5);
 }
 
+/* Titre du profil avec couleur et style accentués */
 .mpU-title {
   color: #1e3a8a;
   font-size: 1.75rem;
@@ -27,13 +28,13 @@
   letter-spacing: -0.5px;
 }
 
+/* Icône à côté du titre */
 .mpu-title-icon {
   color: #28A745;
   margin-left: 12px;
-  
 }
 
-/* Alerts - More refined with subtle animation */
+/* Alertes avec animation d'apparition et style différencié */
 .mpu-alert {
   display: flex;
   align-items: center;
@@ -50,34 +51,38 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Icône dans l'alerte */
 .mpu-alert svg {
   margin-right: 10px;
   flex-shrink: 0;
 }
 
+/* Alerte de succès */
 .mpu-success {
   background-color: rgba(40, 167, 69, 0.1);
   color: #28A745;
   border-left: 4px solid #28A745;
 }
 
+/* Alerte d'erreur */
 .mpu-error {
   background-color: rgba(211, 47, 47, 0.1);
   color: #d32f2f;
   border-left: 4px solid #d32f2f;
 }
 
-/* Form Styles - More elegant spacing and inputs */
+/* Formulaire du profil avec disposition en colonne */
 .mpu-form {
   display: flex;
   flex-direction: column;
-  
 }
 
+/* Groupe de champs du formulaire */
 .mpu-form-group {
   position: relative;
 }
 
+/* Libellé des champs du formulaire */
 .mpu-label {
   display: block;
   color: #002b5b;
@@ -86,6 +91,7 @@
   font-size: 0.95rem;
 }
 
+/* Champ de saisie du formulaire */
 .mpu-input {
   width: 100%;
   padding: 0.875rem 1rem;
@@ -97,6 +103,7 @@
   color: #1a1a1a;
 }
 
+/* Effet focus sur le champ de saisie */
 .mpu-input:focus {
   outline: none;
   border-color: #1e3a8a;
@@ -104,6 +111,7 @@
   background-color: white;
 }
 
+/* Champ de saisie actif */
 .mpu-input.mpu-active {
   border-color: #28A745;
   padding-right: 2.75rem;
@@ -111,18 +119,20 @@
   box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
 }
 
+/* Champ de saisie désactivé */
 .mpu-input:disabled {
   background-color: #f8fbfd;
   color: #555;
   cursor: not-allowed;
 }
 
-/* Edit Icon - More interactive */
+/* Groupe de saisie avec positionnement relatif pour l'icône */
 .mpu-input-group {
   position: relative;
   border-radius: 14px ;
 }
 
+/* Icône d'édition à droite du champ de saisie */
 .mpu-edit-icon {
   position: absolute;
   right: 1rem;
@@ -131,9 +141,7 @@
   color: #555;
   cursor: pointer;
   transition: all 0.25s ease;
-  
   padding: 6px;
- 
   width: 28px;
   height: 28px;
   display: flex;
@@ -141,20 +149,20 @@
   justify-content: center;
 }
 
+/* Effet au survol de l'icône d'édition */
 .mpu-edit-icon:hover {
   color: #1e3a8a;
-  
   transform: translateY(-50%) scale(1.05);
 }
 
+/* Icône d'édition colorée si le champ est actif */
 .mpu-input.mpu-active + .mpu-edit-icon {
   color: #28A745;
-  
 }
 
-/* Submit Button - More polished */
+/* Bouton de soumission stylisé et responsive */
 .mpu-submit-btn {
-background: linear-gradient(to right, #28A745, #009d38);
+  background: linear-gradient(to right, #28A745, #009d38);
   color: white;
   border: none;
   border-radius: 30px;
@@ -173,18 +181,19 @@ background: linear-gradient(to right, #28A745, #009d38);
   align-self: flex-end;
 }
 
-
+/* Effet au survol du bouton de soumission */
 .mpu-submit-btn:hover {
   background: linear-gradient(to right, #009d38, #008030);
   box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
   transform: translateY(-1px);
 }
 
+/* Effet lors du clic sur le bouton de soumission */
 .mpu-submit-btn:active {
   transform: translateY(0);
 }
 
-/* Loading State - More elegant */
+/* Conteneur de chargement centré verticalement et horizontalement */
 .mpu-loading-container {
   display: flex;
   flex-direction: column;
@@ -194,6 +203,7 @@ background: linear-gradient(to right, #28A745, #009d38);
   min-height: 200px;
 }
 
+/* Animation du spinner de chargement */
 .mpu-loading-spinner {
   width: 48px;
   height: 48px;
@@ -209,7 +219,7 @@ background: linear-gradient(to right, #28A745, #009d38);
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive - Better mobile experience */
+/* Styles responsives pour mobile */
 @media (max-width: 640px) {
   .mpu-profile-container {
     padding: 1.75rem;
@@ -235,15 +245,17 @@ background: linear-gradient(to right, #28A745, #009d38);
   }
 }
 
-/* Additional micro-interactions */
+/* Micro-interactions sur le groupe de saisie */
 .mpu-input-group {
   transition: all 0.25s ease;
 }
 
+/* Effet au survol du groupe de saisie */
 .mpu-input-group:hover .mpu-input:not(:disabled) {
   border-color: #1e3a8a;
 }
 
+/* Effet au survol de l'icône d'édition dans le groupe de saisie */
 .mpu-input-group:hover .mpu-edit-icon {
   color: #1e3a8a;
 }

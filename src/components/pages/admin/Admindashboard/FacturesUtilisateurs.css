@@ -1,5 +1,4 @@
-
-/* Container and Header */
+/* Conteneur principal et en-tête */
 .fu-container {
   padding: 24px;
   width: 100%;
@@ -21,7 +20,7 @@
   margin-bottom: 16px;
 }
 
-/* Filters Section */
+/* Section des filtres */
 .fu-filters-container {
   background-color: #ffffff;
   border-radius: 8px;
@@ -99,7 +98,7 @@
   font-size: 16px;
 }
 
-/* Results Section */
+/* Section des résultats */
 .fu-results-container {
   background-color: #ffffff;
   border-radius: 8px;
@@ -107,7 +106,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Loading, Error and Empty States */
+/* États de chargement, erreur et vide */
 .fu-loading,
 .fu-error,
 .fu-empty {
@@ -131,7 +130,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Table Styles */
+/* Styles du tableau */
 .fu-table-container {
   overflow-x: auto;
 }
@@ -165,7 +164,7 @@
   font-weight: 500;
 }
 
-/* Status badges */
+/* Badges de statut */
 .fu-status {
   display: inline-block;
   padding: 4px 8px;
@@ -266,7 +265,7 @@
   font-size: 14px;
 }
 
-/* Responsive adjustments */
+/* Ajustements responsives */
 @media (max-width: 768px) {
   .fu-filters-form {
     flex-direction: column;

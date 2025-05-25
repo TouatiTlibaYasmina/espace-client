@@ -3,6 +3,7 @@ import "./Factures.css";
 import { FiDownload, FiCreditCard } from "react-icons/fi";
 
 function Factures() {
+  // États pour gérer les factures, la sélection, le chargement, les erreurs, etc.
   const [factures, setFactures] = useState([]);
   const [selectedFacture, setSelectedFacture] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,138 +12,124 @@ function Factures() {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   useEffect(() => {
-const fetchFactures = async () => {
-  try {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setError("Veuillez vous connecter");
-      setLoading(false);
-      return;
-    }
+    // Récupère les factures de l'utilisateur à l'initialisation du composant
+    const fetchFactures = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          setError("Veuillez vous connecter");
+          setLoading(false);
+          return;
+        }
 
-    const response = await fetch("https://backend-espace-client.onrender.com/api/factures/mesFactures", {
-      headers: { Authorization: `Bearer ${token}` }
-    });
+        const response = await fetch("https://backend-espace-client.onrender.com/api/factures/mesFactures", {
+          headers: { Authorization: `Bearer ${token}` }
+        });
 
-    if (!response.ok) {
-      // Gestion spéciale pour les erreurs 400/500
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || "Erreur serveur");
-    }
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || "Erreur serveur");
+        }
 
-    const data = await response.json();
-    
-    // Correction temporaire : Nettoie les données invalides
-    const cleanedData = Array.isArray(data) ? data.map(f => ({
-      ...f,
-      paymentMethod: f.paymentMethod || "Non spécifié" // Valeur par défaut frontend
-    })) : [];
+        const data = await response.json();
 
-    setFactures(cleanedData);
-    setLoading(false);
+        // Nettoie les données et ajoute une valeur par défaut pour la méthode de paiement
+        const cleanedData = Array.isArray(data) ? data.map(f => ({
+          ...f,
+          paymentMethod: f.paymentMethod || "Non spécifié"
+        })) : [];
 
-  } catch (err) {
-    console.error("Erreur fetchFactures:", err);
-    setError("Impossible de charger les factures. Contactez le support.");
-    setLoading(false);
-    // Solution de repli : Tableau vide pour éviter de casser l'UI
-    setFactures([]);
-  }
-};
+        setFactures(cleanedData);
+        setLoading(false);
+
+      } catch (err) {
+        console.error("Erreur fetchFactures:", err);
+        setError("Impossible de charger les factures. Contactez le support.");
+        setLoading(false);
+        setFactures([]);
+      }
+    };
 
     fetchFactures();
   }, []);
 
+  // Gère le téléchargement du PDF d'une facture
+  const handleDownloadPDF = async (factureId) => {
+    const token = localStorage.getItem("token");
 
-const handleDownloadPDF = async (factureId) => {
-  const token = localStorage.getItem("token");
-  
-  // Debug: Vérification des données d'entrée
-  console.log("[DEBUG] Tentative de téléchargement PDF pour facture ID:", factureId);
-  console.log("[DEBUG] Token présent:", token ? "OUI" : "NON");
-
-  if (!token) {
-    alert("Veuillez vous reconnecter");
-    return;
-  }
-
-  try {
-    // Debug: Log de l'URL complète
-    const apiUrl = `https://backend-espace-client.onrender.com/api/factures/${factureId}/pdf`;
-    console.log("[DEBUG] URL de l'API:", apiUrl);
-
-    const response = await fetch(apiUrl, {
-      headers: { 
-        Authorization: `Bearer ${token}`,
-        'Cache-Control': 'no-cache',
-        'Accept': 'application/pdf'
-      },
-      credentials: 'include'
-    });
-
-    // Debug: Log du statut de la réponse
-    console.log("[DEBUG] Statut de la réponse:", response.status);
-    console.log("[DEBUG] Headers de la réponse:", [...response.headers.entries()]);
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("[ERREUR] Réponse du serveur:", errorText);
-      throw new Error(`Le serveur a retourné une erreur ${response.status}: ${errorText || "Aucun détail"}`);
+    if (!token) {
+      alert("Veuillez vous reconnecter");
+      return;
     }
 
-    const blob = await response.blob();
-    
-    // Debug: Vérification du type de fichier
-    console.log("[DEBUG] Type de blob reçu:", blob.type);
-    console.log("[DEBUG] Taille du blob:", blob.size, "bytes");
+    try {
+      const apiUrl = `https://backend-espace-client.onrender.com/api/factures/${factureId}/pdf`;
 
-    if (blob.type !== "application/pdf") {
-      throw new Error("Le fichier reçu n'est pas un PDF valide");
+      const response = await fetch(apiUrl, {
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          'Cache-Control': 'no-cache',
+          'Accept': 'application/pdf'
+        },
+        credentials: 'include'
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Le serveur a retourné une erreur ${response.status}: ${errorText || "Aucun détail"}`);
+      }
+
+      const blob = await response.blob();
+
+      if (blob.type !== "application/pdf") {
+        throw new Error("Le fichier reçu n'est pas un PDF valide");
+      }
+
+      const pdfUrl = URL.createObjectURL(blob);
+
+      // Crée un lien temporaire pour lancer le téléchargement
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = `facture-${factureId}-${new Date().toISOString().slice(0,10)}.pdf`;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Libère l'URL du blob après 30 secondes
+      setTimeout(() => {
+        URL.revokeObjectURL(pdfUrl);
+      }, 30000);
+
+    } catch (error) {
+      console.error("Échec du téléchargement:", error);
+      alert(`Échec du téléchargement:\n${error.message}\n\nVeuillez réessayer ou contacter le support.`);
     }
+  };
 
-    const pdfUrl = URL.createObjectURL(blob);
-    
-    // Création d'un lien de téléchargement
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = `facture-${factureId}-${new Date().toISOString().slice(0,10)}.pdf`;
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    // Nettoyage après 30 secondes
-    setTimeout(() => {
-      URL.revokeObjectURL(pdfUrl);
-      console.log("[DEBUG] Nettoyage du blob URL effectué");
-    }, 30000);
-
-  } catch (error) {
-    console.error("[ERREUR CRITIQUE] Échec du téléchargement:", error);
-    alert(`Échec du téléchargement:\n${error.message}\n\nVeuillez réessayer ou contacter le support.`);
-    
-    // Envoyez l'erreur à votre service de suivi (optionnel)
-    // logErrorToService(error);
-  }
-};
+  // Affiche les détails d'une facture sélectionnée
   const handleViewFacture = (facture) => {
     setSelectedFacture(facture);
   };
 
+  // Retourne à la liste des factures
   const handleBackToList = () => {
     setSelectedFacture(null);
   };
 
+  // Formate une date au format français
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR');
   };
 
+  // Ouvre la modale de paiement pour une facture
   const handlePaymentClick = (facture) => {
     setSelectedFacture(facture);
     setShowPaymentModal(true);
   };
 
+  // Gère la confirmation du paiement
   const handlePayment = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -161,13 +148,11 @@ const handleDownloadPDF = async (factureId) => {
         throw new Error("Erreur lors du paiement");
       }
 
-      
-      
-      // Update the facture status in the list
+      // Met à jour le statut de la facture dans la liste après paiement
       setFactures(factures.map(f => 
         f._id === selectedFacture._id ? { ...f, statut: "Payée", datePaiement: new Date() } : f
       ));
-      
+
       setShowPaymentModal(false);
       alert("Paiement effectué avec succès");
     } catch (err) {
@@ -176,11 +161,12 @@ const handleDownloadPDF = async (factureId) => {
     }
   };
 
+  // Ferme la modale de paiement sans valider
   const cancelPayment = () => {
     setShowPaymentModal(false);
   };
 
-  // Payment modal component
+  // Composant pour la modale de paiement
   const PaymentModal = () => {
     if (!showPaymentModal) return null;
 
@@ -226,14 +212,17 @@ const handleDownloadPDF = async (factureId) => {
     );
   };
 
+  // Affiche un message de chargement
   if (loading) {
     return <div className="facture-loading">Chargement des factures...</div>;
   }
 
+  // Affiche un message d'erreur si besoin
   if (error) {
     return <div className="facture-error">{error}</div>;
   }
 
+  // Affiche les détails d'une facture sélectionnée
   if (selectedFacture && !showPaymentModal) {
     return (
       <div className="facture-detail-container">
@@ -347,6 +336,7 @@ const handleDownloadPDF = async (factureId) => {
     );
   }
 
+  // Affiche la liste des factures ou un message si aucune n'est disponible
   return (
     <div className="facture-container">
       <h1 className="facture-title">Vos Factures</h1>

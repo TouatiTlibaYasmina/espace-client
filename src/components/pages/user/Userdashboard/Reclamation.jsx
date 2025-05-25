@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./Reclamation.css";
 
+// Composant pour ajouter une nouvelle réclamation
 function AjouterReclamation() {
   const [sujet, setSujet] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState(null);
-  const [statusType, setStatusType] = useState(""); // "success" or "error"
+  const [statusType, setStatusType] = useState(""); // "success" ou "error"
 
+  // Gestion de la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -75,11 +77,13 @@ function AjouterReclamation() {
   );
 }
 
+// Composant pour afficher la liste des réclamations de l'utilisateur
 function VoirReclamations() {
   const [reclamations, setReclamations] = useState([]);
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
 
+  // Chargement des réclamations à l'initialisation du composant
   useEffect(() => {
     const fetchReclamations = async () => {
       try {
@@ -156,7 +160,7 @@ function VoirReclamations() {
   );
 }
 
+// Composant principal qui affiche soit l'ajout soit la liste des réclamations selon la prop "view"
 export default function Reclamation({ view }) {
-  // `view` prop will be "ajouter" or "voir"
   return view === "ajouter" ? <AjouterReclamation /> : <VoirReclamations />;
 }

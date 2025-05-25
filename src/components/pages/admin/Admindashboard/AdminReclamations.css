@@ -1,8 +1,8 @@
 /* 
- * AdminReclamations.css
- * Styles for the Admin Reclamations component
+ * Feuille de style pour le composant Admin Reclamations
  */
 
+/* Conteneur principal */
 .rec-container {
   padding: 1.5rem;
   background-color: #f8fbfd;
@@ -10,6 +10,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* En-tête de la page */
 .rec-header {
   display: flex;
   justify-content: space-between;
@@ -25,12 +26,14 @@
   margin: 0;
 }
 
+/* Actions de l'en-tête */
 .rec-actions {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
+/* Bouton de rafraîchissement */
 .rec-refresh-btn {
   display: flex;
   align-items: center;
@@ -54,6 +57,7 @@
   cursor: not-allowed;
 }
 
+/* Animation de chargement */
 .rec-spin {
   animation: spin 1s linear infinite;
 }
@@ -63,11 +67,13 @@
   to { transform: rotate(360deg); }
 }
 
+/* Filtres */
 .rec-filter {
   display: flex;
   align-items: center;
 }
 
+/* Sélecteur de filtre */
 .rec-select {
   padding: 0.5rem 1rem;
   border: 1px solid #ddd;
@@ -77,6 +83,7 @@
   cursor: pointer;
 }
 
+/* Message d'erreur */
 .rec-error {
   background-color: #ffebee;
   color: #d32f2f;
@@ -92,6 +99,7 @@
   font-size: 1.125rem;
 }
 
+/* Indicateur de chargement */
 .rec-loading {
   text-align: center;
   padding: 2rem;
@@ -99,6 +107,7 @@
   font-style: italic;
 }
 
+/* Message si la liste est vide */
 .rec-empty {
   text-align: center;
   padding: 2rem;
@@ -108,12 +117,14 @@
   margin-top: 1.5rem;
 }
 
+/* Liste des réclamations */
 .rec-list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
+/* Élément individuel de la liste */
 .rec-item {
   background-color: white;
   border-radius: 8px;
@@ -128,20 +139,24 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Statut en attente */
 .rec-pending {
   border-left-color: #f0ad4e;
 }
 
+/* Statut traité */
 .rec-processed {
   border-left-color: #28A745;
 }
 
+/* En-tête de l'élément */
 .rec-item-header {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid #f0f0f0;
   background-color: #fafafa;
 }
 
+/* Titre de l'élément */
 .rec-item-title {
   display: flex;
   justify-content: space-between;
@@ -155,6 +170,7 @@
   color: #1a1a1a;
 }
 
+/* Badge de statut */
 .rec-status {
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;
@@ -173,6 +189,7 @@
   color: #2e7d32;
 }
 
+/* Informations sur l'utilisateur */
 .rec-item-user {
   display: flex;
   justify-content: space-between;
@@ -192,11 +209,13 @@
   opacity: 0.8;
 }
 
+/* Date de la réclamation */
 .rec-date {
   font-size: 0.75rem;
   color: #888;
 }
 
+/* Contenu de la réclamation */
 .rec-item-content {
   padding: 1.5rem;
   color: #1a1a1a;
@@ -207,6 +226,7 @@
   margin: 0;
 }
 
+/* Réponse à la réclamation */
 .rec-response {
   margin-top: 1rem;
   background-color: #f8fff9;
@@ -238,6 +258,7 @@
   color: #1a1a1a;
 }
 
+/* Actions sur l'élément */
 .rec-item-actions {
   padding: 1rem 1.5rem;
   display: flex;
@@ -246,6 +267,7 @@
   background-color: #fafafa;
 }
 
+/* Bouton de réponse */
 .rec-reply-btn {
   background-color: #28A745;
   color: white;
@@ -261,7 +283,7 @@
   background-color: #009d38;
 }
 
-/* Modal Styles */
+/* Styles de la modale */
 .rec-modal-overlay {
   position: fixed;
   top: 0;
@@ -287,6 +309,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* En-tête de la modale */
 .rec-modal-header {
   display: flex;
   justify-content: space-between;
@@ -302,6 +325,7 @@
   font-size: 1.125rem;
 }
 
+/* Bouton de fermeture de la modale */
 .rec-modal-close {
   background: transparent;
   border: none;
@@ -320,12 +344,14 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Corps de la modale */
 .rec-modal-body {
   padding: 1.5rem;
   overflow-y: auto;
   flex-grow: 1;
 }
 
+/* Informations dans la modale */
 .rec-modal-info {
   background-color: #f5f5f5;
   padding: 1rem;
@@ -335,6 +361,7 @@
   color: #1a1a1a;
 }
 
+/* Champ de saisie de la réponse */
 .rec-response-input {
   width: 100%;
   padding: 1rem;
@@ -352,6 +379,7 @@
   box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.2);
 }
 
+/* Pied de la modale */
 .rec-modal-footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid #eee;
@@ -361,6 +389,7 @@
   background-color: #fafafa;
 }
 
+/* Bouton annuler de la modale */
 .rec-modal-cancel {
   background-color: #f5f5f5;
   color: #666;
@@ -375,6 +404,7 @@
   background-color: #eee;
 }
 
+/* Bouton valider de la modale */
 .rec-modal-submit {
   background-color: #28A745;
   color: white;
@@ -398,7 +428,7 @@
   cursor: not-allowed;
 }
 
-/* Responsive adjustments */
+/* Adaptations responsives */
 @media (max-width: 768px) {
   .rec-header {
     flex-direction: column;

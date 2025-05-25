@@ -24,6 +24,7 @@ import HistoriqueAbonnements from "./Userdashboard/HistoriqueAbonnement";
 import Notifications from "./Userdashboard/Notifications";
 import Factures from "./Userdashboard/Factures";
 
+// Modal de confirmation de déconnexion
 function ConfirmLogoutModal({ isOpen, onConfirm, onCancel }) {
   if (!isOpen) return null;
 
@@ -40,6 +41,7 @@ function ConfirmLogoutModal({ isOpen, onConfirm, onCancel }) {
   );
 }
 
+// Élément du menu latéral avec sous-menu
 function SidebarItem({ title, Icon, submenu = [] }) {
   const [open, setOpen] = useState(false);
   const hasSubmenu = submenu.length > 0;
@@ -73,30 +75,34 @@ function SidebarItem({ title, Icon, submenu = [] }) {
 }
 
 function UserDashboard() {
+  // État de l'utilisateur
   const [user, setUser] = useState(null);
+  // État d'ouverture du menu latéral
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  // État d'affichage du modal de déconnexion
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  // Section active du tableau de bord
   const [activeSection, setActiveSection] = useState("overview");
 
-  // Safe JWT parsing
+  // Fonction pour décoder le JWT
   const parseJwt = (token) => {
     try {
       return JSON.parse(atob(token.split('.')[1]));
     } catch (e) {
-      console.error("Failed to parse JWT:", e);
+      console.error("Échec du décodage du JWT :", e);
       return null;
     }
   };
 
-  // Fetch user data with hybrid approach
+  // Récupération des données utilisateur au chargement du composant
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      console.error("No token found");
+      console.error("Aucun token trouvé");
       return;
     }
 
-    // First set basic data from JWT (instant display)
+    // Affichage rapide des infos basiques depuis le JWT
     const decoded = parseJwt(token);
     if (decoded) {
       setUser({
@@ -106,14 +112,14 @@ function UserDashboard() {
       });
     }
 
-    // Then fetch fresh data from API
+    // Récupération des données fraîches depuis l'API
     const fetchUserData = async () => {
       try {
         const response = await fetch("https://backend-espace-client.onrender.com/api/users/profile", {
           headers: { Authorization: `Bearer ${token}` }
         });
 
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) throw new Error(`Erreur HTTP ! statut : ${response.status}`);
 
         const data = await response.json();
         
@@ -122,31 +128,35 @@ function UserDashboard() {
             name: data.user.username || data.user.fullName || data.user.email?.split('@')[0] || "Utilisateur",
             email: data.user.email || "user@example.com",
             initials: (data.user.username?.[0] || data.user.fullName?.[0] || data.user.email?.[0] || "U").toUpperCase(),
-            // Add any other user fields you need
+            // Autres champs utilisateur si besoin
             ...data.user
           });
         }
       } catch (err) {
-        console.error("Failed to fetch user profile:", err);
-        // Silently fail - we already have JWT fallback
+        console.error("Échec de la récupération du profil utilisateur :", err);
+        // On garde les infos du JWT en cas d'échec
       }
     };
 
     fetchUserData();
   }, []);
 
+  // Gestion de l'ouverture/fermeture du menu latéral
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // Annuler la déconnexion
   const cancelLogout = () => {
     setShowLogoutModal(false);
   };
 
+  // Afficher le modal de déconnexion
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
   };
 
+  // Confirmer la déconnexion
   const confirmLogout = async () => {
     setShowLogoutModal(false);
     const token = localStorage.getItem("token");
@@ -161,13 +171,14 @@ function UserDashboard() {
         headers: { Authorization: `Bearer ${token}` }
       });
     } catch (err) {
-      console.error("Logout error:", err);
+      console.error("Erreur lors de la déconnexion :", err);
     } finally {
       localStorage.removeItem("token");
       window.location.href = "/";
     }
   };
 
+  // Affichage du contenu principal selon la section active
   const renderMainContent = () => {
     switch (activeSection) {
       case "modifier-profile":
@@ -187,30 +198,32 @@ function UserDashboard() {
       case "factures":
         return <Factures />;
      default:
-  return (
-    <div className="ud-dashboard-welcome">
-      <div className="ud-welcome-container">
-        <div className="ud-welcome-content">
-          <div className="ud-welcome-text">
-            <h1 className="ud-welcome-title">
-              Bienvenue dans votre espace client
-            </h1>
-            <p className="ud-welcome-subtitle">
-              Gérez facilement vos abonnements, factures et réclamations en toute simplicité
-            </p>
-          </div>
-          <div className="ud-welcome-illustration">
-            <img src={welcomeIllustration} alt="Welcome illustration" className="ud-illustration-img" />
+      // Page d'accueil du tableau de bord
+      return (
+        <div className="ud-dashboard-welcome">
+          <div className="ud-welcome-container">
+            <div className="ud-welcome-content">
+              <div className="ud-welcome-text">
+                <h1 className="ud-welcome-title">
+                  Bienvenue dans votre espace client
+                </h1>
+                <p className="ud-welcome-subtitle">
+                  Gérez facilement vos abonnements, factures et réclamations en toute simplicité
+                </p>
+              </div>
+              <div className="ud-welcome-illustration">
+                <img src={welcomeIllustration} alt="Welcome illustration" className="ud-illustration-img" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
+      );
+    }
   };
 
   return (
     <div className="user-page">
+      {/* En-tête de la page utilisateur */}
       <header className="ud-user-header">
         <div className="ud-left-section">
           <Link to="/">
@@ -221,6 +234,7 @@ function UserDashboard() {
            </button>
         </div>
 
+        {/* Barre de recherche */}
         <div className="ud-search-bar">
           <FiSearch className="ud-search-icon" />
           <div className="ud-search-wrapper">
@@ -233,6 +247,7 @@ function UserDashboard() {
         </div>
 
         <div className="ud-right-section">
+          {/* Liens vers Idoom Market et e-Paiement */}
           <div className="ud-icon-circle">
             <a href="https://idoom-market.com.dz/" target="_blank" rel="noopener noreferrer" title="Idoom Market">
               <img src={idoomLogo} alt="Idoom Market" className="ud-icon-img" />
@@ -244,10 +259,10 @@ function UserDashboard() {
             </a>
           </div>
           
+          {/* Affichage des infos utilisateur */}
           {user && (
             <div className="ud-user-info">
               <div className="ud-user-details">
-                
                 <span className="ud-user-email">{user.email}</span>
               </div>
               <div className="ud-user-avatar">
@@ -256,11 +271,13 @@ function UserDashboard() {
             </div>
           )}
 
+          {/* Bouton de déconnexion */}
           <button className="ud-btn ud-logout-btn" onClick={handleLogoutClick}>
             Se déconnecter
             <FiLogOut className="ud-logout-icon" />
           </button>
 
+          {/* Modal de confirmation de déconnexion */}
           <ConfirmLogoutModal
             isOpen={showLogoutModal}
             onConfirm={confirmLogout}
@@ -270,6 +287,7 @@ function UserDashboard() {
       </header>
 
       <div className="ud-user-content">
+        {/* Menu latéral */}
         {isSidebarOpen && (
           <aside className="ud-sidebar">
             <div className="ud-sidebar-section">
@@ -316,10 +334,9 @@ function UserDashboard() {
                   <span key="notif" onClick={() => setActiveSection("notifications")}>Voir les notifications</span>,
                 ]}
               />
-
-              
             </div>
 
+            {/* Pied du menu latéral avec liens réseaux sociaux */}
             <div className="ud-sidebar-footer">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                 <img src={facebookIcon} alt="Facebook" />
@@ -334,6 +351,7 @@ function UserDashboard() {
           </aside>
         )}
 
+        {/* Contenu principal du tableau de bord */}
         <main className="ud-dashboard">
           {renderMainContent()}
         </main>

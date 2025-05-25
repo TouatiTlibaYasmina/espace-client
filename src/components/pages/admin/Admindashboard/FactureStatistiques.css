@@ -1,9 +1,11 @@
 .fs-container {
+  /* Conteneur principal avec un padding et largeur maximale */
   padding: 20px;
   max-width: 100%;
 }
 
 .fs-header {
+  /* En-tête avec disposition en flex pour espacer les éléments */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,11 +13,13 @@
 }
 
 .fs-header h1 {
+  /* Titre principal de l'en-tête */
   color: #1e3a8a;
   margin: 0;
 }
 
 .fs-refresh-btn {
+  /* Bouton de rafraîchissement stylisé */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -30,10 +34,12 @@
 }
 
 .fs-refresh-btn:hover {
+  /* Effet au survol du bouton de rafraîchissement */
   background-color: #d5dbdb;
 }
 
 .fs-section {
+  /* Section avec fond, ombre et arrondi */
   background-color: #f8fbfd;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -42,6 +48,7 @@
 }
 
 .fs-section h2 {
+  /* Titre de section avec bordure inférieure */
   color: #002b5b;
   margin-top: 0;
   margin-bottom: 16px;
@@ -51,12 +58,14 @@
 }
 
 .fs-stats-grid {
+  /* Grille pour les statistiques */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
 }
 
 .fs-card {
+  /* Carte de statistique */
   padding: 16px;
   border-radius: 6px;
   display: flex;
@@ -65,6 +74,7 @@
 }
 
 .fs-card h3 {
+  /* Titre de la carte */
   margin: 0 0 8px 0;
   font-size: 1rem;
   font-weight: 500;
@@ -72,12 +82,14 @@
 }
 
 .fs-card-value {
+  /* Valeur principale de la carte */
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 4px;
 }
 
 .fs-card-percentage {
+  /* Pourcentage affiché dans la carte */
   font-size: 1rem;
   font-weight: 500;
   background-color: rgba(255, 255, 255, 0.2);
@@ -87,30 +99,37 @@
 }
 
 .fs-card-primary {
+  /* Couleur principale de la carte */
   background-color: #1e3a8a;
 }
 
 .fs-card-success {
+  /* Carte succès */
   background-color: #28A745;
 }
 
 .fs-card-warning {
+  /* Carte avertissement */
   background-color: #f0ad4e;
 }
 
 .fs-card-danger {
+  /* Carte danger */
   background-color: #d32f2f;
 }
 
 .fs-card-secondary {
+  /* Carte secondaire */
   background-color: #002b5b;
 }
 
 .fs-table-responsive {
+  /* Table responsive avec défilement horizontal */
   overflow-x: auto;
 }
 
 .fs-table {
+  /* Table principale */
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
@@ -118,31 +137,37 @@
 
 .fs-table th,
 .fs-table td {
+  /* Cellules du tableau */
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #e0e0e0;
 }
 
 .fs-table th {
+  /* En-tête du tableau */
   background-color: #f8fbfd;
   font-weight: 600;
   color: #1a1a1a;
 }
 
 .fs-table tr:hover {
+  /* Effet au survol d'une ligne du tableau */
   background-color: #f8fbfd;
 }
 
 .fs-chart-container {
+  /* Conteneur pour les graphiques */
   padding: 16px 0;
 }
 
 .fs-tabs {
+  /* Conteneur des onglets */
   display: flex;
   margin-bottom: 16px;
 }
 
 .fs-tab {
+  /* Style d'un onglet */
   padding: 8px 16px;
   background: none;
   border: none;
@@ -153,11 +178,13 @@
 }
 
 .fs-tab-active {
+  /* Onglet actif */
   border-bottom: 2px solid #1e3a8a;
   color: #1e3a8a;
 }
 
 .fs-loading {
+  /* Affichage du chargement */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -166,6 +193,7 @@
 }
 
 .fs-spinner {
+  /* Animation du spinner de chargement */
   border: 4px solid #f3f3f3;
   border-top: 4px solid #1e3a8a;
   border-radius: 50%;
@@ -176,24 +204,28 @@
 }
 
 @keyframes spin {
+  /* Animation de rotation pour le spinner */
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
 .fs-error {
+  /* Message d'erreur stylisé */
   background-color: #fff5f5;
   border-left: 4px solid #d32f2f;
   padding: 20px;
   margin: 20px 0;
 }
 
-/* Responsive styles */
+/* Styles responsives pour mobile */
 @media (max-width: 768px) {
   .fs-stats-grid {
+    /* Grille en une colonne sur mobile */
     grid-template-columns: 1fr;
   }
   
   .fs-header {
+    /* En-tête en colonne sur mobile */
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
@@ -201,6 +233,7 @@
   
   .fs-table th,
   .fs-table td {
+    /* Réduction du padding et de la taille de police sur mobile */
     padding: 8px;
     font-size: 0.85rem;
   }

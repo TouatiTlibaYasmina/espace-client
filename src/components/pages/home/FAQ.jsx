@@ -8,11 +8,13 @@ import {
   FaChevronDown
 } from 'react-icons/fa';
 
+// Composant principal FAQ
 const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState('ACCOUNT');
   const [activeQuestion, setActiveQuestion] = useState(null);
   const answerRefs = useRef([]);
 
+  // Données des questions/réponses par catégorie
   const faqData = [
     {
       id: 'ACCOUNT',
@@ -244,15 +246,17 @@ const FAQ = () => {
     }
   ];
 
+  // Gère l'ouverture/fermeture d'une question
   const toggleQuestion = (questionId) => {
     setActiveQuestion(activeQuestion === questionId ? null : questionId);
   };
 
+  // Récupère la catégorie active
   const activeData = faqData.find(cat => cat.id === activeCategory);
 
   return (
     <div className="faq-container">
-      {/* Header */}
+      {/* En-tête de la FAQ */}
       <div className="faq-header">
         <p className="faq-subtitle">
           Trouvez rapidement les réponses à vos questions
@@ -260,7 +264,7 @@ const FAQ = () => {
       </div>
 
       <div className="faq-layout">
-        {/* Category Navigation */}
+        {/* Navigation des catégories */}
         <div className="faq-categories">
           <h3 className="faq-categories-title">
             Catégories
@@ -283,7 +287,7 @@ const FAQ = () => {
           </div>
         </div>
 
-        {/* Questions Section */}
+        {/* Section des questions/réponses */}
         <div className="faq-questions-container">
           {activeData && (
             <>
@@ -318,7 +322,7 @@ const FAQ = () => {
                         <div className="answer-content">
                           {question.answer}
                           
-                          {/* Feedback Section */}
+                          {/* Section de feedback */}
                           <div className="faq-feedback">
                             <p>Cette réponse vous a-t-elle aidé ?</p>
                             <div className="feedback-buttons">

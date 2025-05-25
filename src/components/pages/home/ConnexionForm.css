@@ -1,12 +1,12 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
 
+/* Applique la police Poppins et le box-sizing à tous les éléments */
 * {
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
 }
 
-
+/* Style du conteneur principal du formulaire */
 .conteneur {
   background: white;
   padding: 30px;
@@ -15,14 +15,16 @@
   width: 400px;
   text-align: center;
   overflow-y: auto;
-  margin: 20px 0; /* Adds spacing between the form and footer */
+  margin: 20px 0;
 }
 
+/* Logo en haut du formulaire */
 .logo {
   width: 100px;
   margin-bottom: 10px;
 }
 
+/* Titre principal du formulaire */
 .titre {
   color: #1E3A8A;
   font-size: 32px;
@@ -30,6 +32,7 @@
   margin-bottom: 5px;
 }
 
+/* Sous-titre du formulaire */
 .sous_titre{
   color: #248a29;
   font-size: 25px;
@@ -37,23 +40,24 @@
   margin-bottom: 20px;
 }
 
-/* ----- Minimal Help Tip ----- */
+/* Astuce d'accueil affichée sous le formulaire */
 .welcome-tip {
   margin-top: 30px;
   gap: 6px;
-  color: #6b7280; /* Neutral gray */
+  color: #6b7280;
   font-size: 0.8rem;
-  
   font-style: italic;
 }
 
+/* Icône de lampe pour l'astuce */
 .lamp-icon {
-  color: #9ca3af; /* Lighter gray */
+  color: #9ca3af;
   font-size: 0.75rem;
   opacity: 0.8;
   margin-right: 7px;
 }
 
+/* Groupe d'entrée (label + input) */
 .input-group {
   text-align: left;
   margin-bottom: 15px;
@@ -62,12 +66,14 @@
   flex-direction: column;
 }
 
+/* Style des labels */
 label {
   font-size: 14px;
   font-weight: 600;
   color: #1E3A8A;
 }
 
+/* Style des champs de saisie */
 input {
   display: flex ;
   align-items: center;
@@ -77,24 +83,27 @@ input {
   font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 13px;
- 
 }
 
+/* Effet focus sur les champs de saisie */
 input:focus {
   border-color: #248a29;
   outline: none;
-
 }
+
+/* Conteneur pour le champ mot de passe (pour l'icône d'affichage) */
 .password-input-container {
   position: relative;
   width: 100%;
 }
 
+/* Ajoute de l'espace à droite pour l'icône œil */
 .password-input-container input {
-  padding-right: 40px; /* Space for eye icon */
+  padding-right: 40px;
   width: 100%;
 }
 
+/* Bouton pour afficher/masquer le mot de passe */
 .toggle-password {
   position: absolute;
   right: 12px;
@@ -107,34 +116,35 @@ input:focus {
   font-size: 1.2rem;
 }
 
-
+/* Texte d'information sous le champ */
 .info-type {
   font-size: 12px;
   color: #666;
-  margin-top: -10px; 
-
+  margin-top: -10px;
 }
 
-
+/* Conteneur du lien mot de passe oublié */
 .forgot-password-container {
- margin-top: -10px;
-  margin-bottom: 25px; 
+  margin-top: -10px;
+  margin-bottom: 25px;
   text-align: left;
 }
 
+/* Lien mot de passe oublié */
 .lien-mdp-oublie {
-  
   color: rgba(0, 31, 63, 0.50);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.48px;
   text-decoration:none ;
-  
 }
+
+/* Effet hover sur le lien mot de passe oublié */
 .lien-mdp-oublie:hover {
   text-decoration: underline;
 }
 
+/* Lien pour créer un compte */
 .creer-compte {
   display: block;
   text-align: center;
@@ -146,10 +156,12 @@ input:focus {
   cursor: pointer;
 }
 
+/* Effet hover sur le lien créer un compte */
 .creer-compte:hover {
   text-decoration: underline;
 }
 
+/* Bouton de connexion */
 .cf-button {
   background-color:#248a29;
   color: white;
@@ -162,13 +174,17 @@ input:focus {
   cursor: pointer;
 }
 
+/* Effet hover sur le bouton de connexion */
 .cf-button:hover {
   background-color:  #2E7D32;
 }
+
+/* Conteneur pour le champ mot de passe (autre variante) */
 .password-container {
   position: relative;
 }
 
+/* Bouton d'affichage/masquage du mot de passe (autre variante) */
 .password-toggle {
   position: absolute;
   right: 10px;
@@ -179,6 +195,8 @@ input:focus {
   cursor: pointer;
   font-size: 14px;
 }
+
+/* Bouton de fermeture (croix X) */
 .close-x {
   position: absolute;
   top: 10px;

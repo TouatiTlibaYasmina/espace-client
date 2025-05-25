@@ -1,5 +1,5 @@
-/* TousLesUtilisateurs.css */
 .tu-container {
+  /* Conteneur principal de la page utilisateurs */
   padding: 20px;
   background-color: #f5f6fa;
   border-radius: 8px;
@@ -7,6 +7,7 @@
 }
 
 .tu-header {
+  /* En-tête avec titre et boutons */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,12 +15,14 @@
 }
 
 .tu-header h2 {
+  /* Titre de la section */
   margin: 0;
   color: #1e3a8a;
   font-size: 1.5rem;
 }
 
 .tu-refresh-button, .tu-retry-button, .tu-details-button {
+  /* Styles communs pour les boutons */
   display: flex;
   align-items: center;
   gap: 8px;
@@ -32,24 +35,29 @@
 }
 
 .tu-refresh-button {
+  /* Bouton de rafraîchissement */
   background-color: #ecf0f1;
   color: #002b5b;
 }
 
 .tu-refresh-button:hover {
+  /* Effet hover pour le bouton de rafraîchissement */
   background-color: #d5dbdb;
 }
 
 .tu-retry-button {
+  /* Bouton de réessai en cas d'erreur */
   background-color: #3498db;
   color: white;
 }
 
 .tu-retry-button:hover {
+  /* Effet hover pour le bouton de réessai */
   background-color: #006eb7;
 }
 
 .tu-details-button {
+  /* Bouton pour afficher les détails d'un utilisateur */
   background-color: #27ae60;
   color: white;
   font-size: 0.8rem;
@@ -57,14 +65,17 @@
 }
 
 .tu-details-button:hover {
+  /* Effet hover pour le bouton détails */
   background-color: #219653;
 }
 
 .tu-table-container {
+  /* Conteneur pour la table avec défilement horizontal */
   overflow-x: auto;
 }
 
 .tu-users-table {
+  /* Table des utilisateurs */
   width: 100%;
   border-collapse: collapse;
   background-color: #fff;
@@ -73,6 +84,7 @@
 }
 
 .tu-users-table th {
+  /* En-tête de la table */
   padding: 12px 15px;
   text-align: left;
   background-color: #1e3a8a;
@@ -81,29 +93,35 @@
 }
 
 .tu-users-table td {
+  /* Cellules de la table */
   padding: 10px 15px;
   border-top: 1px solid #ecf0f1;
 }
 
 .tu-user-row:hover {
+  /* Effet hover sur une ligne utilisateur */
   background-color: #f8f9fa;
 }
 
 .tu-email-cell, .tu-phone-cell, .tu-claims-count {
+  /* Cellules avec icônes et texte alignés */
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .tu-cell-icon {
+  /* Icônes dans les cellules */
   color: #7f8c8d;
 }
 
 .tu-details-row td {
+  /* Cellule de la ligne détails */
   padding: 0;
 }
 
 .tu-user-details {
+  /* Bloc de détails utilisateur */
   background-color: #f9f9f9;
   padding: 15px;
   border-top: 1px solid #e0e0e0;
@@ -111,10 +129,12 @@
 }
 
 .tu-details-section {
+  /* Section dans les détails utilisateur */
   margin-bottom: 15px;
 }
 
 .tu-details-section h4 {
+  /* Titre de section dans les détails */
   margin-top: 0;
   margin-bottom: 10px;
   color: #2c3e50;
@@ -123,16 +143,19 @@
 }
 
 .tu-details-section ul {
+  /* Liste sans puces dans les détails */
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
 .tu-details-section li {
+  /* Élément de liste dans les détails */
   margin-bottom: 5px;
 }
 
 .tu-loading-container {
+  /* Conteneur pour l'affichage du chargement */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,6 +167,7 @@
 }
 
 .tu-loading-spinner {
+  /* Animation de chargement */
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-top: 4px solid #28A745;
@@ -154,11 +178,13 @@
 }
 
 @keyframes spin {
+  /* Animation de rotation pour le spinner */
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
 .tu-error-container, .tu-empty-container {
+  /* Conteneur pour les messages d'erreur ou vide */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -171,22 +197,26 @@
 }
 
 .tu-error-icon, .tu-empty-icon {
+  /* Icônes pour erreur ou vide */
   font-size: 48px;
   color: #e74c3c;
   margin-bottom: 15px;
 }
 
 .tu-empty-icon {
+  /* Couleur différente pour l'icône vide */
   color: #7f8c8d;
 }
 
 .tu-claims-list {
+  /* Liste des réclamations sous forme de grille */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 15px;
 }
 
 .tu-claim-item {
+  /* Élément individuel de réclamation */
   background-color: #fff;
   border-radius: 4px;
   padding: 12px;
@@ -194,18 +224,21 @@
 }
 
 .tu-claim-item h5 {
+  /* Titre de la réclamation */
   margin-top: 0;
   margin-bottom: 8px;
   color: #002b5b;
 }
 
 .tu-claim-description {
+  /* Description de la réclamation */
   font-size: 0.9rem;
   color: #7f8c8d;
   margin-bottom: 0;
 }
 
 .tu-status {
+  /* Badge de statut d'une réclamation */
   display: inline-block;
   padding: 3px 8px;
   border-radius: 8px;
@@ -214,26 +247,31 @@
 }
 
 .tu-status-pending {
+  /* Statut : en attente */
   background-color: #f39c12;
   color: white;
 }
 
 .tu-status-resolved {
+  /* Statut : résolu */
   background-color: #27ae60;
   color: white;
 }
 
 .tu-status-processing {
+  /* Statut : en cours de traitement */
   background-color: #3498db;
   color: white;
 }
 
 .tu-status-rejected {
+  /* Statut : rejeté */
   background-color: #e74c3c;
   color: white;
 }
 
 .tu-no-claims {
+  /* Message lorsqu'il n'y a pas de réclamations */
   color: #7f8c8d;
   font-style: italic;
 }

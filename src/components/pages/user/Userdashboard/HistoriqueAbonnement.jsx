@@ -6,12 +6,14 @@ import { BsCalendarDate } from "react-icons/bs";
 import { FaHistory } from "react-icons/fa";
 
 function HistoriqueAbonnements() {
+  // États pour la gestion du chargement, des erreurs et des données d'historique
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [historique, setHistorique] = useState([]);
   const [filteredHistorique, setFilteredHistorique] = useState([]);
   const [filterType, setFilterType] = useState("tous");
 
+  // Récupération de l'historique des abonnements à l'initialisation du composant
   useEffect(() => {
     const fetchHistorique = async () => {
       setLoading(true);
@@ -49,6 +51,7 @@ function HistoriqueAbonnements() {
     fetchHistorique();
   }, []);
 
+  // Filtrage de l'historique selon le type sélectionné
   useEffect(() => {
     if (filterType === "tous") {
       setFilteredHistorique(historique);
@@ -63,6 +66,7 @@ function HistoriqueAbonnements() {
     }
   }, [filterType, historique]);
 
+  // Formatage de la date au format français
   const formatDate = (dateString) => {
     const options = { day: "2-digit", month: "2-digit", year: "numeric" };
     return new Date(dateString).toLocaleDateString("fr-FR", options);
@@ -72,6 +76,7 @@ function HistoriqueAbonnements() {
     <div className="historique-abonnements">
       <h1>Historique des abonnements</h1>
 
+      {/* Affichage du chargement, de l'erreur ou de la liste filtrée */}
       {loading ? (
         <div className="loading-container">
           <AiOutlineLoading3Quarters className="loading-icon spin" />
@@ -83,6 +88,7 @@ function HistoriqueAbonnements() {
         </div>
       ) : (
         <>
+          {/* Contrôles de filtrage */}
           <div className="filter-controls">
             <h3>Filtrer par :</h3>
             <div className="filter-buttons">
@@ -119,12 +125,14 @@ function HistoriqueAbonnements() {
             </div>
           </div>
 
+          {/* Affichage si aucun abonnement ne correspond au filtre */}
           {filteredHistorique.length === 0 ? (
             <div className="empty-history">
               <FaHistory className="empty-icon" />
               <p>Aucun abonnement ne correspond à votre filtre.</p>
             </div>
           ) : (
+            // Affichage de la liste des abonnements filtrés
             <div className="historique-list">
               {filteredHistorique.map((abonnement) => (
                 <div 

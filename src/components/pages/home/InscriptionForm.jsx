@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import "./ConnexionForm.css"; // Keeping the same style as ConnexionForm
+import "./ConnexionForm.css"; // On garde le même style que ConnexionForm
 import logo from "../../../assets/logos/logo.svg";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { FaLightbulb } from 'react-icons/fa';
 
-
-
 const InscriptionForm = ({ closeModal }) => {
-  
+  // État pour afficher ou masquer le mot de passe
   const [showPassword, setShowPassword] = useState(false);
 
-  // Add state for form inputs
+  // États pour les champs du formulaire
   const [phoneNumber, setPhoneNumber] = useState('');
   const [clientNumber, setClientNumber] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Soumission du formulaire d'inscription
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const rawPhone = phoneNumber.replace(/\s+/g, '');
-  
-    // Simple frontend check for 10-digit DZ number
+
+    // Vérification simple du format du numéro de téléphone DZ à 10 chiffres
     if (!/^0[5-7][0-9]{8}$/.test(rawPhone)) {
       alert("❌ Numéro de téléphone invalide. Format attendu : 0xxxxxxxxx");
       return;
     }
-  
+
+    // Création de l'objet utilisateur à envoyer à l'API
     const newUser = {
       numTel: rawPhone,
       MSISDN: `213${rawPhone.slice(1)}`,
@@ -38,7 +38,7 @@ const InscriptionForm = ({ closeModal }) => {
       clientType: "particulier",
       role: "client"
     };
-  
+
     try {
       const response = await fetch("https://backend-espace-client.onrender.com/api/users/register", {
         method: "POST",
@@ -47,9 +47,9 @@ const InscriptionForm = ({ closeModal }) => {
         },
         body: JSON.stringify(newUser)
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         alert("🎉 Compte créé avec succès !");
         closeModal();
@@ -61,10 +61,8 @@ const InscriptionForm = ({ closeModal }) => {
       alert("❌ Erreur réseau, veuillez réessayer.");
     }
   };
-  
-  
 
-  // Handle form input changes
+  // Gestion des changements de chaque champ du formulaire
   const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
   const handleClientNumberChange = (e) => setClientNumber(e.target.value);
   const handleMobileNumberChange = (e) => setMobileNumber(e.target.value);
@@ -75,12 +73,11 @@ const InscriptionForm = ({ closeModal }) => {
     <div className="modal-overlay" onClick={closeModal}>
       <div className="conteneur" onClick={(e) => e.stopPropagation()}>
         <span className="close-x" onClick={closeModal}>×</span>
-        
+
         <img src={logo} alt="Logo" className="logo" />
         <h2 className="titre">Espace Client</h2>
         <h3 className="sous_titre">Créer mon Espace Client</h3>
-        
-  
+
         <div className="input-group">
           <input
             type="text"
@@ -89,7 +86,7 @@ const InscriptionForm = ({ closeModal }) => {
             onChange={handlePhoneNumberChange}
           />
           <p className="info-type">Exemple : 0xxxxxxxx / 4GLTE: 213xxxxxxxxx</p>
-  
+
           <input
             type="text"
             placeholder="Saisir N° Client"
@@ -109,33 +106,32 @@ const InscriptionForm = ({ closeModal }) => {
             onChange={handleEmailChange}
           />
           <div className="password-input-container">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Saisir mot de passe"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                      <button 
-                        type="button" 
-                        className="toggle-password"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
-                      </button>
-                    </div>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Saisir mot de passe"
+              value={password}
+              onChange={handlePasswordChange}
+            />
+            <button 
+              type="button" 
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
         </div>
-  
+
         <button className="cf-button" onClick={handleSubmit}>
-                     Créer
-      </button>
-<p className="welcome-tip">
-  <FaLightbulb className="lamp-icon" /> 
-  En cas de difficultés, veuillez consulter notre section d'assistance.
-</p>
+          Créer
+        </button>
+        <p className="welcome-tip">
+          <FaLightbulb className="lamp-icon" /> 
+          En cas de difficultés, veuillez consulter notre section d'assistance.
+        </p>
       </div>
     </div>
   );
-  
 };
 
 export default InscriptionForm;

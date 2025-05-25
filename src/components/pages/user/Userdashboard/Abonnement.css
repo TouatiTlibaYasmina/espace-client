@@ -1,3 +1,4 @@
+/* Section principale pour le choix d'une offre */
 .choisir-offre {
   width: 100%;
   max-width: 1200px;
@@ -5,12 +6,14 @@
   padding: 20px;
 }
 
+/* Titre principal de la section choisir-offre */
 .choisir-offre h1 {
   color: #1e3a8a ;
   margin-bottom: 20px;
   font-size: 1.8rem;
 }
 
+/* Affichage de l'abonnement actuel */
 .current-subscription {
   background-color: #f0f8ff;
   border-radius: 8px;
@@ -19,22 +22,26 @@
   border-left: 4px solid #00527a;
 }
 
+/* Titre de la section abonnement actuel */
 .current-subscription h3 {
   color: #00527a;
   margin-bottom: 10px;
   font-size: 1.2rem;
 }
 
+/* Détails de l'abonnement sous forme de grille */
 .subscription-details {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 10px;
 }
 
+/* Paragraphe des détails de l'abonnement */
 .subscription-details p {
   margin: 5px 0;
 }
 
+/* Messages d'erreur et de succès */
 .error-message, .success-message {
   padding: 12px;
   border-radius: 6px;
@@ -44,24 +51,28 @@
   gap: 8px;
 }
 
+/* Style du message d'erreur */
 .error-message {
   background-color: #ffecec;
   color: #d32f2f;
   border-left: 4px solid #d32f2f;
 }
 
+/* Style du message de succès */
 .success-message {
   background-color: #e8f5e9;
   color: #2e7d32;
   border-left: 4px solid #2e7d32;
 }
 
+/* Catégories d'offres sous forme de boutons */
 .offre-categories {
   display: flex;
   margin-bottom: 20px;
   gap: 10px;
 }
 
+/* Bouton de catégorie */
 .category-btn {
   padding: 10px 20px;
   background-color: #f0f0f0;
@@ -72,33 +83,39 @@
   transition: all 0.3s ease;
 }
 
+/* Effet au survol du bouton de catégorie */
 .category-btn:hover {
   background-color: #e0e0e0;
 }
 
+/* Bouton de catégorie actif */
 .category-btn.active {
   background-color: #28A745;
   color: white;
 }
 
+/* Conteneur des offres */
 .offres-container {
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
+/* Titres des sections offres globales et spécifiques */
 .offres-globales h3, .offres-specifiques h3 {
   color: #002b5b;
   margin-bottom: 15px;
   font-size: 1.2rem;
 }
 
+/* Liste des offres sous forme de flex */
 .offres-list {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
+/* Bouton d'offre */
 .offre-btn {
   padding: 10px 18px;
   background-color: #f5f5f5;
@@ -108,11 +125,13 @@
   transition: all 0.3s ease;
 }
 
+/* Effet au survol du bouton d'offre */
 .offre-btn:hover {
   background-color: #e9e9e9;
   border-color: #ccc;
 }
 
+/* Bouton d'offre actif */
 .offre-btn.active {
   background-color: #e6f2f7;
   border-color: #1e3a8a;
@@ -120,12 +139,14 @@
   font-weight: 500;
 }
 
+/* Grille des cartes d'offres */
 .offres-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
 
+/* Carte d'offre individuelle */
 .offre-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -137,21 +158,25 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
+/* Effet au survol de la carte d'offre */
 .offre-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
+/* Titre de la carte d'offre */
 .offre-card h4 {
   font-size: 1.1rem;
   margin-bottom: 12px;
   color: #333;
 }
 
+/* Détails de l'offre */
 .offre-details {
   color: #666;
 }
 
+/* Prix de l'offre */
 .offre-price {
   font-weight: bold;
   font-size: 1.2rem;
@@ -159,11 +184,13 @@
   margin-bottom: 8px;
 }
 
+/* Carte d'offre sélectionnée */
 .offre-card.selected {
   border-color: #1e3a8a ;
   background-color: #f0f7fb;
 }
 
+/* Marqueur de sélection sur la carte */
 .card-selected-mark {
   position: absolute;
   top: 10px;
@@ -172,12 +199,14 @@
   font-size: 1.4rem;
 }
 
+/* Section des actions sur l'offre */
 .offre-action {
   margin-top: 25px;
   display: flex;
   justify-content: center;
 }
 
+/* Bouton de sélection */
 .select-btn {
   background-color: #009d38;
   color: white;
@@ -190,10 +219,12 @@
   transition: all 0.3s ease;
 }
 
+/* Effet au survol du bouton de sélection */
 .select-btn:hover {
   background-color: #0b8c29;
 }
 
+/* Modal de confirmation */
 .confirmation-modal {
   position: fixed;
   top: 0;
@@ -207,6 +238,7 @@
   z-index: 1000;
 }
 
+/* Contenu de la modal de confirmation */
 .confirmation-content {
   background-color: #fff;
   border-radius: 18px;
@@ -216,11 +248,13 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Titre de la modal de confirmation */
 .confirmation-content h3 {
   margin-bottom: 15px;
   color: #00527a;
 }
 
+/* Résumé de l'offre sélectionnée */
 .selected-offre-summary {
   background-color: #f5f7fa;
   padding: 15px;
@@ -228,22 +262,26 @@
   margin: 15px 0;
 }
 
+/* Paragraphe du résumé de l'offre sélectionnée */
 .selected-offre-summary p {
   margin: 8px 0;
 }
 
+/* Note d'information dans la modal */
 .confirmation-note {
   color: #666;
   font-size: 0.9rem;
   margin-bottom: 20px;
 }
 
+/* Boutons de la modal de confirmation */
 .confirmation-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 15px;
 }
 
+/* Boutons annuler et confirmer */
 .cancel-btn, .confirm-btn {
   padding: 10px 20px;
   border-radius: 20px;
@@ -253,49 +291,54 @@
   transition: all 0.3s ease;
 }
 
+/* Bouton annuler */
 .cancel-btn {
   background-color: #f0f0f0;
   color: #333;
 }
 
+/* Effet au survol du bouton annuler */
 .cancel-btn:hover {
   background-color: #e0e0e0;
 }
 
+/* Bouton confirmer */
 .confirm-btn {
   background-color: #00527a;
   color: white;
   border-radius: 20px;
 }
 
+/* Effet au survol du bouton confirmer */
 .confirm-btn:hover {
   background-color: #003b5c;
 }
 
+/* Bouton confirmer désactivé */
 .confirm-btn:disabled {
   background-color: #7d9eb1;
   cursor: not-allowed;
 }
 
+/* Icône de chargement avec animation */
 .loading-icon {
   animation: spin 1s linear infinite;
 }
 
+/* Animation de rotation */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
+/* ------------------- Historique des abonnements ------------------- */
 
-
-
-
-
-
+/* Section principale de l'historique */
 .historique-abonnements {
   width: 100%;
 }
 
+/* Titre de l'historique */
 .historique-abonnements h1 {
   font-size: 24px;
   color: #1e3a8a ;
@@ -303,7 +346,7 @@
   font-weight: 600;
 }
 
-/* Loading State */
+/* Etat de chargement */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -313,12 +356,14 @@
   color: #002b5b;
 }
 
+/* Icône de chargement */
 .loading-icon {
   font-size: 48px;
   color: #002b5b;
   margin-bottom: 16px;
 }
 
+/* Animation de rotation pour le chargement */
 .spin {
   animation: spin 1.5s linear infinite;
 }
@@ -328,7 +373,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Error Message */
+/* Message d'erreur dans l'historique */
 .error-message {
   display: flex;
   align-items: center;
@@ -341,7 +386,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Empty History State */
+/* Etat d'historique vide */
 .empty-history {
   display: flex;
   flex-direction: column;
@@ -354,29 +399,33 @@
   box-shadow: 0 2px 8px rgba(0, 85, 141, 0.08);
 }
 
+/* Icône pour l'historique vide */
 .empty-icon {
   font-size: 48px;
   margin-bottom: 16px;
   color: #b0bec5;
 }
 
-/* Filter Controls */
+/* Contrôles de filtre */
 .filter-controls {
   margin-bottom: 24px;
 }
 
+/* Titre des filtres */
 .filter-controls h3 {
   font-size: 16px;
   color: #003a73;
   margin-bottom: 12px;
 }
 
+/* Boutons de filtre */
 .filter-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
+/* Style des boutons de filtre */
 .filter-btn {
   padding: 8px 16px;
   background-color: #f5faff;
@@ -390,25 +439,28 @@
   box-shadow: 0 1px 3px rgba(0, 43, 91, 0.08);
 }
 
+/* Effet au survol du bouton de filtre */
 .filter-btn:hover {
   background-color: #e3f2fd;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(0, 43, 91, 0.15);
 }
 
+/* Bouton de filtre actif */
 .filter-btn.active {
   background-color: #002b5b;
   color: white;
   border-color: #002b5b;
 }
 
-/* Historique List */
+/* Liste de l'historique */
 .historique-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* Élément individuel de l'historique */
 .historique-item {
   background-color: #ffffff;
   border-radius: 16px;
@@ -417,20 +469,23 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Effet au survol de l'élément historique */
 .historique-item:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 85, 141, 0.12);
 }
 
+/* Bordure verte pour abonnement actif */
 .historique-item.actif {
   border-left: 4px solid #28A745;
 }
 
+/* Bordure grise pour abonnement expiré */
 .historique-item.expire {
   border-left: 4px solid #b0bec5;
 }
 
-/* Header Section */
+/* En-tête de l'élément historique */
 .historique-header {
   display: flex;
   justify-content: space-between;
@@ -440,12 +495,14 @@
   border-bottom: 1px solid #e3f2fd;
 }
 
+/* Titre de l'élément historique */
 .historique-title {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* Titre de l'abonnement dans l'historique */
 .historique-title h3 {
   font-size: 16px;
   color: #01558d;
@@ -453,6 +510,7 @@
   margin: 0;
 }
 
+/* Badge de statut (actif/expiré) */
 .status-badge {
   font-size: 12px;
   padding: 4px 10px;
@@ -460,23 +518,26 @@
   font-weight: 500;
 }
 
+/* Badge actif */
 .status-badge.active {
   background-color: #e8f5e9;
   color: #28A745;
 }
 
+/* Badge expiré */
 .status-badge.expired {
   background-color: #f5f5f5;
   color: #7e7e7e;
 }
 
+/* Prix affiché dans l'historique */
 .historique-price {
   font-size: 18px;
   font-weight: 600;
   color: #002b5b;
 }
 
-/* Details Section */
+/* Détails de l'abonnement dans l'historique */
 .historique-details {
   display: flex;
   flex-wrap: wrap;
@@ -485,15 +546,18 @@
   background-color: #ffffff;
 }
 
+/* Colonne de détail */
 .detail-col {
   flex: 1;
   min-width: 175px;
 }
 
+/* Élément de détail */
 .detail-item {
   margin-bottom: 12px;
 }
 
+/* Libellé du détail */
 .detail-label {
   font-size: 13px;
   color: #7e7e7e;
@@ -501,13 +565,14 @@
   margin-bottom: 4px;
 }
 
+/* Valeur du détail */
 .detail-value {
   font-size: 14px;
   color: #1a1a1a;
   font-weight: 500;
 }
 
-/* Footer Section */
+/* Pied de l'élément historique */
 .historique-footer {
   padding: 12px 20px;
   background-color: #f8fbfd;
@@ -519,24 +584,28 @@
   gap: 8px;
 }
 
-/* Responsive adjustments */
+/* ------------------- Responsive ------------------- */
 @media (max-width: 768px) {
+  /* Détails en colonne sur mobile */
   .historique-details {
     flex-direction: column;
     gap: 16px;
   }
   
+  /* Défilement horizontal pour les boutons de filtre */
   .filter-buttons {
     overflow-x: auto;
     padding-bottom: 8px;
   }
   
+  /* En-tête en colonne sur mobile */
   .historique-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
   
+  /* Marge pour le prix sur mobile */
   .historique-price {
     margin-top: 8px;
   }

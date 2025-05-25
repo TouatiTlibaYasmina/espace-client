@@ -15,10 +15,12 @@ import AdminReclamations from "./Admindashboard/AdminReclamations";
 import FacturesUtilisateurs from "./Admindashboard/FacturesUtilisateurs";
 import FactureStatistiques from "./Admindashboard/FactureStatistiques";
 
+// Composant pour un élément de la barre latérale (Sidebar)
 function SidebarItem({ title, Icon, submenu = [], activeSection, setActiveSection }) {
   const [open, setOpen] = useState(false);
   const hasSubmenu = submenu.length > 0;
 
+  // Ouvre le sous-menu si la section active correspond à un de ses éléments
   useEffect(() => {
     if (hasSubmenu && submenu.some(item => item.id === activeSection)) {
       setOpen(true);
@@ -59,24 +61,27 @@ function SidebarItem({ title, Icon, submenu = [], activeSection, setActiveSectio
   );
 }
 
+// Composant principal du tableau de bord administrateur
 function AdminDashboard() {
   const [admin, setAdmin] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [activeSection, setActiveSection] = useState("dashboard");
 
+  // Fonction utilitaire pour décoder un JWT
   const parseJwt = (token) => {
     try {
       return JSON.parse(atob(token.split('.')[1]));
     } catch (e) {
-      console.error("Failed to parse JWT:", e);
+      console.error("Échec du décodage du JWT :", e);
       return null;
     }
   };
 
+  // Récupération des informations de l'administrateur au chargement du composant
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      console.error("No token found");
+      console.error("Aucun token trouvé");
       return;
     }
 
@@ -90,13 +95,14 @@ function AdminDashboard() {
       });
     }
 
+    // Récupère les données de profil de l'administrateur depuis l'API
     const fetchAdminData = async () => {
       try {
         const response = await fetch("https://backend-espace-client.onrender.com/api/users/profile", {
           headers: { "Authorization": `Bearer ${token}` }
         });
 
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) throw new Error(`Erreur HTTP ! statut : ${response.status}`);
 
         const data = await response.json();
         
@@ -109,17 +115,19 @@ function AdminDashboard() {
           });
         }
       } catch (err) {
-        console.error("Failed to fetch admin profile:", err);
+        console.error("Échec de la récupération du profil admin :", err);
       }
     };
 
     fetchAdminData();
   }, []);
 
+  // Gère l'ouverture/fermeture de la barre latérale
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  // Affiche la section active du tableau de bord
   const renderActiveSection = () => {
     switch (activeSection) {
       case "tous-utilisateurs":
@@ -156,6 +164,7 @@ function AdminDashboard() {
 
   return (
     <div className="user-page">
+      {/* En-tête du tableau de bord */}
       <header className="ud-user-header">
         <div className="ud-left-section">
           <Link to="/">
@@ -181,7 +190,6 @@ function AdminDashboard() {
           {admin && (
             <div className="ud-user-info">
               <div className="ud-user-details">
-    
                 <span className="ud-user-email">{admin.email}</span>
               </div>
               <div className="ud-user-avatar">
@@ -189,6 +197,7 @@ function AdminDashboard() {
               </div>
             </div>
           )}
+          {/* Bouton de déconnexion */}
           <button
             className="ud-btn ud-logout-btn"
             onClick={async () => {
@@ -206,7 +215,7 @@ function AdminDashboard() {
                   }
                 });
               } catch (err) {
-                console.error("Logout error:", err);
+                console.error("Erreur lors de la déconnexion :", err);
               } finally {
                 localStorage.removeItem("token");
                 window.location.href = "/";
@@ -220,6 +229,7 @@ function AdminDashboard() {
       </header>
 
       <div className="ud-user-content">
+        {/* Barre latérale (Sidebar) */}
         {isSidebarOpen && (
           <aside className="ud-sidebar">
             <div className="ud-sidebar-section">
@@ -237,7 +247,6 @@ function AdminDashboard() {
                 Icon={MdLibraryBooks} 
                 submenu={[
                   { id: "reclamations-attente", label: "Réclamations en attente" },
-                  
                 ]} 
                 activeSection={activeSection}
                 setActiveSection={setActiveSection}
@@ -254,6 +263,7 @@ function AdminDashboard() {
               />
             </div>
 
+            {/* Pied de la barre latérale avec liens réseaux sociaux */}
             <div className="ud-sidebar-footer">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                 <img src={facebookIcon} alt="Facebook" />
@@ -268,6 +278,7 @@ function AdminDashboard() {
           </aside>
         )}
 
+        {/* Section principale du tableau de bord */}
         <main className="ud-dashboard">
           {renderActiveSection()}
         </main>

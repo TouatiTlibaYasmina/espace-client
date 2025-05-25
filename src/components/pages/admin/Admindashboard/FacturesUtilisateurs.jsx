@@ -3,7 +3,7 @@ import { FiSearch, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import "./FacturesUtilisateurs.css";
 
 function FacturesUtilisateurs() {
-  // States
+  // États pour les données, le chargement, l'erreur et la pagination
   const [factures, setFactures] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,13 +13,13 @@ function FacturesUtilisateurs() {
     pages: 1
   });
 
-  // Filter states
+  // États pour les filtres
   const [userId, setUserId] = useState("");
   const [statutFilter, setStatutFilter] = useState("");
   const [dateDebutFilter, setDateDebutFilter] = useState("");
   const [dateFinFilter, setDateFinFilter] = useState("");
 
-  // Fetch factures with filters
+  // Fonction pour récupérer les factures avec les filtres appliqués
   const fetchFactures = async () => {
     setLoading(true);
     setError(null);
@@ -30,7 +30,7 @@ function FacturesUtilisateurs() {
         throw new Error("Token non trouvé");
       }
 
-      // Build query params
+      // Construction des paramètres de requête
       const params = new URLSearchParams();
       if (userId) params.append("userId", userId);
       if (statutFilter) params.append("statutFilter", statutFilter);
@@ -60,32 +60,31 @@ function FacturesUtilisateurs() {
     }
   };
 
-  // Initial fetch and when filters change
+  // Récupération initiale et lors du changement de page
   useEffect(() => {
     fetchFactures();
   }, [pagination.page]);
 
-  // Handle filter submission
+  // Gestion de la soumission du formulaire de filtres
   const handleFilterSubmit = (e) => {
     e.preventDefault();
-    // Reset page to 1 when applying new filters
     setPagination(prev => ({ ...prev, page: 1 }));
     fetchFactures();
   };
 
-  // Handle pagination change
+  // Gestion du changement de page
   const changePage = (newPage) => {
     if (newPage < 1 || newPage > pagination.pages) return;
     setPagination(prev => ({ ...prev, page: newPage }));
   };
 
-  // Format date for display
+  // Formatage de la date pour l'affichage
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR');
   };
 
-  // Format price for display
+  // Formatage du montant pour l'affichage
   const formatPrice = (amount) => {
     return new Intl.NumberFormat('fr-DZ', { 
       style: 'currency', 
@@ -94,7 +93,7 @@ function FacturesUtilisateurs() {
     }).format(amount);
   };
 
-  // Get status class based on status value
+  // Retourne la classe CSS selon le statut de la facture
   const getStatusClass = (status) => {
     switch (status?.toLowerCase()) {
       case 'payée':
@@ -117,7 +116,7 @@ function FacturesUtilisateurs() {
         </p>
       </div>
 
-      {/* Filters */}
+      {/* Filtres de recherche */}
       <div className="fu-filters-container">
         <form onSubmit={handleFilterSubmit} className="fu-filters-form">
           <div className="fu-form-group">
@@ -176,7 +175,7 @@ function FacturesUtilisateurs() {
         </form>
       </div>
 
-      {/* Results */}
+      {/* Affichage des résultats */}
       <div className="fu-results-container">
         {loading ? (
           <div className="fu-loading">
@@ -230,7 +229,7 @@ function FacturesUtilisateurs() {
               </table>
             </div>
 
-            {/* Pagination */}
+            {/* Pagination des résultats */}
             {pagination.pages > 1 && (
               <div className="fu-pagination">
                 <button 
@@ -249,7 +248,7 @@ function FacturesUtilisateurs() {
                       Math.abs(page - pagination.page) <= 1
                     )
                     .map((page, index, array) => {
-                      // Add ellipsis
+                      // Ajout des points de suspension si besoin
                       if (index > 0 && page - array[index - 1] > 1) {
                         return (
                           <React.Fragment key={`ellipsis-${page}`}>

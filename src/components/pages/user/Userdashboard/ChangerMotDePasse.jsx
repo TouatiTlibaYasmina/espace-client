@@ -2,26 +2,34 @@ import React, { useState } from "react";
 import { FiEye, FiEyeOff, FiKey, FiCheck } from "react-icons/fi";
 import "./ChangerMotDePasse.css";
 
+// Composant pour changer le mot de passe de l'utilisateur
 function ChangerMotDePasse() {
+  // États pour gérer les champs du formulaire
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
     confirmPassword: ""
   });
+  // États pour gérer la visibilité des mots de passe
   const [passwordVisibility, setPasswordVisibility] = useState({
     currentPassword: false,
     newPassword: false,
     confirmPassword: false
   });
+  // État pour afficher les messages d'erreur
   const [error, setError] = useState("");
+  // État pour afficher le message de succès
   const [successMessage, setSuccessMessage] = useState("");
+  // État pour indiquer le chargement
   const [loading, setLoading] = useState(false);
 
+  // Gère la modification des champs du formulaire
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Permet d'afficher ou masquer le mot de passe pour chaque champ
   const togglePasswordVisibility = (field) => {
     setPasswordVisibility(prev => ({
       ...prev,
@@ -29,35 +37,40 @@ function ChangerMotDePasse() {
     }));
   };
 
+  // Gère la soumission du formulaire
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setSuccessMessage("");
 
-    // Validation
+    // Validation du mot de passe actuel
     if (!formData.currentPassword) {
       setError("Veuillez entrer votre mot de passe actuel");
       return;
     }
 
+    // Vérifie la longueur du nouveau mot de passe
     if (formData.newPassword.length < 10) {
       setError("Le mot de passe doit contenir au moins 10 caractères");
       return;
     }
 
+    // Vérifie la complexité du nouveau mot de passe
     if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])/.test(formData.newPassword)) {
       setError("Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial");
       return;
     }
 
+    // Vérifie la correspondance des mots de passe
     if (formData.newPassword !== formData.confirmPassword) {
       setError("Les mots de passe ne correspondent pas");
       return;
     }
 
     setLoading(true);
-    
+
     try {
+      // Récupère le token d'authentification
       const token = localStorage.getItem("token");
       if (!token) {
         setError("Vous devez être connecté");
@@ -65,6 +78,7 @@ function ChangerMotDePasse() {
         return;
       }
 
+      // Envoie la requête pour changer le mot de passe
       const response = await fetch("https://backend-espace-client.onrender.com/api/users/profile/changePassword", {
         method: "PUT",
         headers: {
@@ -79,10 +93,12 @@ function ChangerMotDePasse() {
 
       const data = await response.json();
 
+      // Gère les erreurs de la réponse
       if (!response.ok) {
         throw new Error(data.message || "Erreur lors du changement de mot de passe");
       }
 
+      // Affiche le message de succès et réinitialise le formulaire
       setSuccessMessage("Mot de passe changé avec succès!");
       setFormData({
         currentPassword: "",
@@ -91,6 +107,7 @@ function ChangerMotDePasse() {
       });
 
     } catch (err) {
+      // Affiche le message d'erreur en cas d'échec
       console.error("Erreur:", err);
       setError(err.message || "Erreur lors de la mise à jour du mot de passe");
     } finally {
@@ -101,7 +118,8 @@ function ChangerMotDePasse() {
   return (
     <div className="cmp-profile-container">
       <h2 className="cmp-title">Changer le mot de passe</h2>
-      
+
+      {/* Affiche le message d'erreur si présent */}
       {error && (
         <div className="cmp-alert cmp-error">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -112,7 +130,8 @@ function ChangerMotDePasse() {
           {error}
         </div>
       )}
-      
+
+      {/* Affiche le message de succès si présent */}
       {successMessage && (
         <div className="cmp-alert cmp-success">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -124,6 +143,7 @@ function ChangerMotDePasse() {
       )}
 
       <form onSubmit={handleSubmit} className="cmp-form">
+        {/* Champ pour le mot de passe actuel */}
         <div className="cmp-form-group">
           <label className="cmp-label">
             <FiKey className="cmp-input-icon" /> Mot de passe actuel
@@ -151,6 +171,7 @@ function ChangerMotDePasse() {
           </div>
         </div>
 
+        {/* Champ pour le nouveau mot de passe */}
         <div className="cmp-form-group">
           <label className="cmp-label">
             <FiKey className="cmp-input-icon" /> Nouveau mot de passe
@@ -179,6 +200,7 @@ function ChangerMotDePasse() {
           </div>
         </div>
 
+        {/* Champ pour confirmer le nouveau mot de passe */}
         <div className="cmp-form-group">
           <label className="cmp-label">
             <FiKey className="cmp-input-icon" /> Confirmer le mot de passe
@@ -207,6 +229,7 @@ function ChangerMotDePasse() {
           </div>
         </div>
 
+        {/* Bouton de soumission */}
         <button type="submit" className="cmp-submit-btn" disabled={loading}>
           {loading ? (
             <>

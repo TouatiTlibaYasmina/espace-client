@@ -1,5 +1,5 @@
-/* FAQ Component Styles */
 .faq-container {
+  /* Conteneur principal de la FAQ */
   border-radius: 18px;
   max-width: 1200px;
   margin: 0 auto;
@@ -9,14 +9,15 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-/* Header Styles */
 .faq-header {
+  /* En-tête de la FAQ */
   text-align: center;
   margin-bottom: 3rem;
   padding: 2rem 0;
 }
 
 .faq-main-title {
+  /* Titre principal avec icône */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,11 +30,13 @@
 }
 
 .title-icon {
+  /* Icône du titre principal */
   font-size: 2.25rem;
   color: #28A745;
 }
 
 .faq-subtitle {
+  /* Sous-titre de la FAQ */
   font-size: 1.125rem;
   color: #555555;
   font-weight: 400;
@@ -42,8 +45,8 @@
   line-height: 1.6;
 }
 
-/* Layout */
 .faq-layout {
+  /* Mise en page en grille : catégories + questions */
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 2.5rem;
@@ -52,13 +55,14 @@
 
 @media (max-width: 768px) {
   .faq-layout {
+    /* Mise en page mobile : une seule colonne */
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 }
 
-/* Categories Sidebar */
 .faq-categories {
+  /* Barre latérale des catégories */
   background: white;
   border-radius: 16px;
   padding: 1.5rem;
@@ -69,6 +73,7 @@
 }
 
 .faq-categories-title {
+  /* Titre de la barre latérale */
   font-size: 1.125rem;
   font-weight: 600;
   color: #1a1a1a;
@@ -78,12 +83,14 @@
 }
 
 .faq-category-list {
+  /* Liste des boutons de catégories */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
 .faq-category-btn {
+  /* Bouton de catégorie */
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -101,37 +108,41 @@
 }
 
 .faq-category-btn:hover {
+  /* Effet hover sur bouton de catégorie */
   background-color: #e3f2fd;
   color: #1e3a8a;
   transform: translateX(2px);
 }
 
 .faq-category-btn.active {
+  /* Bouton de catégorie actif */
   background-color: #1e3a8a;
   color: white;
   box-shadow: 0 2px 12px rgba(30, 58, 138, 0.25);
 }
 
 .faq-category-btn .category-icon {
+  /* Icône dans le bouton de catégorie */
   font-size: 1.125rem;
   flex-shrink: 0;
 }
 
 .faq-category-btn.active .category-icon {
+  /* Icône verte si catégorie active */
   color: #28A745;
 }
 
-/* Questions Container */
 .faq-questions-container {
+  /* Conteneur des questions avec scroll masqué */
   background: white;
   border-radius: 20px;
   padding: 2rem;
   box-shadow: 0 4px 20px rgba(0, 43, 91, 0.08);
   border: 1px solid #e3f2fd;
- overflow-y: auto;  /* Enable scroll */
-  max-height: 70vh;  /* Constrain height */
-  overscroll-behavior-y: contain; /* Block scroll bleed */
-  scrollbar-width: none; /* Hide scrollbar (optional) */
+  overflow-y: auto;
+  max-height: 70vh;
+  overscroll-behavior-y: contain;
+  scrollbar-width: none;
   mask-image: linear-gradient(
     to bottom, 
     transparent 0%, 
@@ -139,13 +150,14 @@
     black 90%, 
     transparent 100%
   );
-  
 }
 .faq-questions-container::-webkit-scrollbar {
+  /* Masquer la barre de scroll sur Webkit */
   display: none;
 }
 
 .faq-category-title {
+  /* Titre de la catégorie sélectionnée */
   display: flex;
   align-items: center;
   gap: 0.875rem;
@@ -159,19 +171,20 @@
 }
 
 .faq-category-title .category-icon {
+  /* Icône du titre de catégorie */
   font-size: 1.5rem;
   color: #28A745;
 }
 
-/* Questions List */
 .faq-questions-list {
+  /* Liste des questions */
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  
 }
 
 .faq-item {
+  /* Bloc question/réponse */
   border: 1px solid #cfd8dc;
   border-radius: 16px;
   overflow: hidden;
@@ -180,17 +193,19 @@
 }
 
 .faq-item:hover {
+  /* Effet hover sur bloc question */
   border-color: #1e3a8a;
   box-shadow: 0 4px 16px rgba(0, 43, 91, 0.08);
 }
 
 .faq-item.active {
+  /* Bloc question actif */
   border-color: #28A745;
   box-shadow: 0 6px 24px rgba(40, 167, 69, 0.15);
 }
 
-/* Question Button */
 .faq-question {
+  /* Bouton question */
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -204,24 +219,29 @@
 }
 
 .faq-question:hover {
+  /* Effet hover sur question */
   background-color: #f8fbfd;
 }
 
 .faq-item.active .faq-question {
+  /* Question active */
   background-color: #e3f2fd;
 }
 
 .question-icon {
+  /* Icône de la question */
   font-size: 1.125rem;
   color: #1e3a8a;
   flex-shrink: 0;
 }
 
 .faq-item.active .question-icon {
+  /* Icône verte si question active */
   color: #28A745;
 }
 
 .faq-question h4 {
+  /* Titre de la question */
   flex: 1;
   font-size: 1.1rem;
   font-weight: 600;
@@ -231,6 +251,7 @@
 }
 
 .toggle-icon {
+  /* Icône de bascule (flèche) */
   font-size: 0.875rem;
   color: #555555;
   transition: transform 0.2s ease;
@@ -238,17 +259,19 @@
 }
 
 .faq-item.active .toggle-icon {
+  /* Rotation de l'icône si ouvert */
   transform: rotate(180deg);
   color: #28A745;
 }
 
-/* Answer Section */
 .faq-answer {
+  /* Bloc réponse */
   border-top: 1px solid #e3f2fd;
   animation: slideDown 0.3s ease-out;
 }
 
 @keyframes slideDown {
+  /* Animation ouverture réponse */
   from {
     opacity: 0;
     max-height: 0;
@@ -260,28 +283,32 @@
 }
 
 .answer-content {
+  /* Contenu de la réponse */
   padding: 1.5rem;
   color: #1a1a1a;
   line-height: 1.6;
 }
 
 .answer-content p {
+  /* Paragraphe dans la réponse */
   margin-bottom: 1rem;
   font-size: 0.95rem;
 }
 
 .answer-content p:last-child {
+  /* Dernier paragraphe sans marge basse */
   margin-bottom: 0;
 }
 
-/* Steps and Lists */
 .faq-steps {
+  /* Liste d'étapes numérotées */
   margin: 1rem 0;
   padding-left: 0;
   counter-reset: step-counter;
 }
 
 .faq-steps li {
+  /* Élément d'étape */
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
@@ -295,6 +322,7 @@
 }
 
 .faq-steps li::before {
+  /* Numéro d'étape */
   content: counter(step-counter);
   display: flex;
   align-items: center;
@@ -310,11 +338,13 @@
 }
 
 .faq-list {
+  /* Liste à puces personnalisées */
   margin: 1rem 0;
   padding-left: 0;
 }
 
 .faq-list li {
+  /* Élément de liste */
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -325,14 +355,15 @@
 }
 
 .faq-list li::before {
+  /* Puce verte personnalisée */
   content: "✓";
   color: #28A745;
   font-weight: bold;
   font-size: 0.875rem;
 }
 
-/* Examples */
 .faq-examples {
+  /* Bloc d'exemples */
   margin: 1rem 0;
   padding: 1rem;
   background-color: #f8fbfd;
@@ -341,17 +372,19 @@
 }
 
 .faq-examples p {
+  /* Exemple en monospace */
   margin: 0.5rem 0;
   font-size: 0.9rem;
   font-family: 'Monaco', 'Menlo', monospace;
 }
 
 .faq-examples p strong {
+  /* Texte en gras dans exemple */
   font-weight: 600;
 }
 
-/* Notes */
 .faq-note {
+  /* Bloc note d'information */
   margin-top: 1rem;
   padding: 0.875rem;
   background-color: #e3f2fd;
@@ -361,14 +394,15 @@
   color: #002b5b;
 }
 
-/* Feedback Section */
 .faq-feedback {
+  /* Section retour utilisateur */
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid #e3f2fd;
 }
 
 .faq-feedback p {
+  /* Texte de feedback */
   font-size: 0.9rem;
   font-weight: 500;
   color: #555555;
@@ -376,11 +410,13 @@
 }
 
 .feedback-buttons {
+  /* Groupe de boutons feedback */
   display: flex;
   gap: 0.75rem;
 }
 
 .feedback-buttons button {
+  /* Bouton feedback */
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -396,86 +432,103 @@
 }
 
 .feedback-buttons button:hover {
+  /* Hover bouton feedback */
   border-color: #28A745;
   color: #28A745;
   background-color: #f8fbfd;
 }
 
 .feedback-buttons button:first-child:hover {
+  /* Hover bouton positif */
   border-color: #28A745;
   color: #28A745;
 }
 
 .feedback-buttons button:last-child:hover {
+  /* Hover bouton négatif */
   border-color: #d32f2f;
   color: #d32f2f;
 }
 
-/* Mobile Responsiveness */
+/* Responsive mobile */
 @media (max-width: 768px) {
   .faq-container {
+    /* Padding réduit sur mobile */
     padding: 1rem;
   }
 
   .faq-header {
+    /* Marge réduite sur mobile */
     margin-bottom: 2rem;
     padding: 1rem 0;
   }
 
   .faq-main-title {
+    /* Titre plus petit et vertical sur mobile */
     font-size: 2rem;
     flex-direction: column;
     gap: 0.5rem;
   }
 
   .faq-categories {
+    /* Catégories non sticky sur mobile */
     position: static;
     border-radius: 12px;
     padding: 1rem;
   }
 
   .faq-questions-container {
+    /* Conteneur questions arrondi réduit */
     border-radius: 16px;
     padding: 1.5rem;
   }
 
   .faq-category-title {
+    /* Titre catégorie plus petit */
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
   }
 
   .faq-question {
+    /* Question padding réduit */
     padding: 1rem;
   }
 
   .answer-content {
+    /* Réponse padding réduit */
     padding: 1rem;
   }
 
   .feedback-buttons {
+    /* Boutons feedback en colonne */
     flex-direction: column;
   }
 
   .feedback-buttons button {
+    /* Centrage bouton feedback */
     justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
   .faq-main-title {
+    /* Titre principal encore plus petit */
     font-size: 1.75rem;
   }
 
   .faq-category-btn {
+    /* Bouton catégorie plus compact */
     padding: 0.75rem;
     font-size: 0.9rem;
   }
 
   .faq-question h4 {
+    /* Titre question plus petit */
     font-size: 1rem;
   }
 
   .faq-steps li {
+    /* Étapes en colonne sur mobile */
     flex-direction: column;
     gap: 0.5rem;
   }

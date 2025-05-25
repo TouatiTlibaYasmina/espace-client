@@ -1,4 +1,4 @@
-/* Base Container */
+/* Conteneur principal du profil utilisateur */
 .cmp-profile-container {
   background: linear-gradient(to bottom, #fffffe, #f8fbfd);
   border-radius: 16px;
@@ -10,7 +10,7 @@
   border: 1px solid rgba(207, 216, 220, 0.5);
 }
 
-/* Header */
+/* Titre de la page */
 .cmp-title {
   color: #1e3a8a;
   font-size: 1.75rem;
@@ -21,16 +21,18 @@
   border-bottom: 1px solid rgba(207, 216, 220, 0.5);
 }
 
-/* Form Styles */
+/* Styles du formulaire */
 .cmp-form {
   display: flex;
   flex-direction: column;
 }
 
+/* Groupe de champs du formulaire */
 .cmp-form-group {
   margin-bottom: 1.5rem;
 }
 
+/* Libellé des champs */
 .cmp-label {
   display: flex;
   align-items: center;
@@ -41,16 +43,19 @@
   gap: 8px;
 }
 
+/* Icône dans le champ */
 .cmp-input-icon {
   color: #1e3a8a;
 }
 
+/* Groupe d'entrée avec positionnement relatif */
 .cmp-input-group {
   position: relative;
   border-radius: 14px;
   transition: all 0.25s ease;
 }
 
+/* Champ de saisie */
 .cmp-input {
   width: 100%;
   padding: 0.875rem 1rem 0.875rem 2.5rem;
@@ -63,6 +68,7 @@
   padding-right: 3rem;
 }
 
+/* Effet focus sur le champ de saisie */
 .cmp-input:focus {
   outline: none;
   border-color: #1e3a8a;
@@ -70,7 +76,7 @@
   background-color: white;
 }
 
-/* Eye Button */
+/* Bouton pour afficher/masquer le mot de passe */
 .cmp-eye-button {
   position: absolute;
   right: 1rem;
@@ -89,24 +95,28 @@
   border: none;
 }
 
+/* Icône de l'œil */
 .cmp-eye-icon {
   transition: all 0.2s ease;
 }
 
+/* Effet hover sur le bouton œil */
 .cmp-eye-button:hover .cmp-eye-icon {
   color: #1e3a8a;
   transform: scale(1.1);
 }
 
+/* Effet hover sur le champ de saisie */
 .cmp-input-group:hover .cmp-input {
   border-color: #1e3a8a;
 }
 
+/* Effet hover sur le bouton œil dans le groupe */
 .cmp-input-group:hover .cmp-eye-button {
   color: #1e3a8a;
 }
 
-/* Alerts */
+/* Alertes (succès ou erreur) */
 .cmp-alert {
   display: flex;
   align-items: center;
@@ -118,29 +128,33 @@
   box-shadow: 0 2px 8px rgba(0, 43, 91, 0.05);
 }
 
+/* Animation d'apparition des alertes */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Icône dans l'alerte */
 .cmp-alert svg {
   margin-right: 10px;
   flex-shrink: 0;
 }
 
+/* Alerte de succès */
 .cmp-success {
   background-color: rgba(40, 167, 69, 0.1);
   color: #28A745;
   border-left: 4px solid #28A745;
 }
 
+/* Alerte d'erreur */
 .cmp-error {
   background-color: rgba(211, 47, 47, 0.1);
   color: #d32f2f;
   border-left: 4px solid #d32f2f;
 }
 
-/* Submit Button */
+/* Bouton de soumission du formulaire */
 .cmp-submit-btn {
   background: linear-gradient(to right, #28A745, #009d38);
   color: white;
@@ -161,21 +175,24 @@
   align-self: flex-end;
 }
 
+/* Effet hover sur le bouton de soumission */
 .cmp-submit-btn:hover {
   background: linear-gradient(to right, #009d38, #008030);
   box-shadow: 0 6px 16px rgba(40, 167, 69, 0.3);
 }
 
+/* Effet actif sur le bouton de soumission */
 .cmp-submit-btn:active {
   transform: translateY(0);
 }
 
+/* Bouton de soumission désactivé */
 .cmp-submit-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
 
-/* Loading Spinner */
+/* Spinner de chargement */
 .cmp-loading-spinner {
   display: inline-block;
   width: 16px;
@@ -186,12 +203,13 @@
   animation: cmp-spin 0.8s linear infinite;
 }
 
+/* Animation du spinner */
 @keyframes cmp-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive */
+/* Responsive : adaptation mobile */
 @media (max-width: 640px) {
   .cmp-profile-container {
     padding: 1.75rem;

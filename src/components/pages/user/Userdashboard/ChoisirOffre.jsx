@@ -5,9 +5,11 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { MdError } from "react-icons/md";
 
 function ChoisirOffre() {
+  // États pour la gestion du chargement, des erreurs, du succès et des offres disponibles
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  // Structure des offres pour les clients particuliers et professionnels
   const [offres, setOffres] = useState({
     particulier: {
       telephonie: {
@@ -103,6 +105,7 @@ function ChoisirOffre() {
     },
   });
   
+  // États pour le type de client, la catégorie sélectionnée, l'offre globale et spécifique, l'abonnement courant et la confirmation
   const [clientType, setClientType] = useState("particulier");
   const [selectedCategory, setSelectedCategory] = useState("internet");
   const [selectedOffreGlobale, setSelectedOffreGlobale] = useState("");
@@ -110,74 +113,81 @@ function ChoisirOffre() {
   const [currentAbonnement, setCurrentAbonnement] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
 
-useEffect(() => {
-  const token = localStorage.getItem("token");
-  if (!token) return;
+  // Chargement des données utilisateur et abonnement à l'initialisation du composant
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const [profileResponse, abonnementResponse] = await Promise.all([
-        fetch("https://backend-espace-client.onrender.com/api/users/profile", {
-          headers: { Authorization: `Bearer ${token}` }
-        }),
-        fetch("https://backend-espace-client.onrender.com/api/abonnements/current", {
-          headers: { Authorization: `Bearer ${token}` }
-        })
-      ]);
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // Récupération du profil utilisateur et de l'abonnement courant
+        const [profileResponse, abonnementResponse] = await Promise.all([
+          fetch("https://backend-espace-client.onrender.com/api/users/profile", {
+            headers: { Authorization: `Bearer ${token}` }
+          }),
+          fetch("https://backend-espace-client.onrender.com/api/abonnements/current", {
+            headers: { Authorization: `Bearer ${token}` }
+          })
+        ]);
 
-      if (!profileResponse.ok) throw new Error("Profile fetch failed");
-      const profileData = await profileResponse.json();
-      
-      if (profileData?.user?.clientType) {
-        setClientType(profileData.user.clientType.toLowerCase());
-      }
-
-      // Handle subscription response - 404 is expected for new users
-      if (abonnementResponse.status === 404) {
-        setCurrentAbonnement(null); // No active subscription
-      } else if (!abonnementResponse.ok) {
-        throw new Error("Subscription fetch failed");
-      } else {
-        const abonnementData = await abonnementResponse.json();
-        if (abonnementData?.success && abonnementData.data) {
-          setCurrentAbonnement(abonnementData.data);
+        if (!profileResponse.ok) throw new Error("Profile fetch failed");
+        const profileData = await profileResponse.json();
+        
+        if (profileData?.user?.clientType) {
+          setClientType(profileData.user.clientType.toLowerCase());
         }
+
+        // Gestion de la réponse d'abonnement (404 = pas d'abonnement actif)
+        if (abonnementResponse.status === 404) {
+          setCurrentAbonnement(null);
+        } else if (!abonnementResponse.ok) {
+          throw new Error("Subscription fetch failed");
+        } else {
+          const abonnementData = await abonnementResponse.json();
+          if (abonnementData?.success && abonnementData.data) {
+            setCurrentAbonnement(abonnementData.data);
+          }
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setError("Erreur lors du chargement des données");
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.error("Fetch error:", err);
-      setError("Erreur lors du chargement des données");
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
 
-  fetchData();
-}, []);
+    fetchData();
+  }, []);
 
+  // Sélection d'une catégorie (internet ou téléphonie)
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setSelectedOffreGlobale("");
     setSelectedOffreSpecifique(null);
   };
 
+  // Sélection d'une offre globale (ex : IDOOM FIBRE)
   const handleOffreGlobaleSelect = (offreGlobale) => {
     setSelectedOffreGlobale(offreGlobale);
     setSelectedOffreSpecifique(null);
   };
 
+  // Sélection d'une offre spécifique (ex : 15 Mega)
   const handleOffreSpecifiqueSelect = (offre) => {
     setSelectedOffreSpecifique(offre);
   };
 
+  // Affichage ou masquage de la confirmation de souscription
   const handleConfirmationToggle = () => {
     if (selectedOffreSpecifique) {
       setShowConfirmation(!showConfirmation);
     }
   };
 
+  // Soumission de la demande de souscription à une offre
   const handleSubmit = async () => {
     setLoading(true);
     setError(null);
@@ -197,7 +207,7 @@ useEffect(() => {
         return;
       }
       
-      // Skip confirmation for "Contactez-nous" offers
+      // Cas particulier : offre nécessitant un contact commercial
       if (selectedOffreSpecifique.offre.includes("Contactez-nous")) {
         setSuccess("Un commercial vous contactera bientôt pour finaliser votre abonnement.");
         setLoading(false);
@@ -205,6 +215,7 @@ useEffect(() => {
         return;
       }
       
+      // Envoi de la demande de souscription à l'API
       const response = await fetch("https://backend-espace-client.onrender.com/api/abonnements/choisir", {
         method: "POST",
         headers: {
@@ -227,6 +238,7 @@ useEffect(() => {
       if (data.success) {
         setSuccess(`Félicitations ! Votre abonnement ${selectedOffreGlobale} - ${selectedOffreSpecifique.offre} a été activé avec succès.`);
         
+        // Rafraîchissement de l'abonnement courant après souscription
         setTimeout(async () => {
           try {
             const refreshResponse = await fetch("https://backend-espace-client.onrender.com/api/abonnements/current", {
@@ -253,29 +265,32 @@ useEffect(() => {
     }
   };
 
+  // Récupération des offres disponibles selon le type de client et la catégorie sélectionnée
   const availableOffers = offres[clientType]?.[selectedCategory] || {};
 
   return (
     <div className="choisir-offre">
       <h1>Choisir une offre d'abonnement</h1>
       
+      {/* Affichage de l'abonnement courant ou d'un message si aucun abonnement */}
       {currentAbonnement ? (
-  <div className="current-subscription">
-    <h3>Votre abonnement actuel</h3>
-    <div className="subscription-details">
-      <p><strong>Type:</strong> {currentAbonnement.type}</p>
-      <p><strong>Offre:</strong> {currentAbonnement.offre} {currentAbonnement.debitOuVolume}</p>
-      <p><strong>Prix:</strong> {currentAbonnement.prix}</p>
-      <p><strong>Date d'expiration:</strong> {new Date(currentAbonnement.dateExpiration).toLocaleDateString()}</p>
-    </div>
-  </div>
-) : (
-  <div className="current-subscription">
-    <h3>Vous n'avez pas d'abonnement actif</h3>
-    <p>Veuillez choisir une offre ci-dessous</p>
-  </div>
-)}
+        <div className="current-subscription">
+          <h3>Votre abonnement actuel</h3>
+          <div className="subscription-details">
+            <p><strong>Type:</strong> {currentAbonnement.type}</p>
+            <p><strong>Offre:</strong> {currentAbonnement.offre} {currentAbonnement.debitOuVolume}</p>
+            <p><strong>Prix:</strong> {currentAbonnement.prix}</p>
+            <p><strong>Date d'expiration:</strong> {new Date(currentAbonnement.dateExpiration).toLocaleDateString()}</p>
+          </div>
+        </div>
+      ) : (
+        <div className="current-subscription">
+          <h3>Vous n'avez pas d'abonnement actif</h3>
+          <p>Veuillez choisir une offre ci-dessous</p>
+        </div>
+      )}
       
+      {/* Affichage des messages d'erreur ou de succès */}
       {error && (
         <div className="error-message">
           <MdError /> {error}
@@ -288,6 +303,7 @@ useEffect(() => {
         </div>
       )}
 
+      {/* Sélection de la catégorie d'offre */}
       <div className="offre-categories">
         <button 
           className={`category-btn ${selectedCategory === "internet" ? "active" : ""}`} 
@@ -305,6 +321,7 @@ useEffect(() => {
         </button>
       </div>
 
+      {/* Affichage des offres globales et spécifiques */}
       <div className="offres-container">
         <div className="offres-globales">
           <h3>Offres {selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)}</h3>
@@ -352,6 +369,7 @@ useEffect(() => {
         )}
       </div>
 
+      {/* Bouton pour sélectionner l'offre spécifique */}
       {selectedOffreSpecifique && (
         <div className="offre-action">
           <button 
@@ -364,6 +382,7 @@ useEffect(() => {
         </div>
       )}
 
+      {/* Fenêtre de confirmation avant souscription */}
       {showConfirmation && selectedOffreSpecifique && (
         <div className="confirmation-modal">
           <div className="confirmation-content">

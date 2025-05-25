@@ -9,6 +9,7 @@ function FactureStatistiques() {
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('montants');
 
+  // Fonction pour récupérer les statistiques depuis l'API
   const fetchStats = async () => {
     setLoading(true);
     try {
@@ -37,6 +38,7 @@ function FactureStatistiques() {
     }
   };
 
+  // Charger les statistiques au montage du composant
   useEffect(() => {
     fetchStats();
   }, []);
@@ -56,6 +58,7 @@ function FactureStatistiques() {
     }));
   };
 
+  // Affichage du chargement
   if (loading) {
     return (
       <div className="fs-loading">
@@ -65,6 +68,7 @@ function FactureStatistiques() {
     );
   }
 
+  // Affichage en cas d'erreur
   if (error) {
     return (
       <div className="fs-error">
@@ -90,7 +94,7 @@ function FactureStatistiques() {
         </button>
       </div>
 
-      {/* Statistiques globales */}
+      {/* Affichage des statistiques globales */}
       <section className="fs-section">
         <h2>Aperçu Global</h2>
         <div className="fs-stats-grid">
@@ -134,7 +138,7 @@ function FactureStatistiques() {
         </div>
       </section>
 
-      {/* Statistiques par type d'abonnement */}
+      {/* Affichage des statistiques par type d'abonnement */}
       <section className="fs-section">
         <h2>Statistiques par Type d'Abonnement</h2>
         <div className="fs-table-responsive">
@@ -181,7 +185,7 @@ function FactureStatistiques() {
         </div>
       </section>
 
-      {/* Statistiques mensuelles */}
+      {/* Affichage des statistiques mensuelles avec graphique */}
       <section className="fs-section">
         <h2>Statistiques Mensuelles</h2>
         <div className="fs-chart-container">

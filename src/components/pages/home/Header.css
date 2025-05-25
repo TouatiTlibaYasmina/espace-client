@@ -1,4 +1,4 @@
-/* Base Header Styles */
+/* En-tête principal collant avec fond, ombre et coins arrondis */
 .at-header {
   position: sticky;
   border-radius: 18px;
@@ -9,8 +9,8 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
+/* Conteneur de l'en-tête avec disposition flexible */
 .at-header__container {
-
   margin: 0 auto;
   padding: 15px 40px;
   display: flex;
@@ -18,23 +18,26 @@
   align-items: center;
 }
 
-/* Left Section */
+/* Section gauche de l'en-tête */
 .at-header__left {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
+/* Logo de l'en-tête */
 .at-header__logo {
   height: 45px;
 }
 
+/* Commutateur d'utilisateur */
 .at-header__user-switch {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+/* Lien utilisateur (changement de rôle) */
 .at-header__user-link {
   background: none;
   border: none;
@@ -46,18 +49,18 @@
   transition: all 0.3s ease;
 }
 
-
-
+/* Lien utilisateur actif */
 .at-header__user-link--active {
   color: #009d38;
   font-weight: bold;
 }
 
+/* Séparateur visuel */
 .at-header__divider {
   color: #cfd8dc;
 }
 
-/* Mobile Toggle */
+/* Bouton menu mobile (affiché uniquement sur mobile) */
 .at-header__mobile-toggle {
   display: none;
   background: none;
@@ -68,12 +71,13 @@
   padding: 8px;
 }
 
-/* Navigation */
+/* Navigation principale */
 .at-header__nav {
   display: flex;
   gap: 20px;
 }
 
+/* Lien de navigation */
 .at-header__nav-link {
   color: #002b5b;
   text-decoration: none;
@@ -83,10 +87,12 @@
   transition: color 0.3s ease;
 }
 
+/* Effet hover sur les liens de navigation */
 .at-header__nav-link:hover {
   color: #009d38;
 }
 
+/* Soulignement animé sur hover */
 .at-header__nav-link::after {
   content: '';
   position: absolute;
@@ -102,24 +108,27 @@
   width: 100%;
 }
 
-/* Right Section */
+/* Section droite de l'en-tête */
 .at-header__right {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Actions à droite (boutons, icônes, etc.) */
 .at-header__actions {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Groupe d'icônes */
 .at-header__icons {
   display: flex;
   gap: 15px;
 }
 
+/* Icône individuelle */
 .at-header__icon {
   width: 40px;
   height: 40px;
@@ -133,22 +142,25 @@
   padding: 6px;
 }
 
+/* Effet hover sur les icônes */
 .at-header__icon:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
+/* Image à l'intérieur de l'icône */
 .at-header__icon-img {
   width: 24px;
   height: 24px;
   object-fit: contain;
 }
 
-/* User Menu */
+/* Menu utilisateur déroulant */
 .at-header__user-menu {
   position: relative;
 }
 
+/* Bouton déclencheur du menu utilisateur */
 .at-header__user-trigger {
   display: flex;
   align-items: center;
@@ -161,25 +173,30 @@
   transition: all 0.3s ease;
 }
 
+/* Hover sur le déclencheur du menu utilisateur */
 .at-header__user-trigger:hover {
   background: #cfd8dc;
 }
 
+/* Email de l'utilisateur affiché */
 .at-header__user-email {
   font-size: 14px;
   color: #1a1a1a;
 }
 
+/* Flèche du menu déroulant */
 .at-header__dropdown-arrow {
   font-size: 12px;
   color: #555555;
   transition: transform 0.3s ease;
 }
 
+/* Flèche ouverte (rotation) */
 .at-header__dropdown-arrow--open {
   transform: rotate(180deg);
 }
 
+/* Contenu du menu déroulant */
 .at-header__dropdown {
   position: absolute;
   right: 0;
@@ -194,6 +211,7 @@
   animation: at-fadeIn 0.2s ease-out;
 }
 
+/* Élément du menu déroulant */
 .at-header__dropdown-item {
   display: flex;
   align-items: center;
@@ -209,21 +227,25 @@
   transition: all 0.2s ease;
 }
 
+/* Hover sur un élément du menu déroulant */
 .at-header__dropdown-item:hover {
   background: #f8fbfd;
   color: #0056b3;
 }
 
+/* Icône dans le menu déroulant */
 .at-header__dropdown-icon {
   font-size: 14px;
   color: #555555;
 }
 
+/* Élément de déconnexion dans le menu */
 .at-header__dropdown-item--logout {
   color: #d32f2f;
   border-top: 1px solid #e3f2fd;
 }
 
+/* Hover sur la déconnexion */
 .at-header__dropdown-item--logout:hover {
   background: #ffebee;
 }
@@ -232,12 +254,13 @@
   color: #d32f2f;
 }
 
-/* Auth Buttons */
+/* Boutons d'authentification */
 .at-header__auth {
   display: flex;
   gap: 15px;
 }
 
+/* Style général des boutons */
 .at-header__btn {
   padding: 8px 16px;
   border-radius: 25px;
@@ -250,26 +273,30 @@
   white-space: nowrap;
 }
 
+/* Bouton connexion */
 .at-header__btn--login {
   background: white;
   color: #333;
   border: 1px solid #cfd8dc;
 }
 
+/* Hover bouton connexion */
 .at-header__btn--login:hover {
   background: #f1f1f1;
 }
 
+/* Bouton inscription */
 .at-header__btn--signup {
   background: #28a745;
   color: white;
 }
 
+/* Hover bouton inscription */
 .at-header__btn--signup:hover {
   background: #009d38;
 }
 
-/* Responsive Styles */
+/* Styles responsives pour tablettes */
 @media (max-width: 1024px) {
   .at-header__container {
     padding: 15px 30px;
@@ -280,6 +307,7 @@
   }
 }
 
+/* Styles responsives pour mobiles */
 @media (max-width: 768px) {
   .at-header__container {
     flex-wrap: wrap;
@@ -326,6 +354,7 @@
   }
 }
 
+/* Styles responsives pour petits écrans */
 @media (max-width: 480px) {
   .at-header__container {
     padding: 12px 15px;
@@ -344,12 +373,13 @@
   }
 }
 
-/* Animations */
+/* Animation d'apparition du menu déroulant */
 @keyframes at-fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
-/* User Info Styles */
+
+/* Informations utilisateur (avatar, email, etc.) */
 .at-header__user-info {
   display: flex;
   align-items: center;
@@ -357,10 +387,11 @@
   padding: 4px 8px 4px 4px;
 }
 
+/* Avatar utilisateur rond */
 .at-header__user-avatar {
   width: 32px;
   height: 32px;
-  background-color: #1e3a8a; /* Your primary blue */
+  background-color: #1e3a8a;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -370,22 +401,24 @@
   font-size: 14px;
 }
 
+/* Détails utilisateur (email, etc.) */
 .at-header__user-details {
   display: flex;
   flex-direction: column;
 }
 
+/* Email utilisateur tronqué si trop long */
 .at-header__user-email {
   font-size: 14px;
   font-weight: 500;
-  color: #002b5b; /* Your dark blue */
+  color: #002b5b;
   white-space: nowrap;
   max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Enhance existing trigger button */
+/* Amélioration du bouton déclencheur utilisateur */
 .at-header__user-trigger {
   display: flex;
   align-items: center;
@@ -396,8 +429,7 @@
   transition: all 0.2s ease;
 }
 
+/* Hover subtil sur le déclencheur utilisateur */
 .at-header__user-trigger:hover {
-  background-color: rgba(0, 43, 91, 0.05); /* Subtle hover */
+  background-color: rgba(0, 43, 91, 0.05);
 }
-
-/* Keep all your existing dropdown styles below */

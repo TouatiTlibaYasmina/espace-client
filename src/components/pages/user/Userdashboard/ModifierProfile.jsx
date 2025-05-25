@@ -4,6 +4,7 @@ import { Pencil, Save, AlertCircle, CheckCircle } from "lucide-react";
 import "./ModifierProfile.css";
 
 const ModifierProfile = () => {
+  // États pour les données du formulaire
   const [formData, setFormData] = useState({
     email: "",
     numTel: "",
@@ -11,6 +12,7 @@ const ModifierProfile = () => {
     MSISDN: "",
   });
 
+  // États pour le chargement, les messages et l'édition
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
@@ -21,7 +23,7 @@ const ModifierProfile = () => {
     MSISDN: false
   });
 
-  // Fetch user profile on mount
+  // Récupérer le profil utilisateur au montage du composant
   useEffect(() => {
     const fetchProfile = async () => {
       const token = localStorage.getItem("token");
@@ -47,17 +49,17 @@ const ModifierProfile = () => {
     fetchProfile();
   }, []);
 
-  // Handle form input changes
+  // Gérer les changements dans les champs du formulaire
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // Toggle edit mode for a field
+  // Activer/désactiver le mode édition pour un champ
   const toggleEdit = (field) => {
     setIsEditing(prev => ({ ...prev, [field]: !prev[field] }));
   };
 
-  // Submit updated profile
+  // Soumettre les modifications du profil
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(null);
@@ -71,7 +73,7 @@ const ModifierProfile = () => {
       });
       if (response.data.success) {
         setMessage("Profil mis à jour avec succès !");
-        // Reset all edit states
+        // Réinitialiser les états d'édition
         setIsEditing({
           email: false,
           numTel: false,
@@ -87,6 +89,7 @@ const ModifierProfile = () => {
     }
   };
 
+  // Affichage du chargement
   if (loading) return (
     <div className="mpu-loading-container">
       <div className="mpu-loading-spinner"></div>
@@ -98,9 +101,9 @@ const ModifierProfile = () => {
     <div className="mpu-profile-container">
       <div className="mpu-header">
         <h2 className="mpU-title">Modifier mon profil</h2>
-        
       </div>
       
+      {/* Affichage du message de succès */}
       {message && (
         <div className="mpu-alert mpu-success">
           <CheckCircle size={18} />
@@ -108,6 +111,7 @@ const ModifierProfile = () => {
         </div>
       )}
       
+      {/* Affichage du message d'erreur */}
       {error && (
         <div className="mpu-alert mpu-error">
           <AlertCircle size={18} />
@@ -115,6 +119,7 @@ const ModifierProfile = () => {
         </div>
       )}
       
+      {/* Formulaire de modification du profil */}
       <form onSubmit={handleSubmit} className="mpu-form">
         <div className="mpu-form-group">
           <label className="mpu-label">Email:</label>

@@ -1,273 +1,314 @@
 .facture-container {
-padding: 1.5rem;
-max-width: 100%;
+    /* Conteneur principal des factures */
+    padding: 1.5rem;
+    max-width: 100%;
 }
 .facture-title {
-font-size: 1.5rem;
-font-weight: 600;
-margin-bottom: 1.5rem;
-color: #1e3a8a ;
+    /* Titre de la section factures */
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #1e3a8a ;
 }
 .facture-list {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-gap: 1.5rem;
+    /* Grille des cartes de factures */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
 }
 .facture-card {
-background-color: #fff;
-border-radius: 8px;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-padding: 1rem;
-transition: transform 0.2s ease, box-shadow 0.2s ease;
-cursor: pointer;
-border-left: 4px solid #ccc;
+    /* Carte individuelle de facture */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border-left: 4px solid #ccc;
 }
 .facture-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    /* Effet au survol de la carte */
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 .facture-status-payée {
-border-left-color: #28A745;
+    /* Statut : facture payée */
+    border-left-color: #28A745;
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28A745;
 }
 .facture-status-en-attente {
-border-left-color: #f0ad4e;
+    /* Statut : facture en attente */
+    border-left-color: #f0ad4e;
+    background-color: rgba(240, 173, 78, 0.1);
+    color: #f0ad4e;
 }
 .facture-status-en-retard {
-border-left-color: #d32f2f;
+    /* Statut : facture en retard */
+    border-left-color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.1);
+    color: #d32f2f;
 }
 .facture-card-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 0.75rem;
-border-bottom: 1px solid #f0f0f0;
-padding-bottom: 0.75rem;
+    /* En-tête de la carte facture */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 0.75rem;
 }
 .facture-card-header h3 {
-font-size: 1rem;
-font-weight: 600;
-margin: 0;
+    /* Titre de la carte facture */
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
 }
 .facture-status-badge {
-padding: 0.25rem 0.5rem;
-border-radius: 999px;
-font-size: 0.75rem;
-font-weight: 500;
-}
-.facture-status-payée {
-background-color: rgba(40, 167, 69, 0.1);
-color: #28A745;
-}
-.facture-status-en-attente {
-background-color: rgba(240, 173, 78, 0.1);
-color: #f0ad4e;
-}
-.facture-status-en-retard {
-background-color: rgba(211, 47, 47, 0.1);
-color: #d32f2f;
+    /* Badge de statut de la facture */
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 500;
 }
 .facture-card-body {
-margin-bottom: 1rem;
+    /* Corps de la carte facture */
+    margin-bottom: 1rem;
 }
 .facture-card-info, .facture-card-details {
-margin-bottom: 0.5rem;
+    /* Informations et détails de la facture */
+    margin-bottom: 0.5rem;
 }
 .facture-card-info p, .facture-card-details p {
-margin: 0.25rem 0;
-font-size: 0.875rem;
+    /* Paragraphes d'informations */
+    margin: 0.25rem 0;
+    font-size: 0.875rem;
 }
 .facture-card-actions {
-display: flex;
-justify-content: flex-end;
-gap: 0.5rem;
+    /* Actions disponibles sur la carte */
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
 }
 .facture-btn {
-display: inline-flex;
-align-items: center;
-gap: 0.375rem;
-padding: 0.375rem 0.75rem;
-border-radius: 4px;
-font-size: 0.875rem;
-font-weight: 500;
-cursor: pointer;
-transition: background-color 0.2s ease;
-border: none;
+    /* Bouton générique */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: none;
 }
 .facture-btn-download {
-background-color: #f8fbfd;
-color: #1a1a1a;
-border: 1px solid #e0e0e0;
+    /* Bouton de téléchargement */
+    background-color: #f8fbfd;
+    color: #1a1a1a;
+    border: 1px solid #e0e0e0;
 }
 .facture-btn-download:hover {
-background-color: #edf2f7;
+    /* Effet au survol du bouton de téléchargement */
+    background-color: #edf2f7;
 }
 .facture-btn-pay {
-background-color: #28A745;
-color: white;
+    /* Bouton de paiement */
+    background-color: #28A745;
+    color: white;
 }
 .facture-btn-pay:hover {
-background-color: #009d38;
+    /* Effet au survol du bouton de paiement */
+    background-color: #009d38;
 }
 .facture-loading {
-display: flex;
-justify-content: center;
-align-items: center;
-height: 200px;
-color: #666;
+    /* Affichage du chargement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #666;
 }
 .facture-error {
-padding: 1rem;
-color: #d32f2f;
-background-color: rgba(211, 47, 47, 0.1);
-border-radius: 4px;
+    /* Message d'erreur */
+    padding: 1rem;
+    color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.1);
+    border-radius: 4px;
 }
 .facture-empty {
-text-align: center;
-padding: 2rem;
-color: #666;
+    /* Message si aucune facture */
+    text-align: center;
+    padding: 2rem;
+    color: #666;
 }
-/* Modal styles */
 .facture-modal-overlay {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: rgba(0, 0, 0, 0.5);
-display: flex;
-justify-content: center;
-align-items: center;
-z-index: 1000;
+    /* Overlay du modal */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 .facture-modal-box {
-background-color: white;
-border-radius: 8px;
-padding: 1.5rem;
-width: 90%;
-max-width: 500px;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    /* Boîte du modal */
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 .facture-modal-box h3 {
-margin-top: 0;
-margin-bottom: 1.5rem;
-font-size: 1.25rem;
-font-weight: 600;
-color: #1a1a1a;
+    /* Titre du modal */
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a1a1a;
 }
 .facture-payment-methods {
-display: flex;
-gap: 1.5rem;
-margin-bottom: 1.5rem;
+    /* Liste des moyens de paiement */
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 .facture-payment-method {
-display: flex;
-align-items: center;
-gap: 0.5rem;
+    /* Élément d'un moyen de paiement */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 .facture-payment-info {
-margin-bottom: 1.5rem;
-padding: 1rem;
-background-color: #f8fbfd;
-border-radius: 4px;
+    /* Informations de paiement */
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f8fbfd;
+    border-radius: 4px;
 }
 .facture-modal-buttons {
-display: flex;
-justify-content: flex-end;
-gap: 0.75rem;
+    /* Boutons du modal */
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
 }
 .facture-btn-cancel {
-background-color: #f8fbfd;
-color: #1a1a1a;
-border: 1px solid #e0e0e0;
+    /* Bouton d'annulation */
+    background-color: #f8fbfd;
+    color: #1a1a1a;
+    border: 1px solid #e0e0e0;
 }
 .facture-btn-cancel:hover {
-background-color: #edf2f7;
+    /* Effet au survol du bouton d'annulation */
+    background-color: #edf2f7;
 }
 .facture-btn-confirm {
-background-color: #28A745;
-color: white;
+    /* Bouton de confirmation */
+    background-color: #28A745;
+    color: white;
 }
 .facture-btn-confirm:hover {
-background-color: #009d38;
+    /* Effet au survol du bouton de confirmation */
+    background-color: #009d38;
 }
-/* Detail view styles */
 .facture-detail-container {
-padding: 1.5rem;
+    /* Conteneur de la vue détail */
+    padding: 1.5rem;
 }
 .facture-back-button {
-background: none;
-border: none;
-color: #1e3a8a;
-cursor: pointer;
-padding: 0.5rem 0;
-margin-bottom: 1rem;
-display: inline-flex;
-align-items: center;
-font-size: 0.875rem;
-font-weight: 500;
+    /* Bouton retour */
+    background: none;
+    border: none;
+    color: #1e3a8a;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 .facture-back-button:hover {
-color: #009d38;
+    /* Effet au survol du bouton retour */
+    color: #009d38;
 }
 .facture-detail-card {
-background-color: white;
-border-radius: 8px;
-padding: 1.5rem;
-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    /* Carte de détail de la facture */
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 .facture-detail-card h2 {
-margin-top: 0;
-margin-bottom: 1.5rem;
-font-size: 1.5rem;
-font-weight: 600;
+    /* Titre principal du détail */
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 .facture-detail-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 1.5rem;
-padding-bottom: 1rem;
-border-bottom: 1px solid #f0f0f0;
+    /* En-tête du détail de la facture */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f0f0f0;
 }
 .facture-amount h3 {
-font-size: 1.5rem;
-margin: 0;
-font-weight: 600;
+    /* Montant de la facture */
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
 }
 .facture-detail-section {
-margin-bottom: 2rem;
+    /* Section d'informations détaillées */
+    margin-bottom: 2rem;
 }
 .facture-detail-section h4 {
-font-size: 1rem;
-font-weight: 600;
-margin-bottom: 1rem;
-color: #1a1a1a;
+    /* Titre de section détail */
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
 }
 .facture-detail-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-gap: 1rem;
+    /* Grille des éléments de détail */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
 }
 .facture-detail-item {
-display: flex;
-flex-direction: column;
-gap: 0.25rem;
+    /* Élément individuel de détail */
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 .facture-detail-label {
-font-size: 0.75rem;
-color: #666;
+    /* Libellé d'un détail */
+    font-size: 0.75rem;
+    color: #666;
 }
 .facture-detail-value {
-font-size: 0.875rem;
-font-weight: 500;
+    /* Valeur d'un détail */
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 .facture-detail-actions {
-display: flex;
-gap: 1rem;
-margin-top: 2rem;
-padding-top: 1rem;
-border-top: 1px solid #f0f0f0;
+    /* Actions dans la vue détail */
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
 }
 .facture-detail-actions .facture-btn {
-padding: 0.5rem 1rem;
+    /* Boutons d'action dans la vue détail */
+    padding: 0.5rem 1rem;
 }

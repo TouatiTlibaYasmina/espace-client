@@ -1,123 +1,135 @@
-
 .homepage {
-    background-color: #ffffff;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 30px;
-    background: linear-gradient(to bottom, #dbeafe, #1e3a8a); /* Ajouté le dégradé comme dans l'image */
-  }
-  
-  .header-box {
-    width: 90%;
-    max-width: 1200px;
-    height: 100px;
-    background-color: rgba(30, 58, 138, 0.1); /* + visible qu'opacity: 0.03 */
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-  }
-  
-  .logo {
-    width: 118px;
-    height: 54px;
-  }
-  
-  .left-section,
-  .right-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .header-text {
-    color: #1e3a8a;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.28px;
-    white-space: nowrap;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .icon {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-  }
-  
-  .button-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .grey-button {
-    width: 100px;
-    height: 30px;
-    background: #f5f5f5;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
-  }
-  
-  .blue-button {
-    width: 120px;
-    height: 40px;
-    background-color: #1e3a8a;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .blue-text {
-    color: white;
-    font-size: 14px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    letter-spacing: 0.28px;
-    text-align: center;
-  }
-  
-  .underline {
-    text-decoration: underline;
-  }
+  /* Fond dégradé bleu clair vers bleu foncé */
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 30px;
+  background: linear-gradient(to bottom, #dbeafe, #1e3a8a);
+}
 
+.header-box {
+  /* Boîte d'en-tête avec fond semi-transparent et coins arrondis */
+  width: 90%;
+  max-width: 1200px;
+  height: 100px;
+  background-color: rgba(30, 58, 138, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
 
-  .hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 80px 5vw;
-    background-color: #fff;
-    flex-wrap: wrap;
-  }
-  
-  .hero-text {
-    flex: 1;
-    min-width: 300px;
-    max-width: 600px;
-  }
-  
-  .hero-title {
-    font-size: 2.2rem;
-    font-weight: 600;
-    color: #003a73;
-    margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-/* Add these styles to your existing HomePage.css */
+.logo {
+  /* Taille du logo */
+  width: 118px;
+  height: 54px;
+}
 
+.left-section,
+.right-section {
+  /* Alignement horizontal des éléments à gauche et à droite */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-text {
+  /* Style du texte d'en-tête */
+  color: #1e3a8a;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.28px;
+  white-space: nowrap;
+}
+
+.nav-links {
+  /* Liens de navigation alignés horizontalement */
+  display: flex;
+  gap: 15px;
+}
+
+.icon {
+  /* Taille des icônes */
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.button-group {
+  /* Groupe de boutons en colonne */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.grey-button {
+  /* Bouton gris avec ombre et coins arrondis */
+  width: 100px;
+  height: 30px;
+  background: #f5f5f5;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+
+.blue-button {
+  /* Bouton bleu principal */
+  width: 120px;
+  height: 40px;
+  background-color: #1e3a8a;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.blue-text {
+  /* Texte blanc sur fond bleu */
+  color: white;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.28px;
+  text-align: center;
+}
+
+.underline {
+  /* Soulignement du texte */
+  text-decoration: underline;
+}
+
+.hero {
+  /* Section principale avec image et texte */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 5vw;
+  background-color: #fff;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  /* Bloc de texte du hero */
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.hero-title {
+  /* Titre principal du hero */
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #003a73;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Bouton d'appel à l'action avec effet de survol et animation de brillance */
 .cta-button {
   width: 240px;
   height: 50px;
@@ -137,16 +149,19 @@
 }
 
 .cta-button:hover {
+  /* Changement de couleur et légère élévation au survol */
   background-color: #009d38;
   transform: translateY(-2px);
 }
 
 .button-text {
+  /* Texte du bouton au-dessus de l'effet */
   position: relative;
   z-index: 2;
 }
 
 .glaze-effect {
+  /* Effet de brillance animé sur le bouton */
   position: absolute;
   top: -50%;
   left: -50%;
@@ -159,93 +174,99 @@
 }
 
 @keyframes glaze {
-  0% { 
-    transform: translateX(-100%) rotate(45deg); 
+  0% {
+    transform: translateX(-100%) rotate(45deg);
   }
-  50% { 
-    transform: translateX(100%) rotate(45deg); 
+  50% {
+    transform: translateX(100%) rotate(45deg);
   }
-  100% { 
-    transform: translateX(100%) rotate(45deg); 
+  100% {
+    transform: translateX(100%) rotate(45deg);
   }
 }
 
-/* Update the hero-description to add margin bottom for the button */
+/* Description du hero avec retrait du margin-bottom */
 .hero-description {
   font-size: 1.15rem;
   line-height: 1.8;
   color: #002b5b;
   font-family: 'Poppins', sans-serif;
   max-width: 600px;
-  margin-bottom: 0; /* Remove existing margin-bottom if any */
+  margin-bottom: 0;
 }
-  
-  .hero-description-container {
-    background-color: #f5f8fc;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    margin-top: 1.5rem;
-  }
-  
-  .hero-image {
-    margin-top: 40px;
-    flex: 1;
-    min-width: 280px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .hero-image img {
-    width: 90%;
-    max-width: 400px;
-    height: auto;
-  }
-  
-  .image-top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-    margin-bottom: 30px;
-  }
-  
-  .image-top img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-  }
-  
-  .faq-content-centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
- /* Ajoutez ces styles pour la superposition et le flou */
 
- .modal-overlay {
+.hero-description-container {
+  /* Conteneur de la description avec fond clair et ombre */
+  background-color: #f5f8fc;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 1.5rem;
+}
+
+.hero-image {
+  /* Bloc contenant l'image principale */
+  margin-top: 40px;
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image img {
+  /* Taille de l'image principale */
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+}
+
+.image-top {
+  /* Bloc pour une image en haut de page */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.image-top img {
+  /* Taille de l'image du haut */
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+.faq-content-centered {
+  /* Centrage du contenu de la FAQ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Superposition et modale avec effet de flou */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(30, 58, 138, 0.2); /* Very faint blueish tint */
+  background-color: rgba(30, 58, 138, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999; /* Ensure it's above other content */
+  z-index: 999;
 }
 
-
 .modal-content {
+  /* Contenu de la modale avec animation d'entrée */
   background: white;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  transform: translateY(-20px); /* Pour effet de "légère élévation" */
+  transform: translateY(-20px);
   animation: modal-enter 0.3s ease-out;
 }
 
@@ -261,6 +282,7 @@
 }
 
 .modal-close {
+  /* Bouton de fermeture de la modale */
   position: absolute;
   top: 10px;
   right: 10px;
@@ -271,6 +293,7 @@
 }
 
 .offres-categories button {
+  /* Boutons de catégories d'offres */
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
@@ -282,38 +305,38 @@
 }
 
 .offres-categories button:hover {
+  /* Changement de couleur au survol */
   background-color: #0056b3;
 }
 
-/* Section title */
-
+/* Titre de section avec icône */
 .section-title {
-    display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 18px;
   font-size: 2.3rem;
   text-align: center;
   margin-bottom: 2rem;
-  color: #004080; /* Dark blue for the section title */
+  color: #004080;
 }
 
 .title-icon {
-  color:  #28A745; /* Your primary blue color */
+  /* Couleur de l'icône du titre */
+  color:  #28A745;
   font-size: 1.2em;
 }
 
 @media (max-width: 768px) {
+  /* Adaptation du titre de section sur mobile */
   .section-title {
     flex-direction: column;
     gap: 5px;
-  } }
-
-
-
-
+  }
+}
 
 .contact {
+  /* Section contact avec fond clair */
   padding: 80px 5vw;
   background-color: #f5f8fc;
   font-family: 'Poppins', sans-serif;
@@ -321,6 +344,7 @@
 }
 
 .contact-container {
+  /* Conteneur de contact en flex */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -328,18 +352,21 @@
 }
 
 .contact-text {
+  /* Bloc de texte de contact */
   flex: 1;
   min-width: 300px;
   max-width: 600px;
 }
 
 .contact-title {
+  /* Titre de la section contact */
   font-size: 2.2rem;
   font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .contact-description {
+  /* Description de la section contact */
   font-size: 1.1rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
@@ -347,6 +374,7 @@
 }
 
 .contact-channels {
+  /* Liste des moyens de contact */
   list-style: none;
   padding-left: 0;
   font-size: 1rem;
@@ -355,6 +383,7 @@
 }
 
 .contact-channels li {
+  /* Élément de la liste des contacts */
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -362,17 +391,20 @@
 }
 
 .channel-icon {
+  /* Icône de contact */
   width: 20px;
   height: 20px;
   flex-shrink: 0;
 }
 
-
 .contact-illustration img {
+  /* Illustration de contact */
   max-width: 100%;
   height: auto;
 }
+
 .footer {
+  /* Pied de page */
   background-color: #ffffff;
   color: #777;
   padding: 1rem 5vw;
@@ -383,7 +415,7 @@
 }
 
 .footer-content p {
+  /* Paragraphe du pied de page */
   margin: 0.3rem 0;
   line-height: 1.4;
 }
-
